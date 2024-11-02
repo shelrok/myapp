@@ -1,35 +1,33 @@
-from flask import Flask, Response, request
-from prometheus_client import generate_latest, CONTENT_TYPE_LATEST, Counter, Histogram
-import time
+from flask import Flask
+from flask import render_template
+from flask import request
 
 app = Flask(__name__)
 
-# Определение метрик
-REQUEST_COUNT = Counter('request_count', 'Total Request Count')
-REQUEST_LATENCY = Histogram('request_latency_seconds', 'Request latency in seconds')
+@app.route("/")
+def hello_world():
 
-@app.before_request
-def before_request():
-    # Сохраняем время начала запроса
-    request.start_time = time.time()
+    return "<p>Hello, World!</p>"
+if __name__ == 'main':
+  app.run(debug=True)
 
-@app.after_request
-def after_request(response):
-    # Вычисляем латентность запроса
-    if hasattr(request, 'start_time'):
-        latency = time.time() - request.start_time
-        REQUEST_LATENCY.observe(latency)
-    return response
+@app.route('/about')
+def about():
+  return 'This is the about page'
 
-@app.route('/')
-def hello():
-    REQUEST_COUNT.inc()
-    return "Hello, World!"
+@app.route('/user/<username>')
+def show_user_profile(username):
+  return f'User {username}'
 
-@app.route('/metrics')
-def metrics():
-    return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
+@app.route('/hello/<name>')
+def hello(name):
+  return render_template('hello.html', name=name)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+@app.route('/greet/<name>')
+def greet(name):
+  return f'Hello, {name}!'
 
+@app.route('/submit', methods=['POST'])
+def submit():
+  name = request.form['name']
+  return f'Hello, {name}'
