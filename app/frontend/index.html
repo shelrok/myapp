@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музыкальный сервис</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .song-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .song-list li {
+            margin: 10px 0;
+        }
+        audio {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать в музыкальный сервис</h1>
+    <ul class="song-list">
+        {% for song in audio_files %}
+            <li>
+                <div>{{ song }}</div>
+                <audio controls>
+                    <source src="{{ url_for('get_audio', filename=song) }}" type="audio/mp3">
+                    Ваш браузер не поддерживает аудиофайлы.
+                </audio>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -2,13 +2,18 @@ version: '3.8'
 
 services:
   web:
-    build: ./app
+    build: ./app  # Путь к вашему Flask приложению
     ports:
-      - "5000:5000"
+      - "5000:5000"  # Проброс порта 5000 на хостовую машину
     networks:
       - monitoring
     labels:
       - "prometheus_job=flask_app"
+    volumes:
+      - ./app:/app  # Монтируем локальную папку с кодом в контейнер
+    environment:
+      - FLASK_APP=app.py  # Указание на главный файл приложения
+      - FLASK_ENV=development  # Установка режима разработки
 
   prometheus:
     image: prom/prometheus:latest
@@ -66,4 +71,3 @@ networks:
 
 volumes:
   grafana_data:
-

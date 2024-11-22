@@ -1,18 +1,17 @@
 # Используем официальный образ Python
 FROM python:3.11-slim
 
-# Обновляем pip до последней версии
-RUN pip install --upgrade pip
-
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем файлы проекта
-COPY . /app
+# Копируем зависимости
+COPY requirements.txt /app/requirements.txt
 
 # Устанавливаем зависимости
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r /app/requirements.txt
 
-# Определяем команду для запуска приложения
+# Копируем все файлы приложения
+COPY . /app
+
+# Указываем команду для запуска Flask-приложения
 CMD ["python", "app.py"]
-
