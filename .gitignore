@@ -1,4 +1,4 @@
 venv
 .env
-db_data
-pgadmin
+db_data/*
+pgadmin/*

@@ -6,10 +6,10 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
+
 # Загружаем переменные окружения
 load_dotenv()
-
-# Пути к папкам для хранения шаблонов и статических файлов
+DATABASE_URL = os.getenv('DATABASE_URL')
 TEMPLATES_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'templates')
 STATIC_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'static')
 AUDIO_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'static', 'audio')
@@ -18,12 +18,8 @@ AUDIO_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'static', 'aud
 app = Flask(__name__, template_folder=TEMPLATES_FOLDER, static_folder=STATIC_FOLDER, static_url_path='/musicservice/static')
 
 # Конфигурация подключения к PostgreSQL
-app.config.update(
-    {
-        "SQLALCHEMY_DATABASE_URI": "postgresql://postgres:password@db:5432/musicdb",  # Замените на вашу строку подключения
-        "SQLALCHEMY_TRACK_MODIFICATIONS": False,  # Отключаем отслеживание изменений для экономии памяти
-    }
-)
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL  # Используем строку подключения из .env
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Отключаем отслеживание изменений для экономии памяти
 
 # Инициализация SQLAlchemy
 db = SQLAlchemy(app)
