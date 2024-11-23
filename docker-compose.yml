@@ -3,6 +3,7 @@ version: '3.8'
 services:
   web:
     build: ./app  # Путь к вашему Flask приложению
+    container_name: web
     ports:
       - "5000:5000"  # Проброс порта 5000 на хостовую машину
     networks:
@@ -65,6 +66,12 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     networks:
       - "monitoring"
+    depends_on:
+      - prometheus
+      - grafana
+      - web
+      - cadvisor
+      - node_exporter
 
 networks:
   monitoring:
