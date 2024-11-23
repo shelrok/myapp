@@ -15,6 +15,35 @@ services:
     environment:
       - FLASK_APP=app.py  # Указание на главный файл приложения
       - FLASK_ENV=development  # Установка режима разработки
+      - FLASK_DEBUG=1  # Включает режим отладки
+      - DATABASE_URL=${DATABASE_URL}  # Строка подключения к базе данных
+  # Сервис для PostgreSQL
+  db:
+    image: postgres:latest  # Используем официальную PostgreSQL-образ
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres  # Имя пользователя
+      - POSTGRES_PASSWORD=${DB_PASSWORD}  # Пароль пользователя
+      - POSTGRES_DB=musicdb  # Название базы данных
+    volumes:
+      - ./db_data:/var/lib/postgresql/data  # Храним данные базы данных в volume
+    networks:
+      - monitoring
+
+  # Сервис для pgAdmin (для удобного доступа к PostgreSQL через браузер)
+  pgadmin:
+    image: dpage/pgadmin4:latest  # Официальный образ pgAdmin
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com  # Адрес электронной почты для входа
+      - PGADMIN_DEFAULT_PASSWORD=${DB_PASSWORD_PGA}  # Пароль для входа
+      - PGADMIN_LISTEN_PORT=8081
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+    ports:
+      - "8081:8081"  # Доступ через localhost:80
+    networks:
+      - monitoring
 
   prometheus:
     image: prom/prometheus:latest
@@ -33,7 +62,7 @@ services:
       - grafana_data:/var/lib/grafana
       - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
     depends_on:
       - prometheus
     networks:
@@ -75,6 +104,6 @@ services:
 
 networks:
   monitoring:
-
+    driver: bridge
 volumes:
   grafana_data:

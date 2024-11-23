@@ -14,13 +14,14 @@
         header {
             background-color: #333;
             color: #fff;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
         }
         .genre-container {
             margin: 20px;
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
         }
         .genre {
             width: 250px;
@@ -29,6 +30,10 @@
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .genre:hover {
+            transform: scale(1.05);
         }
         .genre h2 {
             font-size: 1.5em;
@@ -39,11 +44,26 @@
             margin-top: 10px;
         }
         .audio-item {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #fafafa;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        .audio-item:hover {
+            background-color: #e9e9e9;
         }
         audio {
             width: 100%;
             margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .audio-item p {
+            margin: 0;
+            font-size: 1.1em;
+            color: #333;
         }
     </style>
 </head>
@@ -61,7 +81,7 @@
                 {% for file in files %}
                     <div class="audio-item">
                         <p>{{ file }}</p>
-                        <audio controls>
+                        <audio id="audio-{{ genre }}-{{ file }}" controls>
                             <source src="/musicservice/audio/{{ genre }}/{{ file }}" type="audio/mp3">
                             Ваш браузер не поддерживает элемент audio.
                         </audio>
@@ -71,6 +91,42 @@
         </div>
     {% endfor %}
 </div>
+
+<script>
+    let currentlyPlaying = null;
+
+    // Функция для остановки текущей песни
+    function stopAudio() {
+        if (currentlyPlaying) {
+            currentlyPlaying.pause();
+            currentlyPlaying.currentTime = 0;
+        }
+    }
+
+    // Функция для старта новой песни
+    function playAudio(audioElement) {
+        if (currentlyPlaying !== audioElement) {
+            stopAudio();
+            audioElement.play();
+            currentlyPlaying = audioElement;
+        } else {
+            audioElement.pause();
+            currentlyPlaying = null;
+        }
+    }
+
+    // Добавляем обработчики событий на все аудиофайлы
+    document.querySelectorAll('audio').forEach(audio => {
+        audio.addEventListener('play', function () {
+            playAudio(audio);
+        });
+
+        // Останавливаем песню, если она была в проигрыше
+        audio.addEventListener('pause', function () {
+            currentlyPlaying = null;
+        });
+    });
+</script>
 
 </body>
 </html>
