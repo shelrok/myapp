@@ -30,6 +30,29 @@ services:
     networks:
       - monitoring
 
+  postgresexporter:
+    image: prometheuscommunity/postgres-exporter:latest
+    environment:
+      DATA_SOURCE_NAME: ${DATABASE_URL}
+    ports:
+      - "9187:9187"
+    volumes:
+      - ./pg_exporter/queries.yml:/etc/queries.yml
+    command:
+      - '--web.listen-address=:9187'
+      - '--web.telemetry-path=/metrics'
+      - '--collector.database_wraparound'
+      - '--collector.long_running_transactions'
+      - '--collector.postmaster'
+      - '--collector.process_idle'
+      - '--collector.stat_activity_autovacuum'
+      - '--collector.stat_statements'
+      - '--collector.stat_wal_receiver'
+      - '--collector.statio_user_indexes'
+      - '--extend.query-path=/etc/queries.yml'
+    depends_on:
+      - db
+
   # Сервис для pgAdmin (для удобного доступа к PostgreSQL через браузер)
   pgadmin:
     image: dpage/pgadmin4:latest  # Официальный образ pgAdmin
@@ -49,20 +72,25 @@ services:
     image: prom/prometheus:latest
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prom-data:/prometheus
+      - prom-configs:/etc/prometheus
     ports:
       - "9090:9090"
     networks:
       - monitoring
+    
 
   grafana:
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
     volumes:
-      - grafana_data:/var/lib/grafana
-      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/grafana_data:/var/lib/grafana
+      - ./grafana/dashboards:/etc/grafana/provisioning/datasources/
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      - GF_DASHBOARDS_JSON_ENABLED=true  # Включаем JSON дашборды
+      - GF_DASHBOARDS_JSON_PATH=/etc/grafana/dashboards  # Путь к папке с дашбордами
     depends_on:
       - prometheus
     networks:
@@ -77,6 +105,8 @@ services:
       - /var/run:/var/run:ro
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+    restart:
+      always
     networks:
       - monitoring
 
@@ -86,6 +116,15 @@ services:
       - "9100:9100"
     networks:
       - monitoring
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude'
+      - '^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)'
 
   nginx:
     image: nginx:latest
@@ -107,3 +146,5 @@ networks:
     driver: bridge
 volumes:
   grafana_data:
+  prom-data:
+  prom-configs:

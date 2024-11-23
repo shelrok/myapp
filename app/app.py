@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from prometheus_flask_exporter import PrometheusMetrics
 
 
 # Загружаем переменные окружения
@@ -14,9 +15,10 @@ TEMPLATES_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'templates
 STATIC_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'static')
 AUDIO_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'static', 'audio')
 
+
 # Инициализация приложения Flask
 app = Flask(__name__, template_folder=TEMPLATES_FOLDER, static_folder=STATIC_FOLDER, static_url_path='/musicservice/static')
-
+metrics = PrometheusMetrics(app)
 # Конфигурация подключения к PostgreSQL
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL  # Используем строку подключения из .env
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Отключаем отслеживание изменений для экономии памяти

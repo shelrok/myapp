@@ -2,3 +2,5 @@ venv
 .env
 db_data/*
 pgadmin/*
+pg_exporter/*
+grafana/*
