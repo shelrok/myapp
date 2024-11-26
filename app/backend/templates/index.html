@@ -108,6 +108,43 @@
             font-size: 1em;
         }
 
+        /* Стили для отображения артиста и плейлиста */
+        .artist-container, .playlist-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 40px;
+        }
+
+        .artist, .playlist {
+            width: 200px;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .artist img, .playlist img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .artist h3, .playlist h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .playlist-description {
+            font-size: 1em;
+            color: #777;
+            margin-top: 10px;
+        }
+
         @media screen and (max-width: 768px) {
             .genre-container {
                 flex-direction: column;
@@ -127,6 +164,7 @@
     <h1>Добро пожаловать в музыкальный сервис</h1>
 </header>
 
+<!-- Отображение информации о жанрах -->
 <div class="genre-container">
     {% for genre, files in genres.items() %}
         <div class="genre">
@@ -142,6 +180,28 @@
                     </div>
                 {% endfor %}
             </div>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Отображение артистов -->
+<div class="artist-container">
+    {% for artist in artists %}
+        <div class="artist">
+            <img src="{{ url_for('static', filename='artists/' + (artist.image_filename if artist.image_filename else 'default_artist_image.jpg')) }}" alt="Image of {{ artist.name }}">
+            <h3>{{ artist.name }}</h3>
+            <p>{{ artist.bio }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Отображение плейлистов -->
+<div class="playlist-container">
+    {% for playlist in playlists %}
+        <div class="playlist">
+            <img src="{{ url_for('static', filename='playlists/' + playlist.image_filename) }}" alt="Image of {{ playlist.name }}">
+            <h3>{{ playlist.name }}</h3>
+            <p class="playlist-description">{{ playlist.description }}</p>
         </div>
     {% endfor %}
 </div>
