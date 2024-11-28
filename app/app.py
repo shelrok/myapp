@@ -119,6 +119,49 @@ def populate_db_from_audio():
                         db.session.add(song)
 
             db.session.commit()  # Сохраняем все изменения в базе данных
+    
+    # Загружаем изображения для артистов и плейлистов
+    load_artist_images()
+    load_playlist_images()
+
+def load_artist_images():
+    # Получаем список всех изображений в папке с изображениями артистов
+    for image_filename in os.listdir(ARTIST_IMAGES_FOLDER):
+        if image_filename.endswith(('.png', '.jpg', '.jpeg')):  # Обрабатываем только изображения
+            try:
+                # Попытка получить ID артиста из имени файла
+                artist_id_str = image_filename.split('_')[0]  # Получаем часть имени до _
+                
+                # Проверяем, что это действительно число
+                artist_id = int(artist_id_str)
+                
+                artist = Artist.query.get(artist_id)
+                if artist:
+                    artist.image_filename = f"artists/{image_filename}"
+                    db.session.commit()
+            except ValueError:
+                # Обработка случая, когда ID не является числом (например, если это изображение без _ в имени)
+                print(f"Warning: Skipping image '{image_filename}' because the artist ID is invalid.")
+
+# Функция для загрузки изображений плейлистов
+def load_playlist_images():
+    # Получаем список всех изображений в папке с изображениями плейлистов
+    for image_filename in os.listdir(PLAYLIST_IMAGES_FOLDER):
+        if image_filename.endswith(('.png', '.jpg', '.jpeg')):  # Обрабатываем только изображения
+            try:
+                # Убираем расширение файла
+                image_name_without_extension = os.path.splitext(image_filename)[0]
+                
+                # Пробуем извлечь ID из имени файла
+                playlist_id = int(image_name_without_extension)
+                
+                playlist = Playlist.query.get(playlist_id)
+                if playlist:
+                    playlist.image_filename = f"playlists/{image_filename}"
+                    db.session.commit()
+            except ValueError:
+                # Обработка случая, когда ID не является числом
+                print(f"Warning: Skipping image '{image_filename}' because the playlist ID is invalid.")
 
 @app.before_first_request
 def populate_database():

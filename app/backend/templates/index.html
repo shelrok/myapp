@@ -48,7 +48,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            background-image: url('https://source.unsplash.com/300x300/?music,genre'); /* Add a random background image */
+            background-image: url('/static/images/genre_placeholder.png'); /* Use placeholder image for genres */
             background-size: cover;
             background-position: center;
             color: white;
@@ -108,7 +108,6 @@
             font-size: 1em;
         }
 
-        /* Стили для отображения артиста и плейлиста */
         .artist-container, .playlist-container {
             display: flex;
             flex-wrap: wrap;
@@ -164,7 +163,6 @@
     <h1>Добро пожаловать в музыкальный сервис</h1>
 </header>
 
-<!-- Отображение информации о жанрах -->
 <div class="genre-container">
     {% for genre, files in genres.items() %}
         <div class="genre">
@@ -174,7 +172,7 @@
                     <div class="audio-item">
                         <p>{{ file }}</p>
                         <audio id="audio-{{ genre }}-{{ file }}" controls>
-                            <source src="/musicservice/audio/{{ genre }}/{{ file }}" type="audio/mp3">
+                            <source src="{{ url_for('static', filename='audio/' + genre + '/' + file) }}" type="audio/mp3">
                             Ваш браузер не поддерживает элемент audio.
                         </audio>
                     </div>
@@ -213,7 +211,6 @@
 <script>
     let currentlyPlaying = null;
 
-    // Функция для остановки текущей песни
     function stopAudio() {
         if (currentlyPlaying) {
             currentlyPlaying.pause();
@@ -221,7 +218,6 @@
         }
     }
 
-    // Функция для старта новой песни
     function playAudio(audioElement) {
         if (currentlyPlaying !== audioElement) {
             stopAudio();
@@ -233,13 +229,11 @@
         }
     }
 
-    // Добавляем обработчики событий на все аудиофайлы
     document.querySelectorAll('audio').forEach(audio => {
         audio.addEventListener('play', function () {
             playAudio(audio);
         });
 
-        // Останавливаем песню, если она была в проигрыше
         audio.addEventListener('pause', function () {
             currentlyPlaying = null;
         });
