@@ -7,6 +7,10 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from prometheus_flask_exporter import PrometheusMetrics
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Загружаем переменные окружения
 load_dotenv()
@@ -80,7 +84,7 @@ class PlaylistSong(db.Model):
 @app.before_first_request
 def create_tables():
     db.create_all()
-    print("Tables created!")
+    logger.info("Tables created!")
 
 # Функция для добавления жанров и песен из папок
 def populate_db_from_audio():

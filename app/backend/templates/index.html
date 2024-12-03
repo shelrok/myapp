@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Музыкальный сервис</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,14 +13,22 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #f9f9f9, #e0e0e0);
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #f6d365, #fda085);
+            background-size: 200% 200%;
+            animation: gradientAnimation 10s ease infinite;
             color: #333;
             line-height: 1.6;
         }
 
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         header {
-            background-color: #2c3e50;
+            background-color: rgba(44, 62, 80, 0.8);
             color: white;
             padding: 30px 0;
             text-align: center;
@@ -29,6 +38,23 @@
         header h1 {
             font-size: 3em;
             letter-spacing: 1px;
+        }
+
+        .genre-selector {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .genre-selector select {
+            padding: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s;
+        }
+
+        .genre-selector select:focus {
+            border-color: #2c3e50;
         }
 
         .genre-container {
@@ -43,16 +69,24 @@
             width: 280px;
             margin: 10px;
             padding: 25px;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            background-image: url('/static/images/genre_placeholder.png'); /* Use placeholder image for genres */
+            background-image: url('https://via.placeholder.com/280');
             background-size: cover;
             background-position: center;
             color: white;
             overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
         .genre:hover {
@@ -100,7 +134,7 @@
         }
 
         .footer {
-            background-color: #2c3e50;
+            background-color: rgba(44, 62, 80, 0.8);
             color: white;
             text-align: center;
             padding: 20px 0;
@@ -119,10 +153,15 @@
         .artist, .playlist {
             width: 200px;
             text-align: center;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .artist:hover, .playlist:hover {
+            transform: translateY(-10px);
         }
 
         .artist img, .playlist img {
@@ -163,9 +202,19 @@
     <h1>Добро пожаловать в музыкальный сервис</h1>
 </header>
 
+<div class="genre-selector">
+    <label for="genre-select">Выберите жанр:</label>
+    <select id="genre-select" onchange="filterGenres()">
+        <option value="all">Все жанры</option>
+        {% for genre in genres.keys() %}
+            <option value="{{ genre }}">{{ genre|capitalize }}</option>
+        {% endfor %}
+    </select>
+</div>
+
 <div class="genre-container">
     {% for genre, files in genres.items() %}
-        <div class="genre">
+        <div class="genre" data-genre="{{ genre }}">
             <h2>{{ genre|capitalize }}</h2>
             <div class="audio-list">
                 {% for file in files %}
@@ -185,7 +234,7 @@
 <!-- Отображение артистов -->
 <div class="artist-container">
     {% for artist in artists %}
-        <div class="artist">
+        <div class="artist" onclick="showArtistSongs({{ artist.id }})">
             <img src="{{ url_for('static', filename='artists/' + (artist.image_filename if artist.image_filename else 'default_artist_image.jpg')) }}" alt="Image of {{ artist.name }}">
             <h3>{{ artist.name }}</h3>
             <p>{{ artist.bio }}</p>
@@ -193,15 +242,10 @@
     {% endfor %}
 </div>
 
-<!-- Отображение плейлистов -->
-<div class="playlist-container">
-    {% for playlist in playlists %}
-        <div class="playlist">
-            <img src="{{ url_for('static', filename='playlists/' + playlist.image_filename) }}" alt="Image of {{ playlist.name }}">
-            <h3>{{ playlist.name }}</h3>
-            <p class="playlist-description">{{ playlist.description }}</p>
-        </div>
-    {% endfor %}
+<!-- Контейнер для отображения песен артиста -->
+<div id="artist-songs-container" style="display: none; margin-top: 20px;">
+    <h2 id="artist-name"></h2>
+    <div id="artist-songs-list"></div>
 </div>
 
 <footer class="footer">
@@ -212,7 +256,7 @@
     let currentlyPlaying = null;
 
     function stopAudio() {
-        if (currentlyPlaying) {
+        if (currentlyPlaying && !currentlyPlaying.paused) {
             currentlyPlaying.pause();
             currentlyPlaying.currentTime = 0;
         }
@@ -238,6 +282,45 @@
             currentlyPlaying = null;
         });
     });
+
+    function filterGenres() {
+        const selectedGenre = document.getElementById('genre-select').value;
+        document.querySelectorAll('.genre').forEach(genreElement => {
+            if (selectedGenre === 'all' || genreElement.dataset.genre === selectedGenre) {
+                genreElement.style.display = 'block';
+            } else {
+                genreElement.style.display = 'none';
+            }
+        });
+    }
+
+    function showArtistSongs(artistId) {
+        fetch(`/musicservice/api/artist/${artistId}`)
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('artist-songs-container');
+                const list = document.getElementById('artist-songs-list');
+                const artistName = document.getElementById('artist-name');
+
+                artistName.textContent = data.name;
+                list.innerHTML = '';
+
+                data.songs.forEach(song => {
+                    const songElement = document.createElement('div');
+                    songElement.className = 'audio-item';
+                    songElement.innerHTML = `
+                        <p>${song}</p>
+                        <audio controls>
+                            <source src="/musicservice/static/audio/${data.genre}/${song}" type="audio/mp3">
+                            Ваш браузер не поддерживает элемент audio.
+                        </audio>
+                    `;
+                    list.appendChild(songElement);
+                });
+
+                container.style.display = 'block';
+            });
+    }
 </script>
 
 </body>

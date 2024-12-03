@@ -7,11 +7,9 @@ WORKDIR /app
 # Копируем файл зависимостей в контейнер
 COPY requirements.txt /app/requirements.txt
 
-# Устанавливаем зависимости
-RUN pip install --no-cache-dir -r /app/requirements.txt
-
-# Копируем все файлы приложения в контейнер
+# Устанавливаем зависимости и копируем файлы в один слой
 COPY . /app
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Указываем переменную окружения для Flask
 ENV FLASK_APP=app.py
