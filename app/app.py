@@ -105,7 +105,7 @@ def populate_db_from_audio():
                 if filename.endswith(".mp3"):  # Только MP3 файлы
                     song_name = filename.split('.')[0]  # Убираем расширение
                     file_path = os.path.join(genre_path, filename)
-
+                    
                     # Проверяем, существует ли такая песня уже
                     existing_song = Song.query.filter_by(file_name=filename).first()
                     if not existing_song:

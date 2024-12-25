@@ -10,6 +10,9 @@ services:
       - monitoring
     labels:
       - "prometheus_job=flask_app"
+      - "traefik.enable=true"                                # Включить для Traefik
+      - "traefik.http.routers.web.rule=PathPrefix(`/musicservice`)"      # Доступ через корневой маршрут
+      - "traefik.http.services.web.loadbalancer.server.port=5000"
     volumes:
       - ./app:/app  # Монтируем локальную папку с кодом в контейнер
     environment:
@@ -17,6 +20,8 @@ services:
       - FLASK_ENV=development  # Установка режима разработки
       - FLASK_DEBUG=1  # Включает режим отладки
       - DATABASE_URL=${DATABASE_URL}  # Строка подключения к базе данных
+    # depends_on:
+    #   - db
   # Сервис для PostgreSQL
   db:
     image: postgres:latest  # Используем официальную PostgreSQL-образ
@@ -57,9 +62,15 @@ services:
   pgadmin:
     image: dpage/pgadmin4:latest  # Официальный образ pgAdmin
     container_name: pgadmin
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pgadmin.rule=PathPrefix(`/pgadmin`)"
+      - "traefik.http.middlewares.pgadmin-strip-prefix.stripprefix.prefixes=/pgadmin"
+      - "traefik.http.routers.pgadmin.middlewares=pgadmin-strip-prefix"
+      - "traefik.http.services.pgadmin.loadbalancer.server.port=8081"
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com  # Адрес электронной почты для входа
-      - PGADMIN_DEFAULT_PASSWORD=${DB_PASSWORD_PGA}  # Пароль для входа
+      - PGADMIN_DEFAULT_PASSWORD=admin  # Пароль для входа
       - PGADMIN_LISTEN_PORT=8081
     volumes:
       - ./pgadmin:/var/lib/pgadmin
@@ -67,9 +78,17 @@ services:
       - "8081:8081"  # Доступ через localhost:80
     networks:
       - monitoring
+    depends_on:
+      - db
 
   prometheus:
     image: prom/prometheus:latest
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus.rule=PathPrefix(`/prometheus`)"
+      - "traefik.http.middlewares.prometheus-strip-prefix.stripprefix.prefixes=/prometheus"
+      - "traefik.http.routers.prometheus.middlewares=prometheus-strip-prefix"
+      - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prom-data:/prometheus
@@ -87,10 +106,18 @@ services:
     volumes:
       - ./grafana/grafana_data:/var/lib/grafana
       - ./grafana/dashboards:/etc/grafana/provisioning/datasources/
+    labels:
+      - "traefik.enable=true"                                    # Включить для Traefik
+      - "traefik.http.routers.grafana.rule=PathPrefix(`/grafana`)" # Доступ по lotolis/grafana
+      - "traefik.http.middlewares.grafana-strip-prefix.stripprefix.prefixes=/grafana"
+      - "traefik.http.routers.grafana.middlewares=grafana-strip-prefix"
+      - "traefik.http.services.grafana.loadbalancer.server.port=3000"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
       - GF_DASHBOARDS_JSON_ENABLED=true  # Включаем JSON дашборды
       - GF_DASHBOARDS_JSON_PATH=/etc/grafana/dashboards  # Путь к папке с дашбордами
+      - GF_SERVER_ROOT_URL=http://lotolis/grafana/
+
     depends_on:
       - prometheus
     networks:
@@ -98,6 +125,12 @@ services:
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cadvisor.rule=PathPrefix(`/cadvisor`)"
+      - "traefik.http.middlewares.cadvisor-strip-prefix.stripprefix.prefixes=/cadvisor"
+      - "traefik.http.routers.cadvisor.middlewares=grafana-strip-prefix"
+      - "traefik.http.services.cadvisor.loadbalancer.server.port=8080"
     ports:
       - "8080:8080"
     volumes:
@@ -112,6 +145,12 @@ services:
 
   node_exporter:
     image: prom/node-exporter:latest
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.node_exporter.rule=PathPrefix(`/node_exporter`)"
+      - "traefik.http.middlewares.node_exporter-strip-prefix.stripprefix.prefixes=/node_exporter"
+      - "traefik.http.routers.cadvisor.middlewares=grafana-strip-prefix"
+      - "traefik.http.services.node_exporter.loadbalancer.server.port=9100"
     ports:
       - "9100:9100"
     networks:
@@ -125,21 +164,32 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude'
       - '^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)'
-
-  nginx:
-    image: nginx:latest
+    
+  traefik:
+    image: traefik:v2.10
+    container_name: traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=PathPrefix(`/traefik`)"
+      - "traefik.http.middlewares.traefik-strip-prefix.stripprefix.prefixes=/traefik"
+      - "traefik.http.routers.cadvisor.middlewares=traefik-strip-prefix"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8085"
     ports:
-      - "80:80"
+      - "80:80"        # HTTP
+      - "443:443"      # HTTPS (если нужно)
+      - "8085:8080"    # Панель управления Traefik
+    command:
+      - "--api.insecure=true"                    # Включаем панель управления (доступно на http://lotolis:8080)
+      - "--providers.docker=true"                # Автоматическое обнаружение сервисов в Docker
+      - "--entrypoints.web.address=:80"          # Основной HTTP-вход
+      - "--entrypoints.websecure.address=:443"   # HTTPS (при необходимости)
+      - "--log.level=INFO" 
+      - "--configFile=/etc/traefik/traefik.yml"                       # Уровень логирования
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /var/run/docker.sock:/var/run/docker.sock # Для взаимодействия с Docker
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml
     networks:
-      - "monitoring"
-    depends_on:
-      - prometheus
-      - grafana
-      - web
-      - cadvisor
-      - node_exporter
+      - monitoring
 
 networks:
   monitoring:
