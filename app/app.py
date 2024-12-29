@@ -8,10 +8,16 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from prometheus_flask_exporter import PrometheusMetrics
 import logging
+from logstash_async.handler import AsynchronousLogstashHandler
+from logstash_async.formatter import LogstashFormatter
+from logstash_formatter import LogstashFormatterV1
+logger = logging.getLogger("logstash")
+handler = logging.StreamHandler()
+handler.setFormatter(LogstashFormatterV1())
+logger.addHandler(handler)
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
+logger.error("This is a test log for Logstash!")
+logger.setLevel(logging.INFO)
 # Загружаем переменные окружения
 load_dotenv()
 DATABASE_URL = os.getenv('DATABASE_URL')
@@ -40,6 +46,18 @@ try:
 except Exception as e:
     print(f"Error: {e}")
     exit(1)
+
+# Добавление пользовательских метрик
+metrics.info('app_info', 'Application info', version='1.0.0')
+request_count = metrics.counter(
+    'http_requests_total', 'Total number of HTTP requests',
+    labels={'endpoint': lambda: request.endpoint, 'method': lambda: request.method}
+)
+
+error_count = metrics.counter(
+    'http_request_errors_total', 'Total number of HTTP request errors',
+    labels={'endpoint': lambda: request.endpoint, 'method': lambda: request.method}
+)
 
 # Модели базы данных для жанров и песен
 class Genre(db.Model):

@@ -6,3 +6,4 @@ sqlalchemy==1.4.47
 psycopg2-binary==2.9.6
 python-dotenv==1.0.0
 prometheus_flask_exporter
+logstash_formatter==0.5.2

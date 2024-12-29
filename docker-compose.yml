@@ -191,6 +191,68 @@ services:
     networks:
       - monitoring
 
+  # Elasticsearch
+  elasticsearch:
+    image: elasticsearch:latest
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./es_data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    networks:
+      - monitoring
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.elasticsearch.rule=PathPrefix(`/elasticsearch`)"
+      - "traefik.http.middlewares.elasticsearch-strip-prefix.stripprefix.prefixes=/elasticsearch"
+      - "traefik.http.routers.elasticsearch.middlewares=elasticsearch-strip-prefix"
+      - "traefik.http.services.elasticsearch.loadbalancer.server.port=9200"
+
+  # Logstash
+  logstash:
+    image: logstash:latest
+    container_name: logstash
+    volumes:
+      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    ports:
+      - "5044:5044"
+    networks:
+      - monitoring
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.logstash.rule=PathPrefix(`/logstash`)"
+      - "traefik.http.middlewares.logstash-strip-prefix.stripprefix.prefixes=/logstash"
+      - "traefik.http.routers.logstash.middlewares=logstash-strip-prefix"
+      - "traefik.http.services.logstash.loadbalancer.server.port=5044"
+
+  # Kibana
+  kibana:
+    image: kibana:latest
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    networks:
+      - monitoring
+    depends_on:
+      - elasticsearch
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kibana.rule=PathPrefix(`/kibana`)"
+      - "traefik.http.middlewares.kibana-strip-prefix.stripprefix.prefixes=/kibana"
+      - "traefik.http.routers.kibana.middlewares=kibana-strip-prefix"
+      - "traefik.http.services.kibana.loadbalancer.server.port=5601"
+
+
 networks:
   monitoring:
     driver: bridge
@@ -198,3 +260,4 @@ volumes:
   grafana_data:
   prom-data:
   prom-configs:
+  es-data:
