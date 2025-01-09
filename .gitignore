@@ -4,3 +4,5 @@ db_data/*
 pgadmin/*
 pg_exporter/*
 grafana/*
+kibana/*
+es-data/*

@@ -7,16 +7,24 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from prometheus_flask_exporter import PrometheusMetrics
+from logging.handlers import RotatingFileHandler
+import json
 import logging
-from logstash_async.handler import AsynchronousLogstashHandler
-from logstash_async.formatter import LogstashFormatter
-from logstash_formatter import LogstashFormatterV1
-logger = logging.getLogger("logstash")
-handler = logging.StreamHandler()
-handler.setFormatter(LogstashFormatterV1())
-logger.addHandler(handler)
+# Создаем директорию для логов, если она не существует
+log_dir = os.path.join(os.path.dirname(__file__), "app", "logs")
+os.makedirs(log_dir, exist_ok=True)
 
-logger.error("This is a test log for Logstash!")
+# Путь к лог-файлу
+log_file = os.path.join(log_dir, "application.log")
+
+
+# Конфигурация логгера
+logger = logging.getLogger("logstash")
+logger.setLevel(logging.INFO)
+logger.addHandler(logging.StreamHandler())  # Оставляем вывод в консоль для отладки
+
+# Пример тестового сообщения
+logger.info("Application logger configured successfully.")
 logger.setLevel(logging.INFO)
 # Загружаем переменные окружения
 load_dotenv()

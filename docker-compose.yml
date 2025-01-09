@@ -1,6 +1,18 @@
-version: '3.8'
+# version: '3.8'
 
 services:
+  db:
+    image: postgres:latest  # Используем официальную PostgreSQL-образ
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres  # Имя пользователя
+      - POSTGRES_PASSWORD=${DB_PASSWORD}  # Пароль пользователя
+      - POSTGRES_DB=musicdb  # Название базы данных
+    volumes:
+      - ./db_data:/var/lib/postgresql/data  # Храним данные базы данных в volume
+    networks:
+      - monitoring
+
   web:
     build: ./app  # Путь к вашему Flask приложению
     container_name: web
@@ -20,21 +32,9 @@ services:
       - FLASK_ENV=development  # Установка режима разработки
       - FLASK_DEBUG=1  # Включает режим отладки
       - DATABASE_URL=${DATABASE_URL}  # Строка подключения к базе данных
-    # depends_on:
-    #   - db
-  # Сервис для PostgreSQL
-  db:
-    image: postgres:latest  # Используем официальную PostgreSQL-образ
-    container_name: db
-    environment:
-      - POSTGRES_USER=postgres  # Имя пользователя
-      - POSTGRES_PASSWORD=${DB_PASSWORD}  # Пароль пользователя
-      - POSTGRES_DB=musicdb  # Название базы данных
-    volumes:
-      - ./db_data:/var/lib/postgresql/data  # Храним данные базы данных в volume
-    networks:
-      - monitoring
-
+    depends_on:
+      - db
+  
   postgresexporter:
     image: prometheuscommunity/postgres-exporter:latest
     environment:
@@ -165,6 +165,137 @@ services:
       - '--collector.filesystem.mount-points-exclude'
       - '^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)'
     
+
+
+
+  # Logstash
+  logstash:
+    image: logstash:8.16.2
+    container_name: logstash
+    volumes:
+      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf  # Конфиг для pipeline
+      # - ./logstash/config/:/usr/share/logstash/config/ 
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    depends_on:
+      - elasticsearch
+    networks:
+      - monitoring
+    environment:
+      - LOGSTASH_OUTPUT_ELASTICSEARCH_URL=http://elasticsearch:9200  # Адрес Elasticsearch для отправки данных
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.logstash.rule=PathPrefix(`/logstash`)"
+      - "traefik.http.middlewares.logstash-strip-prefix.stripprefix.prefixes=/logstash"
+      - "traefik.http.routers.logstash.middlewares=logstash-strip-prefix"
+      - "traefik.http.services.logstash.loadbalancer.server.port=5044"
+  
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ES_LOCAL_VERSION}
+    container_name: ${ES_LOCAL_CONTAINER_NAME}
+    volumes:
+      - ./es-data:/usr/share/elasticsearch/data
+    networks:
+      - monitoring
+    ports:
+      - "9200:9200"
+    environment:
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=${ES_LOCAL_PASSWORD}
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - xpack.license.self_generated.type=trial
+      - xpack.ml.use_auto_machine_memory_percent=true
+      - ES_JAVA_OPTS=-Xms${ES_LOCAL_HEAP_INIT} -Xmx${ES_LOCAL_HEAP_MAX}
+      - cluster.routing.allocation.disk.watermark.low=${ES_LOCAL_DISK_SPACE_REQUIRED}
+      - cluster.routing.allocation.disk.watermark.high=${ES_LOCAL_DISK_SPACE_REQUIRED}
+      - cluster.routing.allocation.disk.watermark.flood_stage=${ES_LOCAL_DISK_SPACE_REQUIRED}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.elasticsearch.rule=PathPrefix(`/elasticsearch`)"
+      - "traefik.http.middlewares.elasticsearch-strip-prefix.stripprefix.prefixes=/elasticsearch"
+      - "traefik.http.routers.elasticsearch.middlewares=elasticsearch-strip-prefix"
+      - "traefik.http.services.elasticsearch.loadbalancer.server.port=9200"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl --output /dev/null --silent --head --fail -u elastic:${ES_LOCAL_PASSWORD} http://elasticsearch:9200",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # kibana_settings:
+  #   depends_on:
+  #     elasticsearch:
+  #       condition: service_healthy
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:${ES_LOCAL_VERSION}
+  #   container_name: kibana_settings
+  #   restart: 'no'
+  #   command: >
+  #     bash -c '
+  #       echo "Setup the kibana_system password";
+  #       start_time=$(date +%s);
+  #       timeout=60;
+  #       until curl -s -u "elastic:${ES_LOCAL_PASSWORD}" -X POST http://elasticsearch:9200/_security/user/kibana_system/_password -d "{\"password\":\"'${KIBANA_LOCAL_PASSWORD}'\"}" -H "Content-Type: application/json" | grep -q "^{}"; do if [ $(($(date +%s) - $$start_time)) -ge $$timeout ]; then echo "Error: Elasticsearch timeout"; exit 1; fi; sleep 2; done;
+  #     '
+
+  kibana:
+    # depends_on:
+    #   kibana_settings:
+    #     condition: service_completed_successfully
+    image: docker.elastic.co/kibana/kibana:${ES_LOCAL_VERSION}
+    container_name: ${KIBANA_LOCAL_CONTAINER_NAME}
+    volumes:
+      - ./kibana:/usr/share/kibana/data
+    ports:
+      - "5601:5601"
+    networks:
+      - monitoring
+    environment:
+      - SERVER_NAME=kibana
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_LOCAL_PASSWORD}
+      - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=${KIBANA_ENCRYPTION_KEY}
+      - ELASTICSEARCH_PUBLICBASEURL=http://localhost:${ES_LOCAL_PORT}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kibana.rule=PathPrefix(`/kibana`)"
+      - "traefik.http.middlewares.kibama-strip-prefix.stripprefix.prefixes=/kibana"
+      - "traefik.http.routers.kibana.middlewares=kibana-strip-prefix"
+      - "traefik.http.services.kibana.loadbalancer.server.port=5601"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -I http://kibana:5601 | grep -q 'HTTP/1.1 302 Found'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 20
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.16.2
+    container_name: filebeat
+    user: root
+    volumes:
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml  # Конфигурация Filebeat
+      - ./app/app:/var/log  # Монтируем логи с хоста (или из других контейнеров)
+    networks:
+      - monitoring
+    depends_on:
+      - logstash  # Filebeat должен подключаться к Logstash
+    environment:
+      - LOGSTASH_HOST=logstash  # Имя сервиса Logstash
+      - LOGSTASH_PORT=5044      # Порт, на котором Logstash принимает данные
+
   traefik:
     image: traefik:v2.10
     container_name: traefik
@@ -190,69 +321,15 @@ services:
       - ./traefik/traefik.yml:/etc/traefik/traefik.yml
     networks:
       - monitoring
-
-  # Elasticsearch
-  elasticsearch:
-    image: elasticsearch:latest
-    container_name: elasticsearch
-    environment:
-      - discovery.type=single-node
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - ./es_data:/usr/share/elasticsearch/data
-    ports:
-      - "9200:9200"
-    networks:
-      - monitoring
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.elasticsearch.rule=PathPrefix(`/elasticsearch`)"
-      - "traefik.http.middlewares.elasticsearch-strip-prefix.stripprefix.prefixes=/elasticsearch"
-      - "traefik.http.routers.elasticsearch.middlewares=elasticsearch-strip-prefix"
-      - "traefik.http.services.elasticsearch.loadbalancer.server.port=9200"
-
-  # Logstash
-  logstash:
-    image: logstash:latest
-    container_name: logstash
-    volumes:
-      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
-    ports:
-      - "5044:5044"
-    networks:
-      - monitoring
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.logstash.rule=PathPrefix(`/logstash`)"
-      - "traefik.http.middlewares.logstash-strip-prefix.stripprefix.prefixes=/logstash"
-      - "traefik.http.routers.logstash.middlewares=logstash-strip-prefix"
-      - "traefik.http.services.logstash.loadbalancer.server.port=5044"
-
-  # Kibana
-  kibana:
-    image: kibana:latest
-    container_name: kibana
-    environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-    ports:
-      - "5601:5601"
-    networks:
-      - monitoring
     depends_on:
       - elasticsearch
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.kibana.rule=PathPrefix(`/kibana`)"
-      - "traefik.http.middlewares.kibana-strip-prefix.stripprefix.prefixes=/kibana"
-      - "traefik.http.routers.kibana.middlewares=kibana-strip-prefix"
-      - "traefik.http.services.kibana.loadbalancer.server.port=5601"
-
-
+      - cadvisor
+      - prometheus
+      - node_exporter
+      - web
+      - grafana
+      - kibana
+      - pgadmin
 networks:
   monitoring:
     driver: bridge
@@ -261,3 +338,7 @@ volumes:
   prom-data:
   prom-configs:
   es-data:
+  kibana:
+  logstash:
+  filebeat:
+

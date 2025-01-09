@@ -56,6 +56,20 @@ http:
         - web
       middlewares:
         - traefik-stripprefix
+    kibana:
+      rule: "PathPrefix(`/kibana`)"
+      service: kibana
+      entryPoints:
+        - web
+      middlewares:
+        - kibana-stripprefix
+    elasticsearch:
+      rule: "PathPrefix(`/elasticsearch`)"
+      service: elasticsearch
+      entryPoints:
+        - web
+      middlewares:
+        - elasticsearch-stripprefix
 
   middlewares:
     # Middleware для удаления префикса из пути
@@ -88,6 +102,14 @@ http:
       stripPrefix:
         prefixes:
           - "/traefik" 
+    kibana-stripprefix:
+      stripPrefix:
+        prefixes:
+          - "/kibana" 
+    elasicseatch-stripprefix:
+      stripPrefix:
+        prefixes:
+          - "/elasticsearch" 
 
   services:
     # Пример сервисов
@@ -122,7 +144,15 @@ http:
     traefik:
       loadBalancer:
         servers:
-          - url: "http://lotolis:8085"
+          - url: "http://traefik:8085"
+    kibana:
+      loadBalancer:
+        servers:
+          - url: "http://kibana:5601"
+    elasticsearch:
+      loadBalancer:
+        servers:
+          - url: "http://elasticsearch:9200"
 
 entryPoints:
   web:

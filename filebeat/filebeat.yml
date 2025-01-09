@@ -1,0 +1,10 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - ./app/app/logs/*.log  # Путь к вашим логам
+    # Можно указать более конкретные пути, например:
+    # - /app/logs/*.log
+
+output.logstash:
+  hosts: ["logstash:5044"]  # Указываем хост Logstash
