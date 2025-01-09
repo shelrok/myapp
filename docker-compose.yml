@@ -41,6 +41,8 @@ services:
       DATA_SOURCE_NAME: ${DATABASE_URL}
     ports:
       - "9187:9187"
+    networks:
+      - monitoring
     volumes:
       - ./pg_exporter/queries.yml:/etc/queries.yml
     command:
