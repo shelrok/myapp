@@ -6,4 +6,5 @@ pg_exporter/*
 grafana/*
 kibana/*
 es-data/*
-app\app\logs\app.log
+app/app/logs/app.log
+app/app/logs/app.log
