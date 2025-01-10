@@ -17,6 +17,7 @@ scrape_configs:
   - job_name: 'flask_app'
     static_configs:
       - targets: ['web:5000']
+    metrics_path: '/web/metrics'
   
   - job_name: 'postgresql'
     static_configs:

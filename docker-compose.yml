@@ -289,7 +289,7 @@ services:
     user: root
     volumes:
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml  # Конфигурация Filebeat
-      - ./app/app:/var/log  # Монтируем логи с хоста (или из других контейнеров)
+      - ./app/app/logs:/var/log/app_logs # Монтируем логи с хоста (или из других контейнеров)
     networks:
       - monitoring
     depends_on:

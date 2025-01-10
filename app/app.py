@@ -10,22 +10,15 @@ from prometheus_flask_exporter import PrometheusMetrics
 from logging.handlers import RotatingFileHandler
 import json
 import logging
-# Создаем директорию для логов, если она не существует
-log_dir = os.path.join(os.path.dirname(__file__), "app", "logs")
-os.makedirs(log_dir, exist_ok=True)
+# Настройка логирования
+logging.basicConfig(
+    filename='app/logs/app.log',  # Путь для записи логов
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
-# Путь к лог-файлу
-log_file = os.path.join(log_dir, "application.log")
-
-
-# Конфигурация логгера
-logger = logging.getLogger("logstash")
-logger.setLevel(logging.INFO)
-logger.addHandler(logging.StreamHandler())  # Оставляем вывод в консоль для отладки
-
-# Пример тестового сообщения
-logger.info("Application logger configured successfully.")
-logger.setLevel(logging.INFO)
+logger = logging.getLogger(__name__)
+logger.info("Приложение запущено")
 # Загружаем переменные окружения
 load_dotenv()
 DATABASE_URL = os.getenv('DATABASE_URL')
@@ -35,7 +28,7 @@ AUDIO_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'static', 'aud
 
 # Инициализация приложения Flask
 app = Flask(__name__, template_folder=TEMPLATES_FOLDER, static_folder=STATIC_FOLDER, static_url_path='/musicservice/static')
-metrics = PrometheusMetrics(app)
+metrics = PrometheusMetrics(app, path='/web/metrics')
 app.config['STATIC_FOLDER'] = STATIC_FOLDER  # Убедитесь, что добавляете STATIC_FOLDER в конфигурацию
 ARTIST_IMAGES_FOLDER = os.path.join(app.config['STATIC_FOLDER'], 'artists')
 PLAYLIST_IMAGES_FOLDER = os.path.join(app.config['STATIC_FOLDER'], 'playlists')
