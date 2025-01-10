@@ -29,7 +29,7 @@ services:
       - ./app:/app  # Монтируем локальную папку с кодом в контейнер
     environment:
       - FLASK_APP=app.py  # Указание на главный файл приложения
-      - FLASK_ENV=development  # Установка режима разработки
+      # - FLASK_ENV=development  # Установка режима разработки
       - FLASK_DEBUG=1  # Включает режим отладки
       - DATABASE_URL=${DATABASE_URL}  # Строка подключения к базе данных
     depends_on:

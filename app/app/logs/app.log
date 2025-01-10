@@ -1,322 +1,43 @@
-2025-01-10 16:37:32,305 - __main__ - INFO - Приложение запущено
-2025-01-10 16:37:51,516 - __main__ - INFO - Приложение запущено
-2025-01-10 16:37:52,037 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2025-01-10 17:44:08,782 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:44:08] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:44:23,780 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:44:23] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:44:38,780 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:44:38] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:44:53,779 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:44:53] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:45:08,778 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:45:08] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:45:23,779 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:45:23] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:45:38,781 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:45:38] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:45:53,778 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:45:53] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:46:08,777 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:46:08] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:46:23,776 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:46:23] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:46:38,775 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:46:38] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:46:53,776 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:46:53] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:47:08,774 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:47:08] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:47:23,774 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:47:23] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:47:38,774 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:47:38] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:47:53,412 - __main__ - INFO - Приложение запущено
+2025-01-10 17:48:28,644 - __main__ - INFO - Приложение запущено
+2025-01-10 17:48:28,833 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://172.18.0.10:5000
-2025-01-10 16:37:52,037 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-01-10 16:37:52,038 - werkzeug - INFO -  * Restarting with stat
-2025-01-10 16:37:52,356 - __main__ - INFO - Приложение запущено
-2025-01-10 16:37:52,357 - app - DEBUG - Metrics are disabled when run in the Flask development server with reload enabled. Set the environment variable DEBUG_METRICS=1 to enable them anyway.
-2025-01-10 16:37:52,487 - werkzeug - WARNING -  * Debugger is active!
-2025-01-10 16:37:52,488 - werkzeug - INFO -  * Debugger PIN: 261-664-224
-2025-01-10 16:37:55,085 - __main__ - INFO - Tables created!
-2025-01-10 16:37:55,256 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:37:55] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:38:10,022 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:38:10] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:38:25,023 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:38:25] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:38:40,022 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:38:40] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:38:42,801 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:42] "GET /musicservice/ HTTP/1.1" 200 -
-2025-01-10 16:38:42,843 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:42] "[36mGET /musicservice/static/artists/2517.png HTTP/1.1[0m" 304 -
-2025-01-10 16:38:42,843 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:42] "[36mGET /musicservice/static/artists/morgenshtern.png HTTP/1.1[0m" 304 -
-2025-01-10 16:38:43,232 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:43] "[36mGET /musicservice/static/artists/lokimin.png HTTP/1.1[0m" 304 -
-2025-01-10 16:38:43,307 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:43] "[35m[1mGET /musicservice/static/audio/8bit/muzyika-v-stile-8-bitnoy-priklyuchencheskoy-igryi.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 16:38:43,308 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:43] "[35m[1mGET /musicservice/static/audio/jazz/na-stsene-igrayut-djaz-653.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 16:38:43,313 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:43] "[35m[1mGET /musicservice/static/audio/rap/rep-vstrecha-s-indiyskoy-atmosferoy.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 16:38:43,318 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:43] "[35m[1mGET /musicservice/static/audio/techno/nemnogo-kislotno-zvuchaschego-tehno.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 16:38:43,321 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:43] "[35m[1mGET /musicservice/static/audio/rock/korotkaya-rok-muzyika.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 16:38:43,324 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:43] "[35m[1mGET /musicservice/static/audio/jazz/na-stsene-igrayut-djaz-653.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 16:38:43,327 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:43] "[35m[1mGET /musicservice/static/audio/8bit/muzyika-v-stile-8-bitnoy-priklyuchencheskoy-igryi.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 16:38:43,339 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:43] "[35m[1mGET /musicservice/static/audio/rock/korotkaya-rok-muzyika.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 16:38:46,957 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:46] "[35m[1mGET /musicservice/static/audio/rock/korotkaya-rok-muzyika.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 16:38:51,118 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:51] "[35m[1mGET /musicservice/static/audio/techno/nemnogo-kislotno-zvuchaschego-tehno.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 16:38:51,128 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:51] "[35m[1mGET /musicservice/static/audio/techno/nemnogo-kislotno-zvuchaschego-tehno.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 16:38:55,020 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:38:55] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:38:59,037 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 16:38:59] "[35m[1mGET /musicservice/static/audio/jazz/na-stsene-igrayut-djaz-653.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 16:39:10,020 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:39:10] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:39:25,020 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:39:25] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:39:40,020 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:39:40] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:39:55,020 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:39:55] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:40:10,017 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:40:10] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:40:25,017 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:40:25] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:40:40,016 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:40:40] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:40:55,016 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:40:55] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:41:10,016 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:41:10] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:41:25,015 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:41:25] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:41:40,014 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:41:40] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:41:55,014 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:41:55] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:42:10,012 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:42:10] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:42:25,012 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:42:25] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:42:40,011 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:42:40] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:42:55,011 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:42:55] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:43:10,010 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:43:10] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:43:25,013 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:43:25] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:43:40,008 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:43:40] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:43:55,009 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:43:55] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:44:10,010 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:44:10] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:44:25,008 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:44:25] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:44:40,007 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:44:40] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:44:55,011 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:44:55] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:45:10,007 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:45:10] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:45:25,009 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:45:25] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:45:40,003 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:45:40] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:45:55,004 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:45:55] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:46:10,005 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:46:10] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:46:25,004 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:46:25] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:46:40,002 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:46:40] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:46:55,002 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:46:55] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:47:10,000 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:47:10] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:47:25,002 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:47:25] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:47:40,000 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:47:40] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:47:54,999 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:47:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:48:09,999 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:48:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:48:24,999 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:48:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:48:39,997 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:48:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:48:54,997 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:48:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:49:09,996 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:49:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:49:24,996 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:49:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:49:39,995 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:49:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:49:54,995 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:49:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:50:10,210 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:50:10] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:50:25,080 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:50:25] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:50:40,028 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:50:40] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:50:55,009 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:50:55] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:51:09,994 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:51:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:51:24,992 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:51:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:51:39,991 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:51:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:51:54,991 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:51:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:52:09,992 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:52:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:52:24,990 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:52:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:52:39,988 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:52:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:52:54,988 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:52:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:53:09,988 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:53:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:53:24,988 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:53:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:53:39,987 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:53:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:53:54,985 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:53:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:54:09,985 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:54:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:54:24,985 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:54:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:54:39,983 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:54:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:54:54,983 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:54:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:55:09,981 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:55:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:55:24,982 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:55:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:55:39,984 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:55:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:55:54,982 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:55:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:56:09,981 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:56:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:56:24,980 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:56:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:56:39,979 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:56:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:56:54,979 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:56:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:57:09,978 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:57:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:57:24,980 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:57:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:57:39,978 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:57:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:57:54,977 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:57:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:58:09,976 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:58:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:58:24,975 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:58:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:58:39,975 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:58:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:58:54,976 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:58:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:59:09,976 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:59:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:59:24,974 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:59:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:59:39,975 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:59:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 16:59:54,973 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 16:59:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:00:09,971 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:00:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:00:24,973 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:00:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:00:39,971 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:00:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:00:54,970 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:00:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:01:09,970 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:01:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:01:24,974 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:01:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:01:39,968 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:01:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:01:54,967 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:01:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:02:09,967 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:02:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:02:24,968 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:02:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:02:39,966 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:02:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:02:54,965 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:02:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:03:09,965 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:03:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:03:24,963 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:03:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:03:39,962 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:03:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:03:54,961 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:03:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:04:09,962 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:04:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:04:23,845 - werkzeug - INFO -  * Detected change in '/app/app.py', reloading
-2025-01-10 17:04:24,030 - werkzeug - INFO -  * Restarting with stat
-2025-01-10 17:04:24,440 - __main__ - INFO - Приложение запущено
-2025-01-10 17:04:24,442 - app - DEBUG - Metrics are disabled when run in the Flask development server with reload enabled. Set the environment variable DEBUG_METRICS=1 to enable them anyway.
-2025-01-10 17:04:24,553 - werkzeug - WARNING -  * Debugger is active!
-2025-01-10 17:04:24,553 - werkzeug - INFO -  * Debugger PIN: 261-664-224
-2025-01-10 17:04:25,006 - __main__ - INFO - Tables created!
-2025-01-10 17:04:25,052 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:04:25] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:04:39,961 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:04:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:04:41,785 - werkzeug - INFO -  * Detected change in '/app/app.py', reloading
-2025-01-10 17:04:41,856 - werkzeug - INFO -  * Restarting with stat
-2025-01-10 17:04:42,143 - __main__ - INFO - Приложение запущено
-2025-01-10 17:04:42,144 - app - DEBUG - Metrics are disabled when run in the Flask development server with reload enabled. Set the environment variable DEBUG_METRICS=1 to enable them anyway.
-2025-01-10 17:04:42,237 - werkzeug - WARNING -  * Debugger is active!
-2025-01-10 17:04:42,237 - werkzeug - INFO -  * Debugger PIN: 261-664-224
-2025-01-10 17:04:55,007 - __main__ - INFO - Tables created!
-2025-01-10 17:04:55,058 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:04:55] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:05:09,959 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:05:09] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:05:24,960 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:05:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:05:39,960 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:05:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:05:54,959 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:05:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:05:56,209 - werkzeug - INFO -  * Detected change in '/app/app.py', reloading
-2025-01-10 17:05:56,293 - werkzeug - INFO -  * Restarting with stat
-2025-01-10 17:05:56,564 - __main__ - INFO - Приложение запущено
-2025-01-10 17:05:56,565 - app - DEBUG - Metrics are disabled when run in the Flask development server with reload enabled. Set the environment variable DEBUG_METRICS=1 to enable them anyway.
-2025-01-10 17:06:11,491 - __main__ - INFO - Приложение запущено
-2025-01-10 17:07:52,743 - __main__ - INFO - Приложение запущено
-2025-01-10 17:08:59,591 - __main__ - INFO - Приложение запущено
-2025-01-10 17:08:59,694 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://172.18.0.12:5000
+2025-01-10 17:48:28,834 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-10 17:48:28,836 - werkzeug - INFO -  * Restarting with stat
+2025-01-10 17:48:29,240 - __main__ - INFO - Приложение запущено
+2025-01-10 17:48:29,242 - app - DEBUG - Metrics are disabled when run in the Flask development server with reload enabled. Set the environment variable DEBUG_METRICS=1 to enable them anyway.
+2025-01-10 17:48:29,494 - werkzeug - WARNING -  * Debugger is active!
+2025-01-10 17:48:29,495 - werkzeug - INFO -  * Debugger PIN: 985-069-359
+2025-01-10 17:48:38,854 - werkzeug - INFO - 172.18.0.6 - - [10/Jan/2025 17:48:38] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:48:46,983 - __main__ - INFO - Приложение запущено
+2025-01-10 17:48:47,087 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://172.18.0.10:5000
-2025-01-10 17:08:59,694 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-01-10 17:08:59,695 - werkzeug - INFO -  * Restarting with stat
-2025-01-10 17:09:00,114 - __main__ - INFO - Приложение запущено
-2025-01-10 17:09:00,116 - app - DEBUG - Metrics are disabled when run in the Flask development server with reload enabled. Set the environment variable DEBUG_METRICS=1 to enable them anyway.
-2025-01-10 17:09:00,228 - werkzeug - WARNING -  * Debugger is active!
-2025-01-10 17:09:00,228 - werkzeug - INFO -  * Debugger PIN: 264-237-597
-2025-01-10 17:09:09,995 - __main__ - INFO - Tables created!
-2025-01-10 17:09:10,034 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:09:10] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:09:24,951 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:09:24] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:09:39,948 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:09:39] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:09:54,950 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:09:54] "[33mGET /web/metrics HTTP/1.1[0m" 404 -
-2025-01-10 17:10:08,856 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:10:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:10:23,858 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:10:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:10:24,267 - werkzeug - INFO - 172.18.0.1 - - [10/Jan/2025 17:10:24] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:10:28,167 - werkzeug - INFO - 172.18.0.1 - - [10/Jan/2025 17:10:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-01-10 17:10:38,857 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:10:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:10:53,857 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:10:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:11:08,856 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:11:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:11:23,854 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:11:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:11:38,854 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:11:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:11:53,855 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:11:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:12:08,853 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:12:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:12:23,853 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:12:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:12:38,852 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:12:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:12:53,853 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:12:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:13:08,851 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:13:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:13:23,852 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:13:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:13:38,849 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:13:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:13:53,850 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:13:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:14:08,848 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:14:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:14:23,849 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:14:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:14:38,847 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:14:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:14:53,848 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:14:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:15:08,847 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:15:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:15:23,847 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:15:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:15:38,845 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:15:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:15:53,846 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:15:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:16:08,845 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:16:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:16:23,844 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:16:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:16:38,842 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:16:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:16:53,843 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:16:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:17:08,842 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:17:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:17:23,840 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:17:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:17:38,844 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:17:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:17:53,841 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:17:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:18:08,840 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:18:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:18:23,840 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:18:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:18:38,840 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:18:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:18:53,841 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:18:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:19:08,838 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:19:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:19:23,836 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:19:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:19:38,837 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:19:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:19:53,838 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:19:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:20:08,835 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:20:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:20:23,837 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:20:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:20:38,834 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:20:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:20:53,841 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:20:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:21:08,834 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:21:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:21:23,835 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:21:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:21:38,832 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:21:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:21:53,831 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:21:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:22:08,832 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:22:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:22:23,834 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:22:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:22:38,829 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:22:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:22:53,830 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:22:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:23:08,828 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:23:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:23:23,829 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:23:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:23:38,827 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:23:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:23:53,827 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:23:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:24:08,825 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:24:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:24:23,826 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:24:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:24:38,826 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:24:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:24:53,827 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:24:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:25:08,825 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:25:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:25:23,824 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:25:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:25:38,824 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:25:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:25:53,823 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:25:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:26:08,823 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:26:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:26:23,117 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:26:23] "[35m[1mGET /musicservice/static/audio/8bit/muzyika-v-stile-8-bitnoy-priklyuchencheskoy-igryi.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 17:26:23,122 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:26:23] "[35m[1mGET /musicservice/static/audio/rap/rep-vstrecha-s-indiyskoy-atmosferoy.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 17:26:23,128 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:26:23] "[35m[1mGET /musicservice/static/audio/jazz/na-stsene-igrayut-djaz-653.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 17:26:23,129 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:26:23] "[35m[1mGET /musicservice/static/audio/techno/nemnogo-kislotno-zvuchaschego-tehno.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 17:26:23,150 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:26:23] "[35m[1mGET /musicservice/static/audio/rock/korotkaya-rok-muzyika.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 17:26:23,183 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:26:23] "[35m[1mGET /musicservice/static/audio/rock/korotkaya-rok-muzyika.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 17:26:23,823 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:26:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:26:25,596 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:26:25] "[35m[1mGET /musicservice/static/audio/rap/rep-vstrecha-s-indiyskoy-atmosferoy.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 17:26:38,822 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:26:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:26:53,821 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:26:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:27:08,820 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:27:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:27:23,820 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:27:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:27:38,820 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:27:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:27:53,819 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:27:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:28:08,818 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:28:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:28:23,817 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:28:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:28:38,819 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:28:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:28:53,817 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:28:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:29:08,815 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:29:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:29:23,815 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:29:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:29:38,817 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:29:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:29:53,815 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:29:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:30:08,814 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:30:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:30:23,813 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:30:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:30:38,814 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:30:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:30:53,814 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:30:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:31:08,812 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:31:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:31:23,810 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:31:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:31:38,809 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:31:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:31:53,811 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:31:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:32:08,808 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:32:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:32:23,809 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:32:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:32:38,809 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:32:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:32:53,808 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:32:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:33:08,805 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:33:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:33:12,952 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:33:12] "[35m[1mGET /musicservice/static/audio/rap/rep-vstrecha-s-indiyskoy-atmosferoy.mp3 HTTP/1.1[0m" 206 -
-2025-01-10 17:33:15,101 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:33:15] "[35m[1mGET /musicservice/api/artist/4 HTTP/1.1[0m" 500 -
-2025-01-10 17:33:15,397 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:33:15] "[35m[1mGET /musicservice/api/artist/4 HTTP/1.1[0m" 500 -
-2025-01-10 17:33:15,641 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:33:15] "[35m[1mGET /musicservice/api/artist/3 HTTP/1.1[0m" 500 -
-2025-01-10 17:33:15,898 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:33:15] "[35m[1mGET /musicservice/api/artist/5 HTTP/1.1[0m" 500 -
-2025-01-10 17:33:16,311 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:33:16] "[35m[1mGET /musicservice/api/artist/2 HTTP/1.1[0m" 500 -
-2025-01-10 17:33:21,481 - werkzeug - INFO - 172.18.0.14 - - [10/Jan/2025 17:33:21] "[33mGET /musicservice/ete HTTP/1.1[0m" 404 -
-2025-01-10 17:33:23,808 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:33:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:33:38,806 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:33:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:33:53,806 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:33:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:34:08,804 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:34:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:34:23,804 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:34:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:34:38,804 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:34:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:34:53,804 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:34:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:35:08,802 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:35:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:35:23,802 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:35:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:35:38,802 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:35:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:35:53,801 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:35:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:36:08,800 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:36:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:36:23,800 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:36:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:36:38,800 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:36:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:36:53,798 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:36:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:37:08,796 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:37:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:37:23,798 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:37:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:37:38,798 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:37:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:37:53,799 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:37:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:38:08,795 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:38:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:38:23,796 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:38:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:38:38,794 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:38:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:38:53,794 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:38:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:39:08,795 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:39:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:39:23,794 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:39:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:39:38,790 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:39:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:39:53,790 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:39:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:40:08,792 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:40:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:40:23,791 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:40:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:40:38,792 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:40:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:40:53,794 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:40:53] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:41:08,788 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:41:08] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:41:23,792 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:41:23] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:41:38,791 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:41:38] "GET /metrics HTTP/1.1" 200 -
-2025-01-10 17:41:53,792 - werkzeug - INFO - 172.18.0.4 - - [10/Jan/2025 17:41:53] "GET /metrics HTTP/1.1" 200 -
+ * Running on http://172.18.0.12:5000
+2025-01-10 17:48:47,088 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-10 17:48:47,089 - werkzeug - INFO -  * Restarting with stat
+2025-01-10 17:48:47,399 - __main__ - INFO - Приложение запущено
+2025-01-10 17:48:47,400 - app - DEBUG - Metrics are disabled when run in the Flask development server with reload enabled. Set the environment variable DEBUG_METRICS=1 to enable them anyway.
+2025-01-10 17:48:47,516 - werkzeug - WARNING -  * Debugger is active!
+2025-01-10 17:48:47,517 - werkzeug - INFO -  * Debugger PIN: 985-069-359
+2025-01-10 17:48:53,856 - werkzeug - INFO - 172.18.0.6 - - [10/Jan/2025 17:48:53] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:49:08,854 - werkzeug - INFO - 172.18.0.6 - - [10/Jan/2025 17:49:08] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:49:23,854 - werkzeug - INFO - 172.18.0.6 - - [10/Jan/2025 17:49:23] "GET /metrics HTTP/1.1" 200 -
+2025-01-10 17:49:38,854 - werkzeug - INFO - 172.18.0.6 - - [10/Jan/2025 17:49:38] "GET /metrics HTTP/1.1" 200 -
