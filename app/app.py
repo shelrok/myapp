@@ -6,6 +6,10 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from prometheus_client import Counter, generate_latest
+from prometheus_client import REGISTRY, CollectorRegistry
+from prometheus_client import multiprocess, make_wsgi_app
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from prometheus_flask_exporter import PrometheusMetrics
 from logging.handlers import RotatingFileHandler
 import json
@@ -28,7 +32,8 @@ AUDIO_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'static', 'aud
 
 # Инициализация приложения Flask
 app = Flask(__name__, template_folder=TEMPLATES_FOLDER, static_folder=STATIC_FOLDER, static_url_path='/musicservice/static')
-metrics = PrometheusMetrics(app, path='/web/metrics')
+REQUEST_COUNT = Counter('flask_request_count', 'Total HTTP requests', ['method', 'endpoint', 'http_status'])
+metrics = PrometheusMetrics(app, path='/metrics')
 app.config['STATIC_FOLDER'] = STATIC_FOLDER  # Убедитесь, что добавляете STATIC_FOLDER в конфигурацию
 ARTIST_IMAGES_FOLDER = os.path.join(app.config['STATIC_FOLDER'], 'artists')
 PLAYLIST_IMAGES_FOLDER = os.path.join(app.config['STATIC_FOLDER'], 'playlists')
@@ -192,6 +197,23 @@ def populate_database():
     populate_db_from_audio()
     print("Database populated with genres and songs from audio folders.")
 
+@app.after_request
+def after_request(response):
+    REQUEST_COUNT.labels(method=request.method, endpoint=request.path, http_status=response.status_code).inc()
+    return response
+
+# Регистрируем метрики
+@app.route('/metrics')
+def metrics():
+    return generate_latest()
+
+@app.route('/')
+def prometheus_home():
+    return "Hello, Flask with Prometheus!"
+# Приложение для экспорта метрик
+app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {
+    '/metrics': make_wsgi_app()
+})
 # Получение всех жанров и песен из базы данных
 def get_audio_files_by_genre():
     genres = {}
