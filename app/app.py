@@ -14,6 +14,7 @@ from prometheus_flask_exporter import PrometheusMetrics
 from logging.handlers import RotatingFileHandler
 import json
 import logging
+import random
 # Настройка логирования
 logging.basicConfig(
     filename='app/logs/app.log',  # Путь для записи логов
@@ -26,17 +27,18 @@ logger.info("Приложение запущено")
 # Загружаем переменные окружения
 load_dotenv()
 DATABASE_URL = os.getenv('DATABASE_URL')
-TEMPLATES_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'templates')
-STATIC_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'static')
-AUDIO_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'static', 'audio')
+TEMPLATES_FOLDER = os.path.join(os.path.dirname(__file__), 'backend','templates')  # Шаблоны
+STATIC_FOLDER = os.path.join(os.path.dirname(__file__), 'backend', 'static')  # Статические файлы
+AUDIO_FOLDER = os.path.join(STATIC_FOLDER, 'audio')  # Аудиофайлы
+ARTIST_IMAGES_FOLDER = os.path.join(STATIC_FOLDER, 'artists')  # Изображения артистов
+PLAYLIST_IMAGES_FOLDER = os.path.join(STATIC_FOLDER, 'playlists')  # Изображения плейлистов
+
 
 # Инициализация приложения Flask
 app = Flask(__name__, template_folder=TEMPLATES_FOLDER, static_folder=STATIC_FOLDER, static_url_path='/musicservice/static')
 REQUEST_COUNT = Counter('flask_request_count', 'Total HTTP requests', ['method', 'endpoint', 'http_status'])
 metrics = PrometheusMetrics(app, path='/metrics')
 app.config['STATIC_FOLDER'] = STATIC_FOLDER  # Убедитесь, что добавляете STATIC_FOLDER в конфигурацию
-ARTIST_IMAGES_FOLDER = os.path.join(app.config['STATIC_FOLDER'], 'artists')
-PLAYLIST_IMAGES_FOLDER = os.path.join(app.config['STATIC_FOLDER'], 'playlists')
 
 # Конфигурация подключения к PostgreSQL
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL  # Используем строку подключения из .env
@@ -110,7 +112,6 @@ def create_tables():
     db.create_all()
     logger.info("Tables created!")
 
-# Функция для добавления жанров и песен из папок
 def populate_db_from_audio():
     genres = os.listdir(AUDIO_FOLDER)  # Список всех жанров (папок)
     
@@ -151,7 +152,6 @@ def populate_db_from_audio():
     # Загружаем изображения для артистов и плейлистов
     load_artist_images()
     load_playlist_images()
-
 def load_artist_images():
     # Получаем список всех изображений в папке с изображениями артистов
     for image_filename in os.listdir(ARTIST_IMAGES_FOLDER):
@@ -230,6 +230,21 @@ def index():
     artists = Artist.query.all()  # Все артисты из базы данных
     playlists = Playlist.query.all()  # Все плейлисты из базы данных
     return render_template('index.html', genres=genres, artists=artists, playlists=playlists)
+@app.route('/musicservice/playlists')
+def playlists_page():
+    playlists = Playlist.query.all()
+    return render_template('playlists.html', playlists=playlists)
+
+@app.route('/musicservice/genres')
+def genres_page():
+    genres = Genre.query.all()
+    return render_template('genres.html', genres=genres)
+
+@app.route('/musicservice/artists')
+def artists_page():
+    artists = Artist.query.all()
+    return render_template('artists.html', artists=artists)
+
 
 # Получение всех артистов из базы данных
 @app.route('/musicservice/api/artists', methods=['GET'])
@@ -285,7 +300,7 @@ def upload_artist_image(artist_id):
     if not os.path.exists(ARTIST_IMAGES_FOLDER):
         os.makedirs(ARTIST_IMAGES_FOLDER)
 
-    image_path = os.path.join(app.config['STATIC_FOLDER'], 'artists', image_filename)
+    image_path = os.path.join(ARTIST_IMAGES_FOLDER, image_filename)
     image_file.save(image_path)
     artist.image_filename = f"artists/{image_filename}"
     db.session.commit()
@@ -301,7 +316,7 @@ def upload_playlist_image(playlist_id):
     if not os.path.exists(PLAYLIST_IMAGES_FOLDER):
         os.makedirs(PLAYLIST_IMAGES_FOLDER)
 
-    image_path = os.path.join(app.config['STATIC_FOLDER'], 'playlists', image_filename)
+    image_path = os.path.join(PLAYLIST_IMAGES_FOLDER, image_filename)
     image_file.save(image_path)
     playlist.image_filename = f"playlists/{image_filename}"
     db.session.commit()

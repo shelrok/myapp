@@ -131,7 +131,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.cadvisor.rule=PathPrefix(`/cadvisor`)"
       - "traefik.http.middlewares.cadvisor-strip-prefix.stripprefix.prefixes=/cadvisor"
-      - "traefik.http.routers.cadvisor.middlewares=grafana-strip-prefix"
+      - "traefik.http.routers.cadvisor.middlewares=cadvizor-strip-prefix"
       - "traefik.http.services.cadvisor.loadbalancer.server.port=8080"
     ports:
       - "8080:8080"
@@ -151,7 +151,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.node_exporter.rule=PathPrefix(`/node_exporter`)"
       - "traefik.http.middlewares.node_exporter-strip-prefix.stripprefix.prefixes=/node_exporter"
-      - "traefik.http.routers.cadvisor.middlewares=grafana-strip-prefix"
+      - "traefik.http.routers.cadvisor.middlewares=node_exporter-strip-prefix"
       - "traefik.http.services.node_exporter.loadbalancer.server.port=9100"
     ports:
       - "9100:9100"
@@ -270,8 +270,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.kibana.rule=PathPrefix(`/kibana`)"
-      - "traefik.http.middlewares.kibama-strip-prefix.stripprefix.prefixes=/kibana"
-      - "traefik.http.routers.kibana.middlewares=kibana-strip-prefix"
+      - "traefik.http.middlewares.kibana-stripprefix.stripprefix.prefixes=/kibana"
+      - "traefik.http.routers.kibana.middlewares=kibana-stripprefix"
       - "traefik.http.services.kibana.loadbalancer.server.port=5601"
     healthcheck:
       test:
@@ -301,12 +301,6 @@ services:
   traefik:
     image: traefik:v2.10
     container_name: traefik
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=PathPrefix(`/traefik`)"
-      - "traefik.http.middlewares.traefik-strip-prefix.stripprefix.prefixes=/traefik"
-      - "traefik.http.routers.cadvisor.middlewares=traefik-strip-prefix"
-      - "traefik.http.services.traefik.loadbalancer.server.port=8085"
     ports:
       - "80:80"        # HTTP
       - "443:443"      # HTTPS (если нужно)

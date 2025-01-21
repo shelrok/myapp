@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlists</title>
+    <link href="output.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .playlist-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .playlist-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .playlist-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .playlist-card h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .playlist-card p {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .songs-list {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .song-item {
+            background-color: #f9f9f9;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .song-item audio {
+            margin-right: 15px;
+        }
+
+        .song-item p {
+            margin: 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Playlists</h1>
+        <div class="playlist-grid">
+            {% for playlist in playlists %}
+            <div class="playlist-card">
+                <h2>{{ playlist.name }}</h2>
+                <p>{{ playlist.description }}</p>
+                <img src="{{ url_for('static', filename='playlists/' + playlist.image_filename) }}" alt="{{ playlist.name }} Image">
+                <ul class="songs-list">
+                    {% for song in playlist.songs %}
+                    <li class="song-item">
+                        <audio controls>
+                            <source src="{{ url_for('static', filename='audio/' + song.genre.name + '/' + song.file_name) }}" type="audio/mp3">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <p>{{ song.name }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

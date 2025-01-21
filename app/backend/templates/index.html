@@ -1,327 +1,218 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Музыкальный сервис</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Музыкальное приложение</title>
+    <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
+      @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css);
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(120deg, #f6d365, #fda085);
-            background-size: 200% 200%;
-            animation: gradientAnimation 10s ease infinite;
-            color: #333;
-            line-height: 1.6;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+      body {
+        font-family: Open Sans, sans-serif;
+        background: linear-gradient(135deg, #ffffff, #d4d4d4);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
 
-        header {
-            background-color: rgba(44, 62, 80, 0.8);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+      #webcrumbs {
+        width: 100%;
+        background-color: #2d2d2d;
+        border-radius: 24px;
+        min-height: 800px;
+        color: #f7f7f7;
+      }
 
-        header h1 {
-            font-size: 3em;
-            letter-spacing: 1px;
-        }
+      header {
+        display: flex;
+        justify-content: space-between;
+        background-color: #444;
+        padding: 20px;
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+      }
 
-        .genre-selector {
-            margin: 20px auto;
-            text-align: center;
-        }
+      header h1 {
+        font-size: 24px;
+        font-weight: bold;
+      }
 
-        .genre-selector select {
-            padding: 10px;
-            font-size: 1.2em;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            transition: border-color 0.3s;
-        }
+      nav a {
+        color: #f7f7f7;
+        margin: 0 10px;
+        text-decoration: none;
+      }
 
-        .genre-selector select:focus {
-            border-color: #2c3e50;
-        }
+      nav a:hover {
+        color: #6e40f7;
+      }
 
-        .genre-container {
-            margin: 40px auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        min-height: 640px;
+      }
 
-        .genre {
-            width: 280px;
-            margin: 10px;
-            padding: 25px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            background-image: url('https://via.placeholder.com/280');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            overflow: hidden;
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
-        }
+      aside {
+        background-color: #444;
+        padding: 20px;
+        width: 250px;
+        border-radius: 12px;
+        margin-right: 20px;
+      }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
+      aside ul {
+        list-style-type: none;
+      }
 
-        .genre:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
+      aside ul li {
+        margin: 10px 0;
+      }
 
-        .genre h2 {
-            font-size: 1.7em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-        }
+      aside ul li a {
+        color: #f7f7f7;
+        text-decoration: none;
+      }
 
-        .audio-list {
-            margin-top: 20px;
-        }
+      aside ul li a:hover {
+        color: #6e40f7;
+      }
 
-        .audio-item {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            margin-bottom: 15px;
-            padding: 12px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
+      .section-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
 
-        .audio-item:hover {
-            background-color: #f4f4f4;
-        }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px;
+      }
 
-        .audio-item p {
-            font-size: 1.1em;
-            color: #333;
-            margin-bottom: 10px;
-        }
+      .album, .artist, .genre {
+        background-color: #444;
+        padding: 10px;
+        border-radius: 12px;
+        text-align: center;
+      }
 
-        audio {
-            width: 100%;
-            border-radius: 8px;
-            border: none;
-            background-color: #eee;
-            outline: none;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
+      .album img, .artist img, .genre img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 10px;
+      }
 
-        .footer {
-            background-color: rgba(44, 62, 80, 0.8);
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-            font-size: 1em;
-        }
+      .artist img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
 
-        .artist-container, .playlist-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 50px;
-            gap: 40px;
-        }
+      footer {
+        background-color: #444;
+        color: #f7f7f7;
+        padding: 20px;
+        border-bottom-left-radius: 24px;
+        border-bottom-right-radius: 24px;
+        width: 100%;
+        text-align: center;
+      }
 
-        .artist, .playlist {
-            width: 200px;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-        }
+      footer a {
+        color: #f7f7f7;
+        margin: 0 10px;
+        text-decoration: none;
+      }
 
-        .artist:hover, .playlist:hover {
-            transform: translateY(-10px);
-        }
-
-        .artist img, .playlist img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .artist h3, .playlist h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .playlist-description {
-            font-size: 1em;
-            color: #777;
-            margin-top: 10px;
-        }
-
-        @media screen and (max-width: 768px) {
-            .genre-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .genre {
-                width: 90%;
-                margin: 15px 0;
-            }
-        }
+      footer a:hover {
+        color: #6e40f7;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <div id="webcrumbs">
+      <header>
+        <h1>Музыкальное приложение</h1>
+        <nav>
+          <a href="{{ url_for('playlists_page') }}">Плейлисты</a>
+          <a href="{{ url_for('genres_page') }}">Жанры</a>
+          <a href="{{ url_for('artists_page') }}">Художники</a>
+        </nav>
+      </header>
 
-<header>
-    <h1>Добро пожаловать в музыкальный сервис</h1>
-</header>
+      <main>
+        <aside>
+          <ul>
+            <li><a href="{{ url_for('playlists_page') }}">Плейлисты</a></li>
+            <li><a href="{{ url_for('genres_page') }}">Жанры</a></li>
+            <li><a href="{{ url_for('artists_page') }}">Художники</a></li>
+          </ul>
+        </aside>
 
-<div class="genre-selector">
-    <label for="genre-select">Выберите жанр:</label>
-    <select id="genre-select" onchange="filterGenres()">
-        <option value="all">Все жанры</option>
-        {% for genre in genres.keys() %}
-            <option value="{{ genre }}">{{ genre|capitalize }}</option>
-        {% endfor %}
-    </select>
-</div>
-
-<div class="genre-container">
-    {% for genre, files in genres.items() %}
-        <div class="genre" data-genre="{{ genre }}">
-            <h2>{{ genre|capitalize }}</h2>
-            <div class="audio-list">
-                {% for file in files %}
-                    <div class="audio-item">
-                        <p>{{ file }}</p>
-                        <audio id="audio-{{ genre }}-{{ file }}" controls>
-                            <source src="{{ url_for('static', filename='audio/' + genre + '/' + file) }}" type="audio/mp3">
-                            Ваш браузер не поддерживает элемент audio.
-                        </audio>
-                    </div>
-                {% endfor %}
+        <div>
+          <section>
+            <h2 class="section-title">Избранное</h2>
+            <div class="grid">
+              {% for playlist in playlists %}
+                <div class="album">
+                  <img src="{{ url_for('static', filename='playlists/' + playlist.image_filename) }}" alt="Playlist Cover" />
+                  <h3>{{ playlist.name }}</h3>
+                </div>
+              {% endfor %}
             </div>
+          </section>
+
+          <section>
+            <h2 class="section-title">Лучшие Исполнители</h2>
+            <div class="grid">
+              {% for artist in artists %}
+                <div class="artist">
+                  <img src="{{ url_for('static', filename='artists/' + artist.image_filename) }}" alt="Artist" />
+                  <p>{{ artist.name }}</p>
+                </div>
+              {% endfor %}
+            </div>
+          </section>
+
+          <section>
+            <h2 class="section-title">Жанры</h2>
+            <div class="grid">
+              {% for genre_name, audio_files in genres.items() %}
+                <div class="genre">
+                  <h3>{{ genre_name }}</h3>
+                  <p>{{ audio_files|length }} песен</p>
+                </div>
+              {% endfor %}
+            </div>
+          </section>
         </div>
-    {% endfor %}
-</div>
+      </main>
 
-<!-- Отображение артистов -->
-<div class="artist-container">
-    {% for artist in artists %}
-        <div class="artist" onclick="showArtistSongs({{ artist.id }})">
-            <img src="{{ url_for('static', filename='artists/' + (artist.image_filename if artist.image_filename else 'default_artist_image.jpg')) }}" alt="Image of {{ artist.name }}">
-            <h3>{{ artist.name }}</h3>
-            <p>{{ artist.bio }}</p>
+      <footer>
+        <p>© 2025 Музыкальное приложение. Все права защищены.</p>
+        <div>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
         </div>
-    {% endfor %}
-</div>
-
-<!-- Контейнер для отображения песен артиста -->
-<div id="artist-songs-container" style="display: none; margin-top: 20px;">
-    <h2 id="artist-name"></h2>
-    <div id="artist-songs-list"></div>
-</div>
-
-<footer class="footer">
-    <p>&copy; 2024 Музыкальный сервис. Все права защищены.</p>
-</footer>
-
-<script>
-    let currentlyPlaying = null;
-
-    function stopAudio() {
-        if (currentlyPlaying && !currentlyPlaying.paused) {
-            currentlyPlaying.pause();
-            currentlyPlaying.currentTime = 0;
-        }
-    }
-
-    function playAudio(audioElement) {
-        if (currentlyPlaying !== audioElement) {
-            stopAudio();
-            audioElement.play();
-            currentlyPlaying = audioElement;
-        } else {
-            audioElement.pause();
-            currentlyPlaying = null;
-        }
-    }
-
-    document.querySelectorAll('audio').forEach(audio => {
-        audio.addEventListener('play', function () {
-            playAudio(audio);
-        });
-
-        audio.addEventListener('pause', function () {
-            currentlyPlaying = null;
-        });
-    });
-
-    function filterGenres() {
-        const selectedGenre = document.getElementById('genre-select').value;
-        document.querySelectorAll('.genre').forEach(genreElement => {
-            if (selectedGenre === 'all' || genreElement.dataset.genre === selectedGenre) {
-                genreElement.style.display = 'block';
-            } else {
-                genreElement.style.display = 'none';
-            }
-        });
-    }
-
-    function showArtistSongs(artistId) {
-        fetch(`/musicservice/api/artist/${artistId}`)
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('artist-songs-container');
-                const list = document.getElementById('artist-songs-list');
-                const artistName = document.getElementById('artist-name');
-
-                artistName.textContent = data.name;
-                list.innerHTML = '';
-
-                data.songs.forEach(song => {
-                    const songElement = document.createElement('div');
-                    songElement.className = 'audio-item';
-                    songElement.innerHTML = `
-                        <p>${song}</p>
-                        <audio controls>
-                            <source src="/musicservice/static/audio/${data.genre}/${song}" type="audio/mp3">
-                            Ваш браузер не поддерживает элемент audio.
-                        </audio>
-                    `;
-                    list.appendChild(songElement);
-                });
-
-                container.style.display = 'block';
-            });
-    }
-</script>
-
-</body>
+      </footer>
+    </div>
+  </body>
 </html>
