@@ -1,8 +1,13 @@
 .env
 db_data/*
+!db_data/.gitkeep
 pgadmin/*
+!pgadmin/.gitkeep
 kibana/*
+!kibana/.gitkeep
 es-data/*
+!es_data/.gitkeep
 app/app/logs/app.log
 app/__pycache__
 node_modules/*
+!node_modules/.gitkeep
