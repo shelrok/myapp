@@ -1,10 +1,4 @@
 .env
-db_data/*
-pgadmin/*
-pg_exporter/*
-grafana/*
-kibana/*
-es-data/*
 app/app/logs/app.log
 app/__pycache__
 node_modules/*
