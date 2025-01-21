@@ -1,4 +1,3 @@
-venv
 .env
 db_data/*
 pgadmin/*
