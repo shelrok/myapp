@@ -2783,3 +2783,33 @@
 2025-01-19 22:07:20,253 - werkzeug - INFO - 172.18.0.3 - - [19/Jan/2025 22:07:20] "GET /metrics HTTP/1.1" 200 -
 2025-01-19 22:07:35,252 - werkzeug - INFO - 172.18.0.3 - - [19/Jan/2025 22:07:35] "GET /metrics HTTP/1.1" 200 -
 2025-01-19 22:07:50,848 - werkzeug - INFO - 172.18.0.3 - - [19/Jan/2025 22:07:50] "GET /metrics HTTP/1.1" 200 -
+2025-01-22 17:16:31,192 - __main__ - INFO - Приложение запущено
+2025-01-22 17:16:45,067 - __main__ - INFO - Приложение запущено
+2025-01-22 17:16:46,351 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.12:5000
+2025-01-22 17:16:46,352 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-22 17:16:46,353 - werkzeug - INFO -  * Restarting with stat
+2025-01-22 17:16:47,226 - __main__ - INFO - Приложение запущено
+2025-01-22 17:16:47,230 - app - DEBUG - Metrics are disabled when run in the Flask development server with reload enabled. Set the environment variable DEBUG_METRICS=1 to enable them anyway.
+2025-01-22 17:16:48,373 - werkzeug - WARNING -  * Debugger is active!
+2025-01-22 17:16:48,378 - werkzeug - INFO -  * Debugger PIN: 134-832-008
+2025-01-22 17:16:48,425 - werkzeug - INFO - 172.18.0.2 - - [22/Jan/2025 17:16:48] "GET /metrics HTTP/1.1" 200 -
+2025-01-22 17:17:00,768 - __main__ - INFO - Tables created!
+2025-01-22 17:17:01,331 - werkzeug - INFO - 172.18.0.14 - - [22/Jan/2025 17:17:01] "GET /musicservice/ HTTP/1.1" 200 -
+2025-01-22 17:17:01,617 - werkzeug - INFO - 172.18.0.14 - - [22/Jan/2025 17:17:01] "[36mGET /musicservice/static/artists/2517.png HTTP/1.1[0m" 304 -
+2025-01-22 17:17:01,617 - werkzeug - INFO - 172.18.0.14 - - [22/Jan/2025 17:17:01] "[36mGET /musicservice/static/playlists/morgenshternalbom.png HTTP/1.1[0m" 304 -
+2025-01-22 17:17:01,624 - werkzeug - INFO - 172.18.0.14 - - [22/Jan/2025 17:17:01] "[36mGET /musicservice/static/output.css HTTP/1.1[0m" 304 -
+2025-01-22 17:17:02,726 - werkzeug - INFO - 172.18.0.14 - - [22/Jan/2025 17:17:02] "[36mGET /musicservice/static/artists/lokimin.png HTTP/1.1[0m" 304 -
+2025-01-22 17:17:02,729 - werkzeug - INFO - 172.18.0.14 - - [22/Jan/2025 17:17:02] "[36mGET /musicservice/static/artists/morgenshtern.png HTTP/1.1[0m" 304 -
+2025-01-22 17:17:05,146 - werkzeug - INFO - 172.18.0.2 - - [22/Jan/2025 17:17:05] "GET /metrics HTTP/1.1" 200 -
+2025-01-22 17:17:20,142 - werkzeug - INFO - 172.18.0.2 - - [22/Jan/2025 17:17:20] "GET /metrics HTTP/1.1" 200 -
+2025-01-22 17:17:37,200 - werkzeug - INFO - 172.18.0.2 - - [22/Jan/2025 17:17:37] "GET /metrics HTTP/1.1" 200 -
+2025-01-22 17:17:52,200 - werkzeug - INFO - 172.18.0.2 - - [22/Jan/2025 17:17:52] "GET /metrics HTTP/1.1" 200 -
+2025-01-22 17:18:09,644 - werkzeug - INFO - 172.18.0.2 - - [22/Jan/2025 17:18:09] "GET /metrics HTTP/1.1" 200 -
+2025-01-22 17:18:24,643 - werkzeug - INFO - 172.18.0.2 - - [22/Jan/2025 17:18:24] "GET /metrics HTTP/1.1" 200 -
+2025-01-22 17:18:41,885 - werkzeug - INFO - 172.18.0.2 - - [22/Jan/2025 17:18:41] "GET /metrics HTTP/1.1" 200 -
+2025-01-22 17:18:56,886 - werkzeug - INFO - 172.18.0.2 - - [22/Jan/2025 17:18:56] "GET /metrics HTTP/1.1" 200 -
+2025-01-22 17:19:14,540 - werkzeug - INFO - 172.18.0.2 - - [22/Jan/2025 17:19:14] "GET /metrics HTTP/1.1" 200 -
+2025-01-22 17:19:29,540 - werkzeug - INFO - 172.18.0.2 - - [22/Jan/2025 17:19:29] "GET /metrics HTTP/1.1" 200 -
