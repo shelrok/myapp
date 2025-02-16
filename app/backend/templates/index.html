@@ -151,18 +151,18 @@
       <header>
         <h1>Музыкальное приложение</h1>
         <nav>
-          <a href="{{ url_for('playlists_page') }}">Плейлисты</a>
-          <a href="{{ url_for('genres_page') }}">Жанры</a>
-          <a href="{{ url_for('artists_page') }}">Художники</a>
+          <a href="{{ url_for('main.playlists_page') }}">Плейлисты</a>
+          <a href="{{ url_for('main.genres_page') }}">Жанры</a>
+          <a href="{{ url_for('main.artists_page') }}">Художники</a>
         </nav>
       </header>
 
       <main>
         <aside>
           <ul>
-            <li><a href="{{ url_for('playlists_page') }}">Плейлисты</a></li>
-            <li><a href="{{ url_for('genres_page') }}">Жанры</a></li>
-            <li><a href="{{ url_for('artists_page') }}">Художники</a></li>
+            <li><a href="{{ url_for('main.playlists_page') }}">Плейлисты</a></li>
+            <li><a href="{{ url_for('main.genres_page') }}">Жанры</a></li>
+            <li><a href="{{ url_for('main.artists_page') }}">Художники</a></li>
           </ul>
         </aside>
 
