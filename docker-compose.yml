@@ -138,7 +138,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.cadvisor.rule=PathPrefix(`/cadvisor`)"
       - "traefik.http.middlewares.cadvisor-strip-prefix.stripprefix.prefixes=/cadvisor"
-      - "traefik.http.routers.cadvisor.middlewares=cadvizor-strip-prefix"
+      - "traefik.http.routers.cadvisor.middlewares=cadvisor-strip-prefix"
       - "traefik.http.services.cadvisor.loadbalancer.server.port=8080"
     ports:
       - "8080:8080"
@@ -157,8 +157,9 @@ services:
     labels: 
       - "traefik.enable=true"
       - "traefik.http.routers.node_exporter.rule=PathPrefix(`/node_exporter`)"
-      - "traefik.http.middlewares.node_exporter-strip-prefix.stripprefix.prefixes=/node_exporter"
-      - "traefik.http.routers.cadvisor.middlewares=node_exporter-strip-prefix"
+      - "traefik.http.middlewares.node_exporter-stripprefix.stripprefix.prefixes=/node_exporter"
+      - "traefik.http.middlewares.node_exporter-replacepath.replacepath.path=/{path}"
+      - "traefik.http.routers.node_exporter.middlewares=node_exporter-stripprefix,node_exporter-replacepath"
       - "traefik.http.services.node_exporter.loadbalancer.server.port=9100"
     ports:
       - "9100:9100"
@@ -193,12 +194,7 @@ services:
       - monitoring
     environment:
       - LOGSTASH_OUTPUT_ELASTICSEARCH_URL=http://elasticsearch:9200  # Адрес Elasticsearch для отправки данных
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.logstash.rule=PathPrefix(`/logstash`)"
-      - "traefik.http.middlewares.logstash-strip-prefix.stripprefix.prefixes=/logstash"
-      - "traefik.http.routers.logstash.middlewares=logstash-strip-prefix"
-      - "traefik.http.services.logstash.loadbalancer.server.port=5044"
+
   
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:${ES_LOCAL_VERSION}
