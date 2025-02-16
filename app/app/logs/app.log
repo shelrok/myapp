@@ -1,9 +1,0 @@
-2025-02-16 14:44:50,660 - app - INFO - Tables created!
-2025-02-16 14:50:44,669 - app - INFO - Tables created!
-2025-02-16 14:50:44,771 - app - WARNING - Warning: Skipping image '2517.png' because the artist ID is invalid.
-2025-02-16 14:50:44,772 - app - WARNING - Warning: Skipping image 'default_artist_image.jpg' because the artist ID is invalid.
-2025-02-16 14:50:44,774 - app - WARNING - Warning: Skipping image 'lokimin.png' because the artist ID is invalid.
-2025-02-16 14:50:44,775 - app - WARNING - Warning: Skipping image 'morgenshtern.png' because the artist ID is invalid.
-2025-02-16 14:50:44,785 - app - WARNING - Warning: Skipping image 'default_playlist_image.jpg' because the playlist ID is invalid.
-2025-02-16 14:50:44,787 - app - WARNING - Warning: Skipping image 'lokiminalbom.png' because the playlist ID is invalid.
-2025-02-16 14:50:44,788 - app - WARNING - Warning: Skipping image 'morgenshternalbom.png' because the playlist ID is invalid.
