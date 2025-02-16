@@ -17,3 +17,4 @@ grafana/grafana_data/grafana.db
 app/app/__pycache__/*
 app/app/logs/*
 app/app/views/__pycache__/*
+app/app/logs/app.log
