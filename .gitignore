@@ -12,6 +12,7 @@ app/__pycache__
 node_modules/*
 !node_modules/.gitkeep
 grafana/grafana_data/*
+grafana/grafana_data/plugins/*
 app/app/__pycache__/*
 app/app/logs/*
 app/app/views/__pycache__/*
