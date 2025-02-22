@@ -27,3 +27,10 @@
 2025-02-22 14:49:33,609 - __init__ - WARNING - Skipping image '2_default_playlist_image.jpg': invalid playlist ID.
 2025-02-22 14:49:33,610 - __init__ - WARNING - Skipping image '3_lokiminalbom.png': invalid playlist ID.
 2025-02-22 14:49:33,611 - __init__ - WARNING - Skipping image '4_morgenshternalbom.png': invalid playlist ID.
+2025-02-22 14:55:12,521 - __init__ - INFO - Tables created!
+2025-02-22 14:55:12,576 - __init__ - WARNING - Skipping image 'default_artist_image.jpg': invalid artist ID.
+2025-02-22 14:55:12,581 - __init__ - WARNING - Skipping image '2_default_playlist_image.jpg': invalid playlist ID.
+2025-02-22 14:55:12,582 - __init__ - WARNING - Skipping image '3_lokiminalbom.png': invalid playlist ID.
+2025-02-22 14:55:12,583 - __init__ - WARNING - Skipping image '4_lotolis.png': invalid playlist ID.
+2025-02-22 14:55:12,583 - __init__ - WARNING - Skipping image '4_morgenshternalbom.png': invalid playlist ID.
+2025-02-22 14:55:12,583 - __init__ - WARNING - Skipping image '5_traktor.png': invalid playlist ID.
