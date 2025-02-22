@@ -184,7 +184,7 @@
             <div class="grid">
               {% for artist in artists %}
                 <div class="artist">
-                  <img src="{{ url_for('static', filename='artists/' + artist.image_filename) }}" alt="Artist" />
+                  <img src="{{ url_for('static', filename='artists/' + (artist.image_filename if artist.image_filename else 'default_artist_image.jpg')) }}" alt="Artist" />
                   <p>{{ artist.name }}</p>
                 </div>
               {% endfor %}

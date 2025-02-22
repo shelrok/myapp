@@ -112,14 +112,16 @@ def load_artist_images(app):
     for image_filename in os.listdir(folder):
         if image_filename.endswith(('.png', '.jpg', '.jpeg')):
             try:
+                # Извлекаем ID из имени файла (формат: "ID_...")
                 artist_id_str = image_filename.split('_')[0]
                 artist_id = int(artist_id_str)
                 artist = Artist.query.get(artist_id)
                 if artist:
-                    artist.image_filename = os.path.join('artists', image_filename)
+                    # Сохраняем только имя файла, без пути
+                    artist.image_filename = image_filename
                     db.session.commit()
             except ValueError:
-                app.logger.warning(f"Warning: Skipping image '{image_filename}' because the artist ID is invalid.")
+                app.logger.warning(f"Skipping image '{image_filename}': invalid artist ID.")
 
 def load_playlist_images(app):
     """Загружает изображения плейлистов из папки PLAYLIST_IMAGES_FOLDER."""
@@ -128,11 +130,12 @@ def load_playlist_images(app):
     for image_filename in os.listdir(folder):
         if image_filename.endswith(('.png', '.jpg', '.jpeg')):
             try:
-                image_name_without_ext = os.path.splitext(image_filename)[0]
-                playlist_id = int(image_name_without_ext)
+                # Имя файла без расширения — это ID плейлиста
+                playlist_id = int(os.path.splitext(image_filename)[0])
                 playlist = Playlist.query.get(playlist_id)
                 if playlist:
-                    playlist.image_filename = os.path.join('playlists', image_filename)
+                    # Сохраняем только имя файла
+                    playlist.image_filename = image_filename
                     db.session.commit()
             except ValueError:
-                app.logger.warning(f"Warning: Skipping image '{image_filename}' because the playlist ID is invalid.")
+                app.logger.warning(f"Skipping image '{image_filename}': invalid playlist ID.")

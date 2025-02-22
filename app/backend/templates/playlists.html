@@ -94,7 +94,7 @@
             <div class="playlist-card">
                 <h2>{{ playlist.name }}</h2>
                 <p>{{ playlist.description }}</p>
-                <img src="{{ url_for('static', filename='playlists/' + playlist.image_filename) }}" alt="{{ playlist.name }} Image">
+                <img src="{{ url_for('static', filename='playlist/' + (playlist.image_filename if playlist.image_filename else 'default_playlist_image.jpg')) }}" alt="{{ playlist.name }} Image">
                 <ul class="songs-list">
                     {% for song in playlist.songs %}
                     <li class="song-item">

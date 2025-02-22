@@ -33,6 +33,8 @@ services:
       - "traefik.http.services.web.loadbalancer.server.port=5000"
     volumes:
       - ./app:/app  # Монтируем локальную папку с кодом в контейнер
+      - ./static:/app/static    # Монтирование статических файлов
+      - ./templates:/app/templates  # Монтирование шаблонов
     environment:
       - FLASK_APP=app.py  # Указание на главный файл приложения
       # - FLASK_ENV=development  # Установка режима разработки
@@ -302,34 +304,34 @@ services:
       - LOGSTASH_HOST=logstash  # Имя сервиса Logstash
       - LOGSTASH_PORT=5044      # Порт, на котором Logstash принимает данные
 
-  traefik:
-    image: traefik:v2.10
-    container_name: traefik
-    ports:
-      - "80:80"        # HTTP
-      - "443:443"      # HTTPS (если нужно)
-      - "8085:8080"    # Панель управления Traefik
-    command:
-      - "--api.insecure=true"                    # Включаем панель управления (доступно на http://lotolis:8080)
-      - "--providers.docker=true"                # Автоматическое обнаружение сервисов в Docker
-      - "--entrypoints.web.address=:80"          # Основной HTTP-вход
-      - "--entrypoints.websecure.address=:443"   # HTTPS (при необходимости)
-      - "--log.level=INFO" 
-      - "--configFile=/etc/traefik/traefik.yml"                       # Уровень логирования
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock # Для взаимодействия с Docker
-      - ./traefik/traefik.yml:/etc/traefik/traefik.yml
-    networks:
-      - monitoring
-    depends_on:
-      - elasticsearch
-      - cadvisor
-      - prometheus
-      - node_exporter
-      - web
-      - grafana
-      - kibana
-      - pgadmin
+  # traefik:
+  #   image: traefik:v2.10
+  #   container_name: traefik
+  #   ports:
+  #     - "80:80"        # HTTP
+  #     - "443:443"      # HTTPS (если нужно)
+  #     - "8085:8080"    # Панель управления Traefik
+  #   command:
+  #     - "--api.insecure=true"                    # Включаем панель управления (доступно на http://lotolis:8080)
+  #     - "--providers.docker=true"                # Автоматическое обнаружение сервисов в Docker
+  #     - "--entrypoints.web.address=:80"          # Основной HTTP-вход
+  #     - "--entrypoints.websecure.address=:443"   # HTTPS (при необходимости)
+  #     - "--log.level=INFO" 
+  #     - "--configFile=/etc/traefik/traefik.yml"                       # Уровень логирования
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock # Для взаимодействия с Docker
+  #     - ./traefik/traefik.yml:/etc/traefik/traefik.yml
+  #   networks:
+  #     - monitoring
+  #   depends_on:
+  #     - elasticsearch
+  #     - cadvisor
+  #     - prometheus
+  #     - node_exporter
+  #     - web
+  #     - grafana
+  #     - kibana
+  #     - pgadmin
 networks:
   monitoring:
     driver: bridge

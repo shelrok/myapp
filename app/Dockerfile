@@ -9,6 +9,7 @@ ENV FLASK_APP=run.py
 ENV FLASK_ENV=development
 # Открываем порт 5000 для Flask
 EXPOSE 5000
+COPY . /app
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 # Указываем команду для запуска Flask-приложения
