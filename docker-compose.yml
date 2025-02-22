@@ -19,22 +19,17 @@ services:
     networks:
       - monitoring
 
-  web:
+  app:
     build: ./app  # Путь к вашему Flask приложению
-    container_name: web
+    container_name: app
     ports:
       - "5000:5000"  # Проброс порта 5000 на хостовую машину
     networks:
       - monitoring
     labels:
       - "prometheus_job=flask_app"
-      - "traefik.enable=true"                                # Включить для Traefik
-      - "traefik.http.routers.web.rule=PathPrefix(`/musicservice`)"      # Доступ через корневой маршрут
-      - "traefik.http.services.web.loadbalancer.server.port=5000"
     volumes:
       - ./app:/app  # Монтируем локальную папку с кодом в контейнер
-      - ./static:/app/static    # Монтирование статических файлов
-      - ./templates:/app/templates  # Монтирование шаблонов
     environment:
       - FLASK_APP=app.py  # Указание на главный файл приложения
       # - FLASK_ENV=development  # Установка режима разработки

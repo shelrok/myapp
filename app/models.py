@@ -1,4 +1,4 @@
-from app import db
+from __init__ import db
 
 class Genre(db.Model):
     id = db.Column(db.Integer, primary_key=True)

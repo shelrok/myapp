@@ -11,7 +11,7 @@ http:
     # Пример маршрутизатора для веб-приложения
     web:
       rule: "PathPrefix(`/`)"
-      service: web
+      service: app
       entryPoints:
         - web
     node_exporter:

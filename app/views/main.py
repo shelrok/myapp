@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from app.models import Genre, Artist, Playlist
+from models import Genre, Artist, Playlist
 
 main_bp = Blueprint('main', __name__, template_folder='templates')
 

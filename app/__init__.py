@@ -40,8 +40,8 @@ def create_app():
         return response
 
     # Импорт и регистрация Blueprints (если они разделены по функциональности)
-    from app.views.main import main_bp
-    from app.views.api import api_bp
+    from views.main import main_bp
+    from views.api import api_bp
     app.register_blueprint(main_bp)
     app.register_blueprint(api_bp, url_prefix='/musicservice/api')
 
@@ -63,7 +63,7 @@ def populate_db_from_audio(app):
     а также загружает изображения для артистов и плейлистов.
     """
     import os
-    from app.models import Genre, Song, Artist, Playlist
+    from models import Genre, Song, Artist, Playlist
 
     audio_folder = app.config['AUDIO_FOLDER']
     genres = os.listdir(audio_folder)  # Список всех жанров (папок)
@@ -107,7 +107,7 @@ def populate_db_from_audio(app):
 
 def load_artist_images(app):
     """Загружает изображения артистов из папки ARTIST_IMAGES_FOLDER."""
-    from app.models import Artist
+    from models import Artist
     folder = app.config['ARTIST_IMAGES_FOLDER']
     for image_filename in os.listdir(folder):
         if image_filename.endswith(('.png', '.jpg', '.jpeg')):
@@ -125,7 +125,7 @@ def load_artist_images(app):
 
 def load_playlist_images(app):
     """Загружает изображения плейлистов из папки PLAYLIST_IMAGES_FOLDER."""
-    from app.models import Playlist
+    from models import Playlist
     folder = app.config['PLAYLIST_IMAGES_FOLDER']
     for image_filename in os.listdir(folder):
         if image_filename.endswith(('.png', '.jpg', '.jpeg')):

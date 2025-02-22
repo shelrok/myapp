@@ -1,0 +1,29 @@
+2025-02-22 12:45:26,594 - app - INFO - Tables created!
+2025-02-22 12:45:26,670 - app - WARNING - Warning: Skipping image '2517.png' because the artist ID is invalid.
+2025-02-22 12:45:26,670 - app - WARNING - Warning: Skipping image 'default_artist_image.jpg' because the artist ID is invalid.
+2025-02-22 12:45:26,671 - app - WARNING - Warning: Skipping image 'lokimin.png' because the artist ID is invalid.
+2025-02-22 12:45:26,671 - app - WARNING - Warning: Skipping image 'morgenshtern.png' because the artist ID is invalid.
+2025-02-22 12:45:26,677 - app - WARNING - Warning: Skipping image 'default_playlist_image.jpg' because the playlist ID is invalid.
+2025-02-22 12:45:26,680 - app - WARNING - Warning: Skipping image 'lokiminalbom.png' because the playlist ID is invalid.
+2025-02-22 12:45:26,681 - app - WARNING - Warning: Skipping image 'morgenshternalbom.png' because the playlist ID is invalid.
+2025-02-22 13:04:36,014 - app - INFO - Tables created!
+2025-02-22 13:04:36,086 - app - WARNING - Skipping image '2517.png': invalid artist ID.
+2025-02-22 13:04:36,087 - app - WARNING - Skipping image 'default_artist_image.jpg': invalid artist ID.
+2025-02-22 13:04:36,089 - app - WARNING - Skipping image 'lokimin.png': invalid artist ID.
+2025-02-22 13:04:36,089 - app - WARNING - Skipping image 'morgenshtern.png': invalid artist ID.
+2025-02-22 13:04:36,100 - app - WARNING - Skipping image 'default_playlist_image.jpg': invalid playlist ID.
+2025-02-22 13:04:36,100 - app - WARNING - Skipping image 'lokiminalbom.png': invalid playlist ID.
+2025-02-22 13:04:36,101 - app - WARNING - Skipping image 'morgenshternalbom.png': invalid playlist ID.
+2025-02-22 14:42:40,822 - __init__ - INFO - Tables created!
+2025-02-22 14:42:40,866 - __init__ - WARNING - Skipping image '2517.png': invalid artist ID.
+2025-02-22 14:42:40,866 - __init__ - WARNING - Skipping image 'default_artist_image.jpg': invalid artist ID.
+2025-02-22 14:42:40,867 - __init__ - WARNING - Skipping image 'lokimin.png': invalid artist ID.
+2025-02-22 14:42:40,867 - __init__ - WARNING - Skipping image 'morgenshtern.png': invalid artist ID.
+2025-02-22 14:42:40,873 - __init__ - WARNING - Skipping image 'default_playlist_image.jpg': invalid playlist ID.
+2025-02-22 14:42:40,873 - __init__ - WARNING - Skipping image 'lokiminalbom.png': invalid playlist ID.
+2025-02-22 14:42:40,874 - __init__ - WARNING - Skipping image 'morgenshternalbom.png': invalid playlist ID.
+2025-02-22 14:49:33,513 - __init__ - INFO - Tables created!
+2025-02-22 14:49:33,600 - __init__ - WARNING - Skipping image 'default_artist_image.jpg': invalid artist ID.
+2025-02-22 14:49:33,609 - __init__ - WARNING - Skipping image '2_default_playlist_image.jpg': invalid playlist ID.
+2025-02-22 14:49:33,610 - __init__ - WARNING - Skipping image '3_lokiminalbom.png': invalid playlist ID.
+2025-02-22 14:49:33,611 - __init__ - WARNING - Skipping image '4_morgenshternalbom.png': invalid playlist ID.

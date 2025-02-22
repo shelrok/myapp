@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from app.models import Artist, Playlist
+from models import Artist, Playlist
 
 api_bp = Blueprint('api', __name__)
 
@@ -53,3 +53,24 @@ def get_playlist_api(playlist_id):
         'songs': [song.file_name for song in playlist.songs]
     }
     return jsonify(playlist_data)
+# @api_bp.route('/upload/artist_image/<int:artist_id>', methods=['POST'])
+# def upload_artist_image(artist_id):
+#     artist = Artist.query.get_or_404(artist_id)
+#     image_file = request.files['image']
+#     image_filename = f"{artist_id}_{secure_filename(image_file.filename)}"
+#     image_path = os.path.join(Config.ARTIST_IMAGES_FOLDER, image_filename)
+#     image_file.save(image_path)
+#     artist.image_filename = image_filename  # Сохраняем только имя файла
+#     db.session.commit()
+#     return jsonify({"message": "Image uploaded successfully", "image_path": f"artists/{image_filename}"})
+
+# @api_bp.route('/upload/playlist_image/<int:playlist_id>', methods=['POST'])
+# def upload_playlist_image(playlist_id):
+#     playlist = Playlist.query.get_or_404(playlist_id)
+#     image_file = request.files['image']
+#     image_filename = f"{playlist_id}_{secure_filename(image_file.filename)}"
+#     image_path = os.path.join(Config.PLAYLIST_IMAGES_FOLDER, image_filename)
+#     image_file.save(image_path)
+#     playlist.image_filename = image_filename  # Сохраняем только имя файла
+#     db.session.commit()
+#     return jsonify({"message": "Image uploaded successfully", "image_path": f"playlists/{image_filename}"})

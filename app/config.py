@@ -25,4 +25,4 @@ class Config:
     PLAYLIST_IMAGES_FOLDER = os.path.join(STATIC_FOLDER, 'playlists')
 
     # Путь для логов
-    LOG_FILE = os.path.join(BASE_DIR, 'app', 'logs', 'app.log')
+    LOG_FILE = os.path.join(BASE_DIR, 'logs', 'app.log')
