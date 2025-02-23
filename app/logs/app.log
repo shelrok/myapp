@@ -34,3 +34,17 @@
 2025-02-22 14:55:12,583 - __init__ - WARNING - Skipping image '4_lotolis.png': invalid playlist ID.
 2025-02-22 14:55:12,583 - __init__ - WARNING - Skipping image '4_morgenshternalbom.png': invalid playlist ID.
 2025-02-22 14:55:12,583 - __init__ - WARNING - Skipping image '5_traktor.png': invalid playlist ID.
+2025-02-22 15:04:02,859 - __init__ - INFO - Tables created!
+2025-02-22 15:04:02,983 - __init__ - WARNING - Skipping image 'default_artist_image.jpg': invalid artist ID.
+2025-02-22 15:04:02,993 - __init__ - WARNING - Skipping image '2_default_playlist_image.jpg': invalid playlist ID.
+2025-02-22 15:04:02,995 - __init__ - WARNING - Skipping image '3_lokiminalbom.png': invalid playlist ID.
+2025-02-22 15:04:02,995 - __init__ - WARNING - Skipping image '4_lotolis.png': invalid playlist ID.
+2025-02-22 15:04:02,996 - __init__ - WARNING - Skipping image '4_morgenshternalbom.png': invalid playlist ID.
+2025-02-22 15:04:02,997 - __init__ - WARNING - Skipping image '5_traktor.png': invalid playlist ID.
+2025-02-22 15:14:34,244 - __init__ - INFO - Tables created!
+2025-02-22 15:14:34,372 - __init__ - WARNING - Skipping image 'default_artist_image.jpg': invalid artist ID.
+2025-02-22 15:14:34,419 - __init__ - WARNING - Skipping image '2_default_playlist_image.jpg': invalid playlist ID.
+2025-02-22 15:14:34,425 - __init__ - WARNING - Skipping image '3_lokiminalbom.png': invalid playlist ID.
+2025-02-22 15:14:34,455 - __init__ - WARNING - Skipping image '4_lotolis.png': invalid playlist ID.
+2025-02-22 15:14:34,462 - __init__ - WARNING - Skipping image '4_morgenshternalbom.png': invalid playlist ID.
+2025-02-22 15:14:34,470 - __init__ - WARNING - Skipping image '5_traktor.png': invalid playlist ID.
