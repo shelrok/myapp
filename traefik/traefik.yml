@@ -1,4 +1,3 @@
-# Основная конфигурация для Traefik
 api:
   insecure: true  # Включаем insecure API для доступа к панели управления (не рекомендуется для продакшн-среды)
 
@@ -8,147 +7,164 @@ providers:
 
 http:
   routers:
-    # Пример маршрутизатора для веб-приложения
-    web:
-      rule: "PathPrefix(`/`)"
+    app:
+      rule: "PathPrefix(`/musicservice`)"  # Доступ по lotolis/musicservice
       service: app
       entryPoints:
         - web
+
+
     node_exporter:
       rule: "PathPrefix(`/node_exporter`)"
       service: node_exporter
       entryPoints:
         - web
       middlewares:
-        - node_exporter-stripprefix  # Применение middleware для node_exporter
+        - node_exporter-strip-prefix
+
     grafana:
       rule: "PathPrefix(`/grafana`)"
       service: grafana
       entryPoints:
         - web
       middlewares:
-        - grafana-stripprefix  # Применение middleware для grafana
+        - grafana-strip-prefix
+
     pgadmin:
       rule: "PathPrefix(`/pgadmin`)"
       service: pgadmin
       entryPoints:
         - web
       middlewares:
-        - pgadmin-stripprefix
+        - pgadmin-strip-prefix
+
     cadvisor:
       rule: "PathPrefix(`/cadvisor`)"
       service: cadvisor
       entryPoints:
         - web
       middlewares:
-        - cadvisor-stripprefix
+        - cadvisor-strip-prefix
+
     prometheus:
       rule: "PathPrefix(`/prometheus`)"
       service: prometheus
       entryPoints:
         - web
       middlewares:
-        - prometheus-stripprefix
+        - prometheus-strip-prefix
+
     traefik:
       rule: "PathPrefix(`/traefik`)"
       service: traefik
       entryPoints:
         - web
       middlewares:
-        - traefik-stripprefix
+        - traefik-strip-prefix
+
     kibana:
       rule: "PathPrefix(`/kibana`)"
       service: kibana
       entryPoints:
         - web
       middlewares:
-        - kibana-stripprefix
+        - kibana-strip-prefix
+
     elasticsearch:
       rule: "PathPrefix(`/elasticsearch`)"
       service: elasticsearch
       entryPoints:
         - web
       middlewares:
-        - elasticsearch-stripprefix
+        - elasticsearch-strip-prefix
 
   middlewares:
-    # Middleware для удаления префикса из пути
-    node_exporter-stripprefix:
+    app-strip-prefix:
       stripPrefix:
         prefixes:
-          - "/node_exporter"  # Удаляем префикс /node_exporter
+          - "/musicservice"
 
-    # Middleware для удаления префикса из пути
-    grafana-stripprefix:
+    node_exporter-strip-prefix:
       stripPrefix:
         prefixes:
-          - "/grafana"  # Удаляем префикс /grafana
-    
-    prometheus-stripprefix:
+          - "/node_exporter"
+
+    grafana-strip-prefix:
+      stripPrefix:
+        prefixes:
+          - "/grafana"
+
+    prometheus-strip-prefix:
       stripPrefix:
         prefixes:
           - "/prometheus"
 
-    cadvisor-stripprefix:
+    cadvisor-strip-prefix:
       stripPrefix:
         prefixes:
           - "/cadvisor"
-    
-    pgadmin-stripprefix:
+
+    pgadmin-strip-prefix:
       stripPrefix:
         prefixes:
-          - "/pgadmin" 
-    traefik-stripprefix:
+          - "/pgadmin"
+
+    traefik-strip-prefix:
       stripPrefix:
         prefixes:
-          - "/traefik" 
-    kibana-stripprefix:
+          - "/traefik"
+
+    kibana-strip-prefix:
       stripPrefix:
         prefixes:
-          - "/kibana" 
-    elasicseatch-stripprefix:
+          - "/kibana"
+
+    elasticsearch-strip-prefix:
       stripPrefix:
         prefixes:
-          - "/elasticsearch" 
+          - "/elasticsearch"
 
   services:
-    # Пример сервисов
-    web:
+    app:
       loadBalancer:
         servers:
-          - url: "http://lotolis:5000"  # Указание сервера для приложения Flask
+          - url: "http://app:5000"
+
     node_exporter:
       loadBalancer:
         servers:
-          - url: "http://lotolis:9100"  # Указание сервера для node_exporter
+          - url: "http://node_exporter:9100"
+
     grafana:
       loadBalancer:
         servers:
-          - url: "http://lotolis:3000"  # Указание сервера для grafana
+          - url: "http://grafana:3000"
 
     prometheus:
       loadBalancer:
         servers:
-          - url: "http://lotolis:9090"
-    
+          - url: "http://prometheus:9090"
+
     cadvisor:
       loadBalancer:
         servers:
-          - url: "http://lotolis:8080"
+          - url: "http://cadvisor:8080"
 
     pgadmin:
       loadBalancer:
         servers:
-          - url: "http://lotolis:8081"
-    
+          - url: "http://pgadmin:8081"
+
     traefik:
       loadBalancer:
         servers:
-          - url: "http://traefik:8085"
+          - url: "http://traefik:8080"
+
     kibana:
       loadBalancer:
         servers:
           - url: "http://kibana:5601"
+
     elasticsearch:
       loadBalancer:
         servers:
@@ -160,10 +176,10 @@ entryPoints:
 
 # Логи Traefik
 log:
-  level: "INFO"  # Уровень логирования
-  filePath: "/var/log/traefik.log"  # Путь для записи логов
+  level: "INFO"
+  filePath: "/var/log/traefik.log"
 
 # Включение панели управления Traefik
 dashboard:
-  enabled: true  # Включение панели управления
+  enabled: true
   entryPoint: web

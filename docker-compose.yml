@@ -1,13 +1,11 @@
-# version: '3.8'
-
 services:
   db:
-    image: postgres:latest  # Используем официальную PostgreSQL-образ
+    image: postgres:latest
     container_name: db
     environment:
-      - POSTGRES_USER=postgres  # Имя пользователя
-      - POSTGRES_PASSWORD=${DB_PASSWORD}  # Пароль пользователя
-      - POSTGRES_DB=musicdb  # Название базы данных
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=musicdb
     healthcheck:
       test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
       interval: 30s
@@ -15,30 +13,31 @@ services:
       retries: 5
       start_period: 80s
     volumes:
-      - ./db_data:/var/lib/postgresql/data  # Храним данные базы данных в volume
+      - ./db_data:/var/lib/postgresql/data
     networks:
       - monitoring
 
   app:
-    build: ./app  # Путь к вашему Flask приложению
+    build: ./app
     container_name: app
-    ports:
-      - "5000:5000"  # Проброс порта 5000 на хостовую машину
     networks:
       - monitoring
     labels:
-      - "prometheus_job=flask_app"
+      - "traefik.enable=true"
+      - "traefik.http.routers.app.rule=PathPrefix(`/musicservice`)"
+      - "traefik.http.middlewares.app-strip-prefix.stripprefix.prefixes=/musicservice"
+      - "traefik.http.services.app.loadbalancer.server.port=5000"
     volumes:
-      - ./app:/app  # Монтируем локальную папку с кодом в контейнер
+      - ./app:/app
     environment:
-      - FLASK_APP=app.py  # Указание на главный файл приложения
-      # - FLASK_ENV=development  # Установка режима разработки
-      - FLASK_DEBUG=1  # Включает режим отладки
-      - DATABASE_URL=${DATABASE_URL}  # Строка подключения к базе данных
+      - FLASK_APP=run.py  # Исправлено с app.py на run.py, так как вы используете run.py
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+      - DATABASE_URL=${DATABASE_URL}
     depends_on:
       db:
         condition: service_healthy
-  
+
   postgresexporter:
     image: prometheuscommunity/postgres-exporter:latest
     environment:
@@ -64,9 +63,8 @@ services:
     depends_on:
       - db
 
-  # Сервис для pgAdmin (для удобного доступа к PostgreSQL через браузер)
   pgadmin:
-    image: dpage/pgadmin4:latest  # Официальный образ pgAdmin
+    image: dpage/pgadmin4:latest
     container_name: pgadmin
     labels:
       - "traefik.enable=true"
@@ -75,13 +73,13 @@ services:
       - "traefik.http.routers.pgadmin.middlewares=pgadmin-strip-prefix"
       - "traefik.http.services.pgadmin.loadbalancer.server.port=8081"
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@admin.com  # Адрес электронной почты для входа
-      - PGADMIN_DEFAULT_PASSWORD=admin  # Пароль для входа
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
       - PGADMIN_LISTEN_PORT=8081
     volumes:
       - ./pgadmin:/var/lib/pgadmin
     ports:
-      - "8081:8081"  # Доступ через localhost:80
+      - "8081:8081"  # Можно оставить для прямого доступа, если нужно
     networks:
       - monitoring
     depends_on:
@@ -100,30 +98,28 @@ services:
       - prom-data:/prometheus
       - prom-configs:/etc/prometheus
     ports:
-      - "9090:9090"
+      - "9090:9090"  # Можно оставить для прямого доступа
     networks:
       - monitoring
-    
 
   grafana:
     image: grafana/grafana:latest
     ports:
-      - "3000:3000"
+      - "3000:3000"  # Можно оставить для прямого доступа
     volumes:
       - ./grafana/grafana_data:/var/lib/grafana
       - ./grafana/dashboards:/etc/grafana/provisioning/datasources/
     labels:
-      - "traefik.enable=true"                                    # Включить для Traefik
-      - "traefik.http.routers.grafana.rule=PathPrefix(`/grafana`)" # Доступ по lotolis/grafana
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=PathPrefix(`/grafana`)"
       - "traefik.http.middlewares.grafana-strip-prefix.stripprefix.prefixes=/grafana"
       - "traefik.http.routers.grafana.middlewares=grafana-strip-prefix"
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
-      - GF_DASHBOARDS_JSON_ENABLED=true  # Включаем JSON дашборды
-      - GF_DASHBOARDS_JSON_PATH=/etc/grafana/dashboards  # Путь к папке с дашбордами
+      - GF_DASHBOARDS_JSON_ENABLED=true
+      - GF_DASHBOARDS_JSON_PATH=/etc/grafana/dashboards
       - GF_SERVER_ROOT_URL=http://lotolis/grafana/
-
     depends_on:
       - prometheus
     networks:
@@ -138,7 +134,7 @@ services:
       - "traefik.http.routers.cadvisor.middlewares=cadvisor-strip-prefix"
       - "traefik.http.services.cadvisor.loadbalancer.server.port=8080"
     ports:
-      - "8080:8080"
+      - "8080:8080"  # Можно оставить для прямого доступа
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro
@@ -151,15 +147,14 @@ services:
 
   node_exporter:
     image: prom/node-exporter:latest
-    labels: 
+    labels:
       - "traefik.enable=true"
       - "traefik.http.routers.node_exporter.rule=PathPrefix(`/node_exporter`)"
-      - "traefik.http.middlewares.node_exporter-stripprefix.stripprefix.prefixes=/node_exporter"
-      - "traefik.http.middlewares.node_exporter-replacepath.replacepath.path=/{path}"
-      - "traefik.http.routers.node_exporter.middlewares=node_exporter-stripprefix,node_exporter-replacepath"
+      - "traefik.http.middlewares.node_exporter-strip-prefix.stripprefix.prefixes=/node_exporter"
+      - "traefik.http.routers.node_exporter.middlewares=node_exporter-strip-prefix"
       - "traefik.http.services.node_exporter.loadbalancer.server.port=9100"
     ports:
-      - "9100:9100"
+      - "9100:9100"  # Можно оставить для прямого доступа
     networks:
       - monitoring
     volumes:
@@ -171,17 +166,12 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude'
       - '^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)'
-    
 
-
-
-  # Logstash
   logstash:
     image: logstash:8.16.2
     container_name: logstash
     volumes:
-      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf  # Конфиг для pipeline
-      # - ./logstash/config/:/usr/share/logstash/config/ 
+      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     ports:
       - "5044:5044"
       - "9600:9600"
@@ -190,9 +180,8 @@ services:
     networks:
       - monitoring
     environment:
-      - LOGSTASH_OUTPUT_ELASTICSEARCH_URL=http://elasticsearch:9200  # Адрес Elasticsearch для отправки данных
+      - LOGSTASH_OUTPUT_ELASTICSEARCH_URL=http://elasticsearch:9200
 
-  
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:${ES_LOCAL_VERSION}
     container_name: ${ES_LOCAL_CONTAINER_NAME}
@@ -201,7 +190,7 @@ services:
     networks:
       - monitoring
     ports:
-      - "9200:9200"
+      - "9200:9200"  # Можно оставить для прямого доступа
     environment:
       - discovery.type=single-node
       - ELASTIC_PASSWORD=${ES_LOCAL_PASSWORD}
@@ -233,31 +222,13 @@ services:
       timeout: 5s
       retries: 10
 
-  # kibana_settings:
-  #   depends_on:
-  #     elasticsearch:
-  #       condition: service_healthy
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:${ES_LOCAL_VERSION}
-  #   container_name: kibana_settings
-  #   restart: 'no'
-  #   command: >
-  #     bash -c '
-  #       echo "Setup the kibana_system password";
-  #       start_time=$(date +%s);
-  #       timeout=60;
-  #       until curl -s -u "elastic:${ES_LOCAL_PASSWORD}" -X POST http://elasticsearch:9200/_security/user/kibana_system/_password -d "{\"password\":\"'${KIBANA_LOCAL_PASSWORD}'\"}" -H "Content-Type: application/json" | grep -q "^{}"; do if [ $(($(date +%s) - $$start_time)) -ge $$timeout ]; then echo "Error: Elasticsearch timeout"; exit 1; fi; sleep 2; done;
-  #     '
-
   kibana:
-    # depends_on:
-    #   kibana_settings:
-    #     condition: service_completed_successfully
     image: docker.elastic.co/kibana/kibana:${ES_LOCAL_VERSION}
     container_name: ${KIBANA_LOCAL_CONTAINER_NAME}
     volumes:
       - ./kibana:/usr/share/kibana/data
     ports:
-      - "5601:5601"
+      - "5601:5601"  # Можно оставить для прямого доступа
     networks:
       - monitoring
     environment:
@@ -270,8 +241,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.kibana.rule=PathPrefix(`/kibana`)"
-      - "traefik.http.middlewares.kibana-stripprefix.stripprefix.prefixes=/kibana"
-      - "traefik.http.routers.kibana.middlewares=kibana-stripprefix"
+      - "traefik.http.middlewares.kibana-strip-prefix.stripprefix.prefixes=/kibana"
+      - "traefik.http.routers.kibana.middlewares=kibana-strip-prefix"
       - "traefik.http.services.kibana.loadbalancer.server.port=5601"
     healthcheck:
       test:
@@ -289,47 +260,43 @@ services:
     command: --strict.perms=false -e
     user: root
     volumes:
-      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml  # Конфигурация Filebeat
-      - ./app/app/logs:/var/log/app_logs # Монтируем логи с хоста (или из других контейнеров)
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./app/app/logs:/var/log/app_logs
     networks:
       - monitoring
     depends_on:
-      - logstash  # Filebeat должен подключаться к Logstash
+      - logstash
     environment:
-      - LOGSTASH_HOST=logstash  # Имя сервиса Logstash
-      - LOGSTASH_PORT=5044      # Порт, на котором Logstash принимает данные
+      - LOGSTASH_HOST=logstash
+      - LOGSTASH_PORT=5044
 
-  # traefik:
-  #   image: traefik:v2.10
-  #   container_name: traefik
-  #   ports:
-  #     - "80:80"        # HTTP
-  #     - "443:443"      # HTTPS (если нужно)
-  #     - "8085:8080"    # Панель управления Traefik
-  #   command:
-  #     - "--api.insecure=true"                    # Включаем панель управления (доступно на http://lotolis:8080)
-  #     - "--providers.docker=true"                # Автоматическое обнаружение сервисов в Docker
-  #     - "--entrypoints.web.address=:80"          # Основной HTTP-вход
-  #     - "--entrypoints.websecure.address=:443"   # HTTPS (при необходимости)
-  #     - "--log.level=INFO" 
-  #     - "--configFile=/etc/traefik/traefik.yml"                       # Уровень логирования
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock # Для взаимодействия с Docker
-  #     - ./traefik/traefik.yml:/etc/traefik/traefik.yml
-  #   networks:
-  #     - monitoring
-  #   depends_on:
-  #     - elasticsearch
-  #     - cadvisor
-  #     - prometheus
-  #     - node_exporter
-  #     - web
-  #     - grafana
-  #     - kibana
-  #     - pgadmin
+  traefik:
+    image: traefik:v2.10
+    container_name: traefik
+    ports:
+      - "80:80"  # HTTP
+      - "443:443"  # HTTPS (если нужно)
+      - "8085:8080"  # Панель управления Traefik
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--log.level=INFO"
+      - "--configFile=/etc/traefik/traefik.yml"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml
+    networks:
+      - monitoring
+    depends_on:
+      - app
+
+
 networks:
   monitoring:
     driver: bridge
+
 volumes:
   grafana_data:
   prom-data:
@@ -338,4 +305,3 @@ volumes:
   kibana:
   logstash:
   filebeat:
-
