@@ -1,52 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genres</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Жанры</title>
+    <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet">
     <style>
+        @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap);
+        @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css);
+
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            color: #333;
+            background: linear-gradient(135deg, #ffffff, #d4d4d4);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        #webcrumbs {
+            width: 100%;
+            background-color: #2d2d2d;
+            border-radius: 24px;
+            min-height: 800px;
+            color: #f7f7f7;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #444;
+            padding: 20px;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #f7f7f7;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #6e40f7;
+        }
+
+        main {
+            padding: 20px;
+            flex: 1;
         }
 
         h1 {
             text-align: center;
-            margin-top: 40px;
+            margin-bottom: 20px;
             font-size: 36px;
-            color: #444;
+            color: #f7f7f7;
         }
 
         .genre-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 20px;
-            margin: 30px;
+            justify-content: center;
         }
 
         .genre {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #444;
+            border-radius: 12px;
+            padding: 15px;
             width: 300px;
-            padding: 20px;
-            transition: transform 0.2s ease-in-out;
-            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
         }
 
         .genre:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
 
         .genre h2 {
             font-size: 24px;
-            color: #2d2d2d;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            color: #f7f7f7;
         }
 
         .song-list {
@@ -55,71 +98,139 @@
         }
 
         .song-list li {
-            background-color: #fafafa;
+            background-color: #555;
             margin: 10px 0;
             padding: 10px;
             border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
         }
 
         .song-list li:hover {
-            background-color: #e7e7e7;
+            background-color: #666;
         }
 
         .song-name {
-            font-size: 18px;
-            color: #555;
-        }
-
-        .audio-controls {
-            display: flex;
-            align-items: center;
+            font-size: 16px;
+            color: #f7f7f7;
+            flex: 1;
         }
 
         audio {
-            width: 150px;
-            margin-right: 10px;
+            width: 120px;
+            margin-left: 10px;
         }
 
-        .play-button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 4px;
+        .play-btn {
+            background-color: #28a745;
+            color: #fff;
             border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
         }
 
-        .play-button:hover {
-            background-color: #45a049;
+        .play-btn:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            background-color: #444;
+            color: #f7f7f7;
+            padding: 20px;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            width: 100%;
+            text-align: center;
+        }
+
+        footer a {
+            color: #f7f7f7;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #6e40f7;
+        }
+
+        @media (max-width: 768px) {
+            .genre-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .genre {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            audio {
+                width: 100px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Genres</h1>
-    <div class="genre-container">
-        {% for genre in genres %}
-        <div class="genre">
-            <h2>{{ genre.name }}</h2>
-            <ul class="song-list">
-                {% for song in genre.songs %}
-                <li>
-                    <span class="song-name">{{ song.name }}</span>
-                    <div class="audio-controls">
-                        <audio controls>
-                            <source src="{{ url_for('static', filename='audio/' + genre.name + '/' + song.file_name) }}" type="audio/mp3">
-                            Your browser does not support the audio element.
-                        </audio>
-                        <button class="play-button">Play</button>
-                    </div>
-                </li>
+    <div id="webcrumbs">
+        <header>
+            <h1>Музыкальное приложение</h1>
+            <nav>
+                <a href="{{ url_for('main.index') }}">Главная</a>
+                <a href="{{ url_for('main.playlists_page') }}">Плейлисты</a>
+                <a href="{{ url_for('main.genres_page') }}">Жанры</a>
+                <a href="{{ url_for('main.artists_page') }}">Художники</a>
+                <a href="{{ url_for('main.albums_page') }}">Альбомы</a>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Жанры</h1>
+            <div class="genre-container">
+                {% for genre in genres %}
+                <div class="genre">
+                    <h2>{{ genre.name }}</h2>
+                    <ul class="song-list">
+                        {% for song in genre.songs %}
+                        <li>
+                            <span class="song-name">{{ song.name }}</span>
+                            <audio id="audio-{{ song.id }}" controls>
+                                <source src="{{ url_for('static', filename='audio/' + genre.name + '/' + song.file_name) }}" type="audio/mp3">
+                                Ваш браузер не поддерживает аудио.
+                            </audio>
+                            <button class="play-btn" onclick="playAudio('audio-{{ song.id }}')">Play</button>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
                 {% endfor %}
-            </ul>
-        </div>
-        {% endfor %}
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 Музыкальное приложение. Все права защищены.</p>
+            <div>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </footer>
     </div>
+
+    <script>
+        function playAudio(audioId) {
+            const audio = document.getElementById(audioId);
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+                audio.currentTime = 0; // Сбрасываем на начало при паузе
+            }
+        }
+    </script>
 </body>
 </html>

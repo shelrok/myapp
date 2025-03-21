@@ -83,7 +83,7 @@
     <div class="artist-container">
         {% for artist in artists %}
         <div class="artist">
-            <img src="{{ url_for('static', filename='artists/' + artist.image_filename if artist.image_filename else 'default.png') }}" alt="{{ artist.name }}">
+            <img src="{{ url_for('static', filename='artists/' + (artist.image_filename if artist.image_filename else 'default_artist_image.jpg')) }}" alt="Artist Image">
             <h2 class="artist-name">{{ artist.name }}</h2>
             <p class="artist-bio">{{ artist.bio }}</p>
         </div>

@@ -8,3 +8,4 @@ python-dotenv==1.0.0
 prometheus_flask_exporter
 logstash_formatter==0.5.2
 prometheus_client
+mutagen==1.47.0

@@ -12,6 +12,8 @@ services:
       timeout: 60s
       retries: 5
       start_period: 80s
+    ports:
+      - "5432:5432"
     volumes:
       - ./db_data:/var/lib/postgresql/data
     networks:
@@ -22,18 +24,15 @@ services:
     container_name: app
     networks:
       - monitoring
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.app.rule=PathPrefix(`/musicservice`)"
-      - "traefik.http.middlewares.app-strip-prefix.stripprefix.prefixes=/musicservice"
-      - "traefik.http.services.app.loadbalancer.server.port=5000"
     volumes:
       - ./app:/app
     environment:
       - FLASK_APP=run.py  # Исправлено с app.py на run.py, так как вы используете run.py
-      - FLASK_ENV=development
       - FLASK_DEBUG=1
       - DATABASE_URL=${DATABASE_URL}
+      - DEBUG_METRICS=1
+    ports:
+      - "5000:5000"
     depends_on:
       db:
         condition: service_healthy
@@ -66,12 +65,6 @@ services:
   pgadmin:
     image: dpage/pgadmin4:latest
     container_name: pgadmin
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.pgadmin.rule=PathPrefix(`/pgadmin`)"
-      - "traefik.http.middlewares.pgadmin-strip-prefix.stripprefix.prefixes=/pgadmin"
-      - "traefik.http.routers.pgadmin.middlewares=pgadmin-strip-prefix"
-      - "traefik.http.services.pgadmin.loadbalancer.server.port=8081"
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
       - PGADMIN_DEFAULT_PASSWORD=admin
@@ -87,12 +80,6 @@ services:
 
   prometheus:
     image: prom/prometheus:latest
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.prometheus.rule=PathPrefix(`/prometheus`)"
-      - "traefik.http.middlewares.prometheus-strip-prefix.stripprefix.prefixes=/prometheus"
-      - "traefik.http.routers.prometheus.middlewares=prometheus-strip-prefix"
-      - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prom-data:/prometheus
@@ -109,12 +96,6 @@ services:
     volumes:
       - ./grafana/grafana_data:/var/lib/grafana
       - ./grafana/dashboards:/etc/grafana/provisioning/datasources/
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.grafana.rule=PathPrefix(`/grafana`)"
-      - "traefik.http.middlewares.grafana-strip-prefix.stripprefix.prefixes=/grafana"
-      - "traefik.http.routers.grafana.middlewares=grafana-strip-prefix"
-      - "traefik.http.services.grafana.loadbalancer.server.port=3000"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
       - GF_DASHBOARDS_JSON_ENABLED=true
@@ -127,12 +108,6 @@ services:
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.cadvisor.rule=PathPrefix(`/cadvisor`)"
-      - "traefik.http.middlewares.cadvisor-strip-prefix.stripprefix.prefixes=/cadvisor"
-      - "traefik.http.routers.cadvisor.middlewares=cadvisor-strip-prefix"
-      - "traefik.http.services.cadvisor.loadbalancer.server.port=8080"
     ports:
       - "8080:8080"  # Можно оставить для прямого доступа
     volumes:
@@ -147,12 +122,6 @@ services:
 
   node_exporter:
     image: prom/node-exporter:latest
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.node_exporter.rule=PathPrefix(`/node_exporter`)"
-      - "traefik.http.middlewares.node_exporter-strip-prefix.stripprefix.prefixes=/node_exporter"
-      - "traefik.http.routers.node_exporter.middlewares=node_exporter-strip-prefix"
-      - "traefik.http.services.node_exporter.loadbalancer.server.port=9100"
     ports:
       - "9100:9100"  # Можно оставить для прямого доступа
     networks:
@@ -202,12 +171,6 @@ services:
       - cluster.routing.allocation.disk.watermark.low=${ES_LOCAL_DISK_SPACE_REQUIRED}
       - cluster.routing.allocation.disk.watermark.high=${ES_LOCAL_DISK_SPACE_REQUIRED}
       - cluster.routing.allocation.disk.watermark.flood_stage=${ES_LOCAL_DISK_SPACE_REQUIRED}
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.elasticsearch.rule=PathPrefix(`/elasticsearch`)"
-      - "traefik.http.middlewares.elasticsearch-strip-prefix.stripprefix.prefixes=/elasticsearch"
-      - "traefik.http.routers.elasticsearch.middlewares=elasticsearch-strip-prefix"
-      - "traefik.http.services.elasticsearch.loadbalancer.server.port=9200"
     ulimits:
       memlock:
         soft: -1
@@ -238,12 +201,6 @@ services:
       - ELASTICSEARCH_PASSWORD=${KIBANA_LOCAL_PASSWORD}
       - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=${KIBANA_ENCRYPTION_KEY}
       - ELASTICSEARCH_PUBLICBASEURL=http://localhost:${ES_LOCAL_PORT}
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.kibana.rule=PathPrefix(`/kibana`)"
-      - "traefik.http.middlewares.kibana-strip-prefix.stripprefix.prefixes=/kibana"
-      - "traefik.http.routers.kibana.middlewares=kibana-strip-prefix"
-      - "traefik.http.services.kibana.loadbalancer.server.port=5601"
     healthcheck:
       test:
         [
@@ -269,30 +226,20 @@ services:
     environment:
       - LOGSTASH_HOST=logstash
       - LOGSTASH_PORT=5044
-
-  traefik:
-    image: traefik:v2.10
-    container_name: traefik
-    ports:
-      - "80:80"  # HTTP
-      - "443:443"  # HTTPS (если нужно)
-      - "8085:8080"  # Панель управления Traefik
-    command:
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-      - "--log.level=INFO"
-      - "--configFile=/etc/traefik/traefik.yml"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik/traefik.yml:/etc/traefik/traefik.yml
-    networks:
-      - monitoring
-    depends_on:
-      - app
-
-
+  nginx:
+      image: nginx:latest
+      container_name: nginx
+      ports:
+        - "80:80"
+      volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./app:/app
+      command: >
+        sh -c "chown -R nginx:nginx /app/backend/static && nginx -g 'daemon off;'"      
+      depends_on:
+        - app
+      networks:
+        - monitoring
 networks:
   monitoring:
     driver: bridge
