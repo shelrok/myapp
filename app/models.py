@@ -20,6 +20,7 @@ class Artist(db.Model):
     name = db.Column(db.String(100), nullable=False, unique=True, index=True)
     genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'), nullable=False, index=True)
     image_filename = db.Column(db.String(100), nullable=False, default='default_artist_image.jpg')
+    bio = db.Column(db.Text)  # Новое поле для биографии
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
     genre = db.relationship('Genre', backref='artists', lazy='select')  # Изменили lazy на 'select'

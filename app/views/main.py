@@ -45,6 +45,30 @@ def artists_page():
     artists = Artist.query.all()
     return render_template('artists.html', artists=artists)
 
+@main_bp.route('/artist/<int:artist_id>')
+def artist_page(artist_id):
+    artist = Artist.query.get_or_404(artist_id)
+    songs = Song.query.filter_by(artist_id=artist_id).all()
+    return render_template('artist.html', artist=artist, songs=songs)
+
+@main_bp.route('/songs')
+def songs_page():
+    songs = Song.query.all()
+    return render_template('songs.html', songs=songs)
+
+def get_unique_filename(base_path, filename):
+    """Возвращает уникальное имя файла, добавляя суффикс, если файл уже существует."""
+    if not os.path.exists(os.path.join(base_path, filename)):
+        return filename
+
+    base_name, ext = os.path.splitext(filename)
+    counter = 1
+    while True:
+        new_filename = f"{base_name}_{counter}{ext}"
+        if not os.path.exists(os.path.join(base_path, new_filename)):
+            return new_filename
+        counter += 1
+
 @main_bp.route('/settings', methods=['GET', 'POST'])
 def settings_page():
     from __init__ import load_artist_images
@@ -82,7 +106,7 @@ def settings_page():
                 if existing_song:
                     flash(f'Песня с именем файла "{filename}" уже существует!', 'error')
                     continue
-                
+
                 # Проверяем, существует ли песня с таким file_name в базе данных
                 existing_song = Song.query.filter_by(file_name=filename).first()
                 if existing_song:
