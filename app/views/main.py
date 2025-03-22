@@ -1,7 +1,13 @@
-from flask import Blueprint, render_template
-from models import Genre, Artist, Playlist
-
+from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
+from models import Genre, Artist, Playlist, Song
+import os
+from werkzeug.utils import secure_filename
+from mutagen.mp3 import MP3
+from mutagen.id3 import ID3
+from __init__ import db 
 main_bp = Blueprint('main', __name__, template_folder='templates')
+
+MAX_FILE_SIZE = 50 * 1024 * 1024  # 50 МБ
 
 def get_audio_files_by_genre():
     """Возвращает словарь жанров и соответствующих файлов песен."""
@@ -38,3 +44,93 @@ def genres_page():
 def artists_page():
     artists = Artist.query.all()
     return render_template('artists.html', artists=artists)
+
+@main_bp.route('/settings', methods=['GET', 'POST'])
+def settings_page():
+    from __init__ import load_artist_images
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            flash('Файл не выбран!', 'error')
+            return redirect(url_for('main.settings_page'))
+
+        files = request.files.getlist('file')
+        if not files:
+            flash('Файлы не выбраны!', 'error')
+            return redirect(url_for('main.settings_page'))
+
+        genre_name = request.form.get('genre', 'unknown')
+        genre = Genre.query.filter_by(name=genre_name).first()
+        if not genre:
+            genre = Genre(name=genre_name)
+            db.session.add(genre)
+            db.session.commit()
+
+        for file in files:
+            if file and file.filename.endswith('.mp3'):
+                file.seek(0, os.SEEK_END)
+                file_size = file.tell()
+                if file_size > MAX_FILE_SIZE:
+                    flash(f'Файл "{file.filename}" слишком большой! Максимальный размер: {MAX_FILE_SIZE // (1024 * 1024)} МБ.', 'error')
+                    file.seek(0)  # Сбрасываем указатель
+                    continue
+                file.seek(0)
+                filename = secure_filename(file.filename)
+                file_path = os.path.join('/app/backend/static/audio', genre_name, filename)
+                os.makedirs(os.path.dirname(file_path), exist_ok=True)
+                existing_song = Song.query.filter_by(file_name=filename).first()
+
+                if existing_song:
+                    flash(f'Песня с именем файла "{filename}" уже существует!', 'error')
+                    continue
+                
+                # Проверяем, существует ли песня с таким file_name в базе данных
+                existing_song = Song.query.filter_by(file_name=filename).first()
+                if existing_song:
+                    flash(f'Песня с именем файла "{filename}" уже существует в базе данных!', 'error')
+                    continue
+
+                try:
+                    file.save(file_path)
+                    if not os.path.exists(file_path):
+                        current_app.logger.error(f"Не удалось сохранить файл {filename} по пути {file_path}")
+                        flash(f'Ошибка при сохранении файла "{filename}"!', 'error')
+                        continue
+                except Exception as e:
+                    current_app.logger.error(f"Ошибка при сохранении файла {filename}: {e}")
+                    flash(f'Ошибка при сохранении файла "{filename}"!', 'error')
+                    continue
+
+                try:
+                    audio = MP3(file_path, ID3=ID3)
+                    artist_name = audio.get('TPE1', [filename.split('-')[0]])[0]
+                    song_name = audio.get('TIT2', [filename.split('.')[0]])[0]
+                except Exception as e:
+                    current_app.logger.error(f"Ошибка при чтении метаданных из {filename}: {e}")
+                    artist_name = filename.split('-')[0] if '-' in filename else filename.split('.')[0]
+                    song_name = filename.split('.')[0]
+
+                artist = Artist.query.filter_by(name=artist_name).first()
+                if not artist:
+                    artist = Artist(name=artist_name, genre_id=genre.id)
+                    db.session.add(artist)
+                    db.session.commit()
+
+                    # Вызываем load_artist_images для нового артиста
+                    load_artist_images(current_app)
+
+                song = Song(name=song_name,
+                            file_name=filename,
+                            genre_id=genre.id,
+                            artist_id=artist.id,
+                            file_path=f"/app/backend/static/audio/{genre_name}/{filename}")
+                db.session.add(song)
+                db.session.commit()
+
+                flash(f'Песня "{song_name}" успешно загружена!', 'success')
+            else:
+                flash(f'Файл "{file.filename}" не является MP3!', 'error')
+
+        return redirect(url_for('main.settings_page'))
+
+    genres = Genre.query.all()
+    return render_template('settings.html', genres=genres)

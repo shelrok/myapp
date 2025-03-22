@@ -19,3 +19,73 @@
 2025-03-21 18:23:14,699 - __init__ - INFO - Tables created!
 2025-03-21 18:23:14,900 - __init__ - INFO - Skipping image '1.png': not assigned to any artist.
 2025-03-21 18:23:14,905 - __init__ - INFO - Skipping image '4.jpg': not assigned to any artist.
+2025-03-21 18:23:14,909 - __init__ - INFO - Skipping image '6.png': not assigned to any artist.
+2025-03-21 18:30:43,666 - __init__ - INFO - Tables created!
+2025-03-21 18:30:43,749 - __init__ - INFO - Created artists: [(1, 'muzyika'), (3, 'rep'), (4, 'korotkaya'), (5, 'nemnogo'), (2, 'na')]
+2025-03-21 18:30:43,756 - __init__ - INFO - Skipping image '1.png': not assigned to any artist.
+2025-03-21 18:30:43,757 - __init__ - INFO - Skipping image '2.png': not assigned to any artist.
+2025-03-21 18:30:43,758 - __init__ - INFO - Skipping image '3.png': not assigned to any artist.
+2025-03-21 18:30:43,758 - __init__ - INFO - Skipping image '4.jpg': not assigned to any artist.
+2025-03-21 18:30:43,759 - __init__ - INFO - Skipping image '5.png': not assigned to any artist.
+2025-03-21 18:30:43,760 - __init__ - INFO - Skipping image '6.png': not assigned to any artist.
+2025-03-21 18:32:27,652 - __init__ - INFO - Tables created!
+2025-03-21 18:32:27,735 - __init__ - INFO - Created artists: [(1, 'muzyika'), (3, 'rep'), (4, 'korotkaya'), (5, 'nemnogo'), (2, 'na')]
+2025-03-21 18:32:27,742 - __init__ - INFO - Skipping image '1.png': no artist named '1' found.
+2025-03-21 18:32:27,743 - __init__ - INFO - Skipping image '2.png': no artist named '2' found.
+2025-03-21 18:32:27,744 - __init__ - INFO - Skipping image '3.png': no artist named '3' found.
+2025-03-21 18:32:27,746 - __init__ - INFO - Skipping image '4.jpg': no artist named '4' found.
+2025-03-21 18:32:27,747 - __init__ - INFO - Skipping image '5.png': no artist named '5' found.
+2025-03-21 18:32:27,748 - __init__ - INFO - Skipping image '6.png': no artist named '6' found.
+2025-03-21 18:33:42,608 - __init__ - INFO - Tables created!
+2025-03-21 18:33:42,735 - __init__ - INFO - Created artists: [(1, 'muzyika'), (3, 'rep'), (4, 'korotkaya'), (5, 'nemnogo'), (2, 'na')]
+2025-03-21 18:33:42,749 - __init__ - INFO - Skipping image '1.png': no artist named '1' found.
+2025-03-21 18:33:42,752 - __init__ - INFO - Skipping image '2.png': no artist named '2' found.
+2025-03-21 18:33:42,755 - __init__ - INFO - Skipping image '3.png': no artist named '3' found.
+2025-03-21 18:33:42,757 - __init__ - INFO - Skipping image '4.jpg': no artist named '4' found.
+2025-03-21 18:33:42,761 - __init__ - INFO - Skipping image '5.png': no artist named '5' found.
+2025-03-21 18:33:42,763 - __init__ - INFO - Skipping image '6.png': no artist named '6' found.
+2025-03-21 18:36:39,964 - __init__ - INFO - Tables created!
+2025-03-21 18:36:40,171 - __init__ - INFO - Created artists: [(1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'nemnogo')]
+2025-03-21 18:36:40,200 - __init__ - INFO - Skipping image '1.png': no artist named '1' found.
+2025-03-21 18:36:40,202 - __init__ - INFO - Skipping image '2.png': no artist named '2' found.
+2025-03-21 18:36:40,204 - __init__ - INFO - Skipping image '3.png': no artist named '3' found.
+2025-03-21 18:36:40,206 - __init__ - INFO - Skipping image '4.jpg': no artist named '4' found.
+2025-03-21 18:36:40,207 - __init__ - INFO - Skipping image '5.png': no artist named '5' found.
+2025-03-21 18:36:40,210 - __init__ - INFO - Skipping image '6.png': no artist named '6' found.
+2025-03-22 09:08:13,834 - __init__ - INFO - Tables created!
+2025-03-22 09:08:14,050 - __init__ - INFO - Created artists: [(1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'nemnogo')]
+2025-03-22 09:08:14,069 - __init__ - INFO - Skipping image '1.png': no artist named '1' found.
+2025-03-22 09:08:14,071 - __init__ - INFO - Skipping image '2.png': no artist named '2' found.
+2025-03-22 09:08:14,074 - __init__ - INFO - Skipping image '3.png': no artist named '3' found.
+2025-03-22 09:08:14,076 - __init__ - INFO - Skipping image '4.jpg': no artist named '4' found.
+2025-03-22 09:08:14,079 - __init__ - INFO - Skipping image '5.png': no artist named '5' found.
+2025-03-22 09:08:14,082 - __init__ - INFO - Skipping image '6.png': no artist named '6' found.
+2025-03-22 09:24:36,515 - __init__ - INFO - Tables created!
+2025-03-22 09:24:37,005 - __init__ - INFO - Created artists: [(1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'nemnogo')]
+2025-03-22 09:24:37,082 - __init__ - INFO - Skipping image '1.png': no artist named '1' found.
+2025-03-22 09:24:37,087 - __init__ - INFO - Skipping image '2.png': no artist named '2' found.
+2025-03-22 09:24:37,092 - __init__ - INFO - Skipping image '3.png': no artist named '3' found.
+2025-03-22 09:24:37,096 - __init__ - INFO - Skipping image '4.jpg': no artist named '4' found.
+2025-03-22 09:24:37,099 - __init__ - INFO - Skipping image '5.png': no artist named '5' found.
+2025-03-22 09:24:37,103 - __init__ - INFO - Skipping image '6.png': no artist named '6' found.
+2025-03-22 09:26:22,331 - __init__ - INFO - Tables created!
+2025-03-22 09:26:22,553 - __init__ - INFO - Created artists: [(1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'nemnogo')]
+2025-03-22 09:26:22,579 - __init__ - INFO - Skipping image '1.png': no artist named '1' found.
+2025-03-22 09:26:22,584 - __init__ - INFO - Skipping image '2.png': no artist named '2' found.
+2025-03-22 09:26:22,588 - __init__ - INFO - Skipping image '3.png': no artist named '3' found.
+2025-03-22 09:26:22,592 - __init__ - INFO - Skipping image '4.jpg': no artist named '4' found.
+2025-03-22 09:26:22,597 - __init__ - INFO - Skipping image '5.png': no artist named '5' found.
+2025-03-22 09:26:22,601 - __init__ - INFO - Skipping image '6.png': no artist named '6' found.
+2025-03-22 09:31:26,178 - __init__ - INFO - Tables created!
+2025-03-22 09:31:26,539 - __init__ - INFO - Created artists: [(1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'nemnogo'), (6, 'MORGENSHTERN')]
+2025-03-22 09:31:26,558 - __init__ - INFO - Skipping image '1.png': no artist named '1' found.
+2025-03-22 09:31:26,561 - __init__ - INFO - Skipping image '2.png': no artist named '2' found.
+2025-03-22 09:31:26,564 - __init__ - INFO - Skipping image '3.png': no artist named '3' found.
+2025-03-22 09:31:26,567 - __init__ - INFO - Skipping image '4.jpg': no artist named '4' found.
+2025-03-22 09:31:26,569 - __init__ - INFO - Skipping image '5.png': no artist named '5' found.
+2025-03-22 09:31:26,571 - __init__ - INFO - Skipping image '6.png': no artist named '6' found.
+2025-03-22 09:41:28,778 - __init__ - INFO - Tables created!
+2025-03-22 09:48:02,637 - __init__ - INFO - Tables created!
+2025-03-22 09:51:41,106 - __init__ - INFO - Tables created!
+2025-03-22 09:55:50,818 - __init__ - INFO - Tables created!
+2025-03-22 10:00:26,324 - __init__ - INFO - Tables created!

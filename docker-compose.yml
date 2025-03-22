@@ -6,8 +6,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=musicdb
+    command: postgres -c log_connections=on -c log_disconnections=on -c log_line_prefix='%m [%p] %h %u %d '
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      test: ["CMD-SHELL", "pg_isready", "-U", "postgres", "-d", "musicdb"]
       interval: 30s
       timeout: 60s
       retries: 5
