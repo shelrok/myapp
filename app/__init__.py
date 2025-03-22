@@ -9,15 +9,35 @@ from mutagen.mp3 import MP3
 from mutagen.id3 import ID3
 
 def configure_logging(app):
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    )
-    handler = logging.StreamHandler()
-    handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+    # Формат логов
+    log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    formatter = logging.Formatter(log_format)
+
+    # Handler для stdout
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+
+    # Handler для файла
+    log_file = app.config['LOG_FILE']  # /app/logs/app.log
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)  # Создаём директорию, если её нет
+    file_handler = logging.FileHandler(log_file)
+    file_handler.setFormatter(formatter)
+
+    # Очищаем обработчики, чтобы избежать дублирования
+    logging.getLogger('').handlers = []  # Очищаем корневой логгер
+
+    # Настраиваем логгер приложения
     app.logger.handlers = []
-    app.logger.addHandler(handler)
+    app.logger.addHandler(stream_handler)
+    app.logger.addHandler(file_handler)
     app.logger.setLevel(logging.INFO)
+
+    # Настраиваем логгер Werkzeug
+    werkzeug_logger = logging.getLogger('werkzeug')
+    werkzeug_logger.handlers = []
+    werkzeug_logger.addHandler(stream_handler)
+    werkzeug_logger.addHandler(file_handler)
+    werkzeug_logger.setLevel(logging.INFO)
 
 def load_playlist_images(app):
     folder = app.config['PLAYLIST_IMAGES_FOLDER']

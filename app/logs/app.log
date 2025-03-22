@@ -89,3 +89,345 @@
 2025-03-22 09:51:41,106 - __init__ - INFO - Tables created!
 2025-03-22 09:55:50,818 - __init__ - INFO - Tables created!
 2025-03-22 10:00:26,324 - __init__ - INFO - Tables created!
+2025-03-22 16:04:09,445 - __init__ - INFO - Tables created!
+2025-03-22 16:04:09,655 - __init__ - INFO - Created artists: [(7, 'nemnogo'), (1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'MORGENSHTERN'), (6, 'morgenshtern.mp3')]
+2025-03-22 16:04:09,671 - __init__ - INFO - Assigned image '1.png' to artist ID 1.
+2025-03-22 16:04:09,674 - __init__ - INFO - Assigned image '2.png' to artist ID 2.
+2025-03-22 16:04:09,677 - __init__ - INFO - Assigned image '3.png' to artist ID 3.
+2025-03-22 16:04:09,680 - __init__ - INFO - Assigned image '4.jpg' to artist ID 4.
+2025-03-22 16:04:09,689 - __init__ - INFO - Assigned image '5.png' to artist ID 5.
+2025-03-22 16:04:09,693 - __init__ - INFO - Assigned image '6.png' to artist ID 6.
+2025-03-22 16:04:09,693 - __init__ - INFO - Skipping image 'default_artist_image.jpg': not assigned to any artist.
+2025-03-22 16:04:09,703 - __init__ - INFO - Assigned image '1.png' to playlist ID 1.
+2025-03-22 16:04:09,707 - __init__ - INFO - Assigned image '2.jpg' to playlist ID 2.
+2025-03-22 16:04:09,711 - __init__ - INFO - Assigned image '3.png' to playlist ID 3.
+2025-03-22 16:04:09,716 - __init__ - INFO - Skipping image '4.png': no playlist with ID 4 found.
+2025-03-22 16:04:09,719 - __init__ - INFO - Skipping image '5.png': no playlist with ID 5 found.
+2025-03-22 16:04:09,721 - __init__ - INFO - Skipping image '6.png': no playlist with ID 6 found.
+2025-03-22 16:04:09,769 - werkzeug - WARNING -  * Debugger is active!
+2025-03-22 16:04:09,777 - werkzeug - INFO -  * Debugger PIN: 985-082-738
+2025-03-22 16:04:11,501 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:04:11] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:05:04,062 - __init__ - INFO - Tables created!
+2025-03-22 16:05:04,467 - __init__ - INFO - Created artists: [(7, 'nemnogo'), (1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'MORGENSHTERN'), (6, 'morgenshtern.mp3')]
+2025-03-22 16:05:04,507 - __init__ - INFO - Assigned image '1.png' to artist ID 1.
+2025-03-22 16:05:04,511 - __init__ - INFO - Assigned image '2.png' to artist ID 2.
+2025-03-22 16:05:04,516 - __init__ - INFO - Assigned image '3.png' to artist ID 3.
+2025-03-22 16:05:04,520 - __init__ - INFO - Assigned image '4.jpg' to artist ID 4.
+2025-03-22 16:05:04,525 - __init__ - INFO - Assigned image '5.png' to artist ID 5.
+2025-03-22 16:05:04,529 - __init__ - INFO - Assigned image '6.png' to artist ID 6.
+2025-03-22 16:05:04,529 - __init__ - INFO - Skipping image 'default_artist_image.jpg': not assigned to any artist.
+2025-03-22 16:05:04,548 - __init__ - INFO - Assigned image '1.png' to playlist ID 1.
+2025-03-22 16:05:04,552 - __init__ - INFO - Assigned image '2.jpg' to playlist ID 2.
+2025-03-22 16:05:04,561 - __init__ - INFO - Assigned image '3.png' to playlist ID 3.
+2025-03-22 16:05:04,563 - __init__ - INFO - Skipping image '4.png': no playlist with ID 4 found.
+2025-03-22 16:05:04,565 - __init__ - INFO - Skipping image '5.png': no playlist with ID 5 found.
+2025-03-22 16:05:04,568 - __init__ - INFO - Skipping image '6.png': no playlist with ID 6 found.
+2025-03-22 16:05:04,630 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.13:5000
+2025-03-22 16:05:04,631 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-22 16:05:04,637 - werkzeug - INFO -  * Restarting with stat
+2025-03-22 16:05:07,547 - __init__ - INFO - Tables created!
+2025-03-22 16:05:08,211 - __init__ - INFO - Created artists: [(7, 'nemnogo'), (1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'MORGENSHTERN'), (6, 'morgenshtern.mp3')]
+2025-03-22 16:05:08,248 - __init__ - INFO - Assigned image '1.png' to artist ID 1.
+2025-03-22 16:05:08,253 - __init__ - INFO - Assigned image '2.png' to artist ID 2.
+2025-03-22 16:05:08,265 - __init__ - INFO - Assigned image '3.png' to artist ID 3.
+2025-03-22 16:05:08,271 - __init__ - INFO - Assigned image '4.jpg' to artist ID 4.
+2025-03-22 16:05:08,286 - __init__ - INFO - Assigned image '5.png' to artist ID 5.
+2025-03-22 16:05:08,293 - __init__ - INFO - Assigned image '6.png' to artist ID 6.
+2025-03-22 16:05:08,301 - __init__ - INFO - Skipping image 'default_artist_image.jpg': not assigned to any artist.
+2025-03-22 16:05:08,319 - __init__ - INFO - Assigned image '1.png' to playlist ID 1.
+2025-03-22 16:05:08,329 - __init__ - INFO - Assigned image '2.jpg' to playlist ID 2.
+2025-03-22 16:05:08,332 - __init__ - INFO - Assigned image '3.png' to playlist ID 3.
+2025-03-22 16:05:08,335 - __init__ - INFO - Skipping image '4.png': no playlist with ID 4 found.
+2025-03-22 16:05:08,338 - __init__ - INFO - Skipping image '5.png': no playlist with ID 5 found.
+2025-03-22 16:05:08,348 - __init__ - INFO - Skipping image '6.png': no playlist with ID 6 found.
+2025-03-22 16:05:08,408 - werkzeug - WARNING -  * Debugger is active!
+2025-03-22 16:05:08,416 - werkzeug - INFO -  * Debugger PIN: 516-013-127
+2025-03-22 16:05:13,339 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:05:13] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:05:19,914 - werkzeug - INFO - 172.18.0.14 - - [22/Mar/2025 16:05:19] "GET /musicservice/songs HTTP/1.0" 200 -
+2025-03-22 16:05:27,271 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:05:27] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:05:42,265 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:05:42] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:05:56,742 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:05:56] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:06:11,236 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:06:11] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:06:25,106 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:06:25] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:06:40,097 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:06:40] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:06:54,387 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:06:54] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:07:09,403 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:07:09] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:07:23,382 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:07:23] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:07:38,271 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:07:38] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:07:52,194 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:07:52] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:08:07,196 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:08:07] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:08:21,124 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:08:21] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:08:36,133 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:08:36] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:08:51,084 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:08:51] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:09:05,055 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:09:05] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:09:18,987 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:09:18] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:09:34,018 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:09:34] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:09:47,930 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:09:47] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:10:02,919 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:10:02] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:10:16,830 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:10:16] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:10:31,830 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:10:31] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:10:45,745 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:10:45] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:11:00,744 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:11:00] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:11:14,699 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:11:14] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:11:29,692 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:11:29] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:11:43,619 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:11:43] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:11:58,621 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:11:58] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:12:12,555 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:12:12] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:12:27,554 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:12:27] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:12:41,461 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:12:41] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:12:56,462 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:12:56] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:13:10,390 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:13:10] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:13:25,390 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:13:25] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:13:39,318 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:13:39] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:13:54,320 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:13:54] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:14:08,248 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:14:08] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:14:23,250 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:14:23] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:14:37,181 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:14:37] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:14:52,178 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:14:52] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:15:06,116 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:15:06] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:15:21,112 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:15:21] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:15:35,049 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:15:35] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:16:20,416 - __init__ - INFO - Tables created!
+2025-03-22 16:16:21,118 - __init__ - INFO - Created artists: [(7, 'nemnogo'), (1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'MORGENSHTERN'), (6, 'morgenshtern.mp3')]
+2025-03-22 16:16:21,146 - __init__ - INFO - Assigned image '1.png' to artist ID 1.
+2025-03-22 16:16:21,151 - __init__ - INFO - Assigned image '2.png' to artist ID 2.
+2025-03-22 16:16:21,155 - __init__ - INFO - Assigned image '3.png' to artist ID 3.
+2025-03-22 16:16:21,162 - __init__ - INFO - Assigned image '4.jpg' to artist ID 4.
+2025-03-22 16:16:21,167 - __init__ - INFO - Assigned image '5.png' to artist ID 5.
+2025-03-22 16:16:21,171 - __init__ - INFO - Assigned image '6.png' to artist ID 6.
+2025-03-22 16:16:21,172 - __init__ - INFO - Skipping image 'default_artist_image.jpg': not assigned to any artist.
+2025-03-22 16:16:21,187 - __init__ - INFO - Assigned image '1.png' to playlist ID 1.
+2025-03-22 16:16:21,190 - __init__ - INFO - Assigned image '2.jpg' to playlist ID 2.
+2025-03-22 16:16:21,195 - __init__ - INFO - Assigned image '3.png' to playlist ID 3.
+2025-03-22 16:16:21,197 - __init__ - INFO - Skipping image '4.png': no playlist with ID 4 found.
+2025-03-22 16:16:21,203 - __init__ - INFO - Skipping image '5.png': no playlist with ID 5 found.
+2025-03-22 16:16:21,209 - __init__ - INFO - Skipping image '6.png': no playlist with ID 6 found.
+2025-03-22 16:16:21,385 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.13:5000
+2025-03-22 16:16:21,385 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-22 16:16:21,388 - werkzeug - INFO -  * Restarting with stat
+2025-03-22 16:16:24,492 - __init__ - INFO - Tables created!
+2025-03-22 16:16:24,998 - __init__ - INFO - Created artists: [(7, 'nemnogo'), (1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'MORGENSHTERN'), (6, 'morgenshtern.mp3')]
+2025-03-22 16:16:25,029 - __init__ - INFO - Assigned image '1.png' to artist ID 1.
+2025-03-22 16:16:25,041 - __init__ - INFO - Assigned image '2.png' to artist ID 2.
+2025-03-22 16:16:25,047 - __init__ - INFO - Assigned image '3.png' to artist ID 3.
+2025-03-22 16:16:25,055 - __init__ - INFO - Assigned image '4.jpg' to artist ID 4.
+2025-03-22 16:16:25,064 - __init__ - INFO - Assigned image '5.png' to artist ID 5.
+2025-03-22 16:16:25,070 - __init__ - INFO - Assigned image '6.png' to artist ID 6.
+2025-03-22 16:16:25,074 - __init__ - INFO - Skipping image 'default_artist_image.jpg': not assigned to any artist.
+2025-03-22 16:16:25,113 - __init__ - INFO - Assigned image '1.png' to playlist ID 1.
+2025-03-22 16:16:25,118 - __init__ - INFO - Assigned image '2.jpg' to playlist ID 2.
+2025-03-22 16:16:25,128 - __init__ - INFO - Assigned image '3.png' to playlist ID 3.
+2025-03-22 16:16:25,134 - __init__ - INFO - Skipping image '4.png': no playlist with ID 4 found.
+2025-03-22 16:16:25,144 - __init__ - INFO - Skipping image '5.png': no playlist with ID 5 found.
+2025-03-22 16:16:25,157 - __init__ - INFO - Skipping image '6.png': no playlist with ID 6 found.
+2025-03-22 16:16:25,268 - werkzeug - WARNING -  * Debugger is active!
+2025-03-22 16:16:25,287 - werkzeug - INFO -  * Debugger PIN: 119-424-017
+2025-03-22 16:16:28,081 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:16:28] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:16:43,099 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:16:43] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:16:57,298 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:16:57] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:17:12,078 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:17:12] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:17:25,970 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:17:25] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:17:41,023 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:17:41] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:17:54,910 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:17:54] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:18:09,942 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:18:09] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:18:23,863 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:18:23] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:18:38,852 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:18:38] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:18:52,778 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:18:52] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:19:07,780 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:19:07] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:19:21,715 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:19:21] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:19:56,856 - __init__ - INFO - Tables created!
+2025-03-22 16:19:57,344 - __init__ - INFO - Created artists: [(7, 'nemnogo'), (1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'MORGENSHTERN'), (6, 'morgenshtern.mp3')]
+2025-03-22 16:19:57,376 - __init__ - INFO - Assigned image '1.png' to artist ID 1.
+2025-03-22 16:19:57,380 - __init__ - INFO - Assigned image '2.png' to artist ID 2.
+2025-03-22 16:19:57,385 - __init__ - INFO - Assigned image '3.png' to artist ID 3.
+2025-03-22 16:19:57,389 - __init__ - INFO - Assigned image '4.jpg' to artist ID 4.
+2025-03-22 16:19:57,393 - __init__ - INFO - Assigned image '5.png' to artist ID 5.
+2025-03-22 16:19:57,397 - __init__ - INFO - Assigned image '6.png' to artist ID 6.
+2025-03-22 16:19:57,398 - __init__ - INFO - Skipping image 'default_artist_image.jpg': not assigned to any artist.
+2025-03-22 16:19:57,410 - __init__ - INFO - Assigned image '1.png' to playlist ID 1.
+2025-03-22 16:19:57,414 - __init__ - INFO - Assigned image '2.jpg' to playlist ID 2.
+2025-03-22 16:19:57,425 - __init__ - INFO - Assigned image '3.png' to playlist ID 3.
+2025-03-22 16:19:57,430 - __init__ - INFO - Skipping image '4.png': no playlist with ID 4 found.
+2025-03-22 16:19:57,432 - __init__ - INFO - Skipping image '5.png': no playlist with ID 5 found.
+2025-03-22 16:19:57,434 - __init__ - INFO - Skipping image '6.png': no playlist with ID 6 found.
+2025-03-22 16:19:57,550 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.13:5000
+2025-03-22 16:19:57,552 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-22 16:19:57,567 - werkzeug - INFO -  * Restarting with stat
+2025-03-22 16:20:00,791 - __init__ - INFO - Tables created!
+2025-03-22 16:20:01,600 - __init__ - INFO - Created artists: [(7, 'nemnogo'), (1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'MORGENSHTERN'), (6, 'morgenshtern.mp3')]
+2025-03-22 16:20:01,625 - __init__ - INFO - Assigned image '1.png' to artist ID 1.
+2025-03-22 16:20:01,630 - __init__ - INFO - Assigned image '2.png' to artist ID 2.
+2025-03-22 16:20:01,634 - __init__ - INFO - Assigned image '3.png' to artist ID 3.
+2025-03-22 16:20:01,637 - __init__ - INFO - Assigned image '4.jpg' to artist ID 4.
+2025-03-22 16:20:01,642 - __init__ - INFO - Assigned image '5.png' to artist ID 5.
+2025-03-22 16:20:01,649 - __init__ - INFO - Assigned image '6.png' to artist ID 6.
+2025-03-22 16:20:01,650 - __init__ - INFO - Skipping image 'default_artist_image.jpg': not assigned to any artist.
+2025-03-22 16:20:01,669 - __init__ - INFO - Assigned image '1.png' to playlist ID 1.
+2025-03-22 16:20:01,676 - __init__ - INFO - Assigned image '2.jpg' to playlist ID 2.
+2025-03-22 16:20:01,681 - __init__ - INFO - Assigned image '3.png' to playlist ID 3.
+2025-03-22 16:20:01,684 - __init__ - INFO - Skipping image '4.png': no playlist with ID 4 found.
+2025-03-22 16:20:01,686 - __init__ - INFO - Skipping image '5.png': no playlist with ID 5 found.
+2025-03-22 16:20:01,688 - __init__ - INFO - Skipping image '6.png': no playlist with ID 6 found.
+2025-03-22 16:20:01,720 - werkzeug - WARNING -  * Debugger is active!
+2025-03-22 16:20:01,731 - werkzeug - INFO -  * Debugger PIN: 765-280-450
+2025-03-22 16:20:01,887 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:20:01] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:20:15,365 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:20:15] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:20:29,318 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:20:29] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:20:44,362 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:20:44] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:20:58,363 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:20:58] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:21:13,250 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:21:13] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:21:27,174 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:21:27] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:21:42,182 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:21:42] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:21:56,114 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:21:56] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:22:11,114 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:22:11] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:22:25,059 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:22:25] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:22:40,063 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:22:40] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:22:53,991 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:22:53] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:23:08,993 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:23:08] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:23:22,942 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:23:22] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:23:37,942 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:23:37] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:23:51,905 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:23:51] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:24:06,899 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:24:06] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:24:20,823 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:24:20] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:24:35,821 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:24:35] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:24:49,774 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:24:49] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:25:04,784 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:25:04] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:25:18,713 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:25:18] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:25:33,712 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:25:33] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:25:47,665 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:25:47] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:26:02,661 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:26:02] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:26:16,598 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:26:16] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:26:31,605 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:26:31] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:26:45,540 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:26:45] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:27:00,540 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:27:00] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:27:14,490 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:27:14] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:27:29,489 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:27:29] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:27:43,426 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:27:43] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:27:58,427 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:27:58] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:28:12,376 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:28:12] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:28:27,375 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:28:27] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:28:41,311 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:28:41] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:28:56,311 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:28:56] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:29:10,249 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:29:10] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:29:25,250 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:29:25] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:29:39,203 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:29:39] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:29:54,198 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:29:54] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:30:08,139 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:30:08] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:30:23,136 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:30:23] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:30:37,076 - werkzeug - INFO - 172.18.0.5 - - [22/Mar/2025 16:30:37] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:31:35,080 - __init__ - INFO - Tables created!
+2025-03-22 16:31:36,097 - __init__ - INFO - Created artists: [(7, 'nemnogo'), (1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'MORGENSHTERN'), (6, 'morgenshtern.mp3')]
+2025-03-22 16:31:36,243 - __init__ - INFO - Assigned image '1.png' to artist ID 1.
+2025-03-22 16:31:36,247 - __init__ - INFO - Assigned image '2.png' to artist ID 2.
+2025-03-22 16:31:36,252 - __init__ - INFO - Assigned image '3.png' to artist ID 3.
+2025-03-22 16:31:36,257 - __init__ - INFO - Assigned image '4.jpg' to artist ID 4.
+2025-03-22 16:31:36,264 - __init__ - INFO - Assigned image '5.png' to artist ID 5.
+2025-03-22 16:31:36,271 - __init__ - INFO - Assigned image '6.png' to artist ID 6.
+2025-03-22 16:31:36,272 - __init__ - INFO - Skipping image 'default_artist_image.jpg': not assigned to any artist.
+2025-03-22 16:31:36,292 - __init__ - INFO - Assigned image '1.png' to playlist ID 1.
+2025-03-22 16:31:36,296 - __init__ - INFO - Assigned image '2.jpg' to playlist ID 2.
+2025-03-22 16:31:36,300 - __init__ - INFO - Assigned image '3.png' to playlist ID 3.
+2025-03-22 16:31:36,303 - __init__ - INFO - Skipping image '4.png': no playlist with ID 4 found.
+2025-03-22 16:31:36,305 - __init__ - INFO - Skipping image '5.png': no playlist with ID 5 found.
+2025-03-22 16:31:36,310 - __init__ - INFO - Skipping image '6.png': no playlist with ID 6 found.
+2025-03-22 16:31:36,731 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.13:5000
+2025-03-22 16:31:36,741 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-22 16:31:36,760 - werkzeug - INFO -  * Restarting with stat
+2025-03-22 16:31:40,533 - __init__ - INFO - Tables created!
+2025-03-22 16:31:40,884 - __init__ - INFO - Created artists: [(7, 'nemnogo'), (1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'MORGENSHTERN'), (6, 'morgenshtern.mp3')]
+2025-03-22 16:31:40,919 - __init__ - INFO - Assigned image '1.png' to artist ID 1.
+2025-03-22 16:31:40,927 - __init__ - INFO - Assigned image '2.png' to artist ID 2.
+2025-03-22 16:31:40,931 - __init__ - INFO - Assigned image '3.png' to artist ID 3.
+2025-03-22 16:31:40,945 - __init__ - INFO - Assigned image '4.jpg' to artist ID 4.
+2025-03-22 16:31:40,951 - __init__ - INFO - Assigned image '5.png' to artist ID 5.
+2025-03-22 16:31:40,956 - __init__ - INFO - Assigned image '6.png' to artist ID 6.
+2025-03-22 16:31:40,958 - __init__ - INFO - Skipping image 'default_artist_image.jpg': not assigned to any artist.
+2025-03-22 16:31:40,999 - __init__ - INFO - Assigned image '1.png' to playlist ID 1.
+2025-03-22 16:31:41,005 - __init__ - INFO - Assigned image '2.jpg' to playlist ID 2.
+2025-03-22 16:31:41,009 - __init__ - INFO - Assigned image '3.png' to playlist ID 3.
+2025-03-22 16:31:41,014 - __init__ - INFO - Skipping image '4.png': no playlist with ID 4 found.
+2025-03-22 16:31:41,016 - __init__ - INFO - Skipping image '5.png': no playlist with ID 5 found.
+2025-03-22 16:31:41,028 - __init__ - INFO - Skipping image '6.png': no playlist with ID 6 found.
+2025-03-22 16:31:41,098 - werkzeug - WARNING -  * Debugger is active!
+2025-03-22 16:31:41,103 - werkzeug - INFO -  * Debugger PIN: 975-745-837
+2025-03-22 16:31:41,472 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:31:41] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:31:52,205 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:31:52] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:32:06,143 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:32:06] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:32:21,253 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:32:21] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:32:35,307 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:32:35] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:32:50,078 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:32:50] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:33:04,011 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:33:04] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:33:19,081 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:33:19] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:33:33,008 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:33:33] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:33:47,983 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:33:47] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:34:01,912 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:34:01] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:34:16,912 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:34:16] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:34:30,865 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:34:30] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:34:45,864 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:34:45] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:34:59,800 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:34:59] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:35:14,803 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:35:14] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:35:28,746 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:35:28] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:35:43,746 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:35:43] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:35:57,698 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:35:57] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:36:12,697 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:36:12] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:36:26,657 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:36:26] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:36:42,572 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:36:42] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:36:55,604 - werkzeug - INFO - 172.18.0.3 - - [22/Mar/2025 16:36:55] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:37:52,328 - __init__ - INFO - Tables created!
+2025-03-22 16:37:53,162 - __init__ - INFO - Created artists: [(7, 'nemnogo'), (1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'MORGENSHTERN'), (6, 'morgenshtern.mp3')]
+2025-03-22 16:37:53,298 - __init__ - INFO - Assigned image '1.png' to artist ID 1.
+2025-03-22 16:37:53,315 - __init__ - INFO - Assigned image '2.png' to artist ID 2.
+2025-03-22 16:37:53,332 - __init__ - INFO - Assigned image '3.png' to artist ID 3.
+2025-03-22 16:37:53,356 - __init__ - INFO - Assigned image '4.jpg' to artist ID 4.
+2025-03-22 16:37:53,380 - __init__ - INFO - Assigned image '5.png' to artist ID 5.
+2025-03-22 16:37:53,398 - __init__ - INFO - Assigned image '6.png' to artist ID 6.
+2025-03-22 16:37:53,403 - __init__ - INFO - Skipping image 'default_artist_image.jpg': not assigned to any artist.
+2025-03-22 16:37:53,450 - __init__ - INFO - Assigned image '1.png' to playlist ID 1.
+2025-03-22 16:37:53,457 - __init__ - INFO - Assigned image '2.jpg' to playlist ID 2.
+2025-03-22 16:37:53,466 - __init__ - INFO - Assigned image '3.png' to playlist ID 3.
+2025-03-22 16:37:53,473 - __init__ - INFO - Skipping image '4.png': no playlist with ID 4 found.
+2025-03-22 16:37:53,478 - __init__ - INFO - Skipping image '5.png': no playlist with ID 5 found.
+2025-03-22 16:37:53,492 - __init__ - INFO - Skipping image '6.png': no playlist with ID 6 found.
+2025-03-22 16:37:53,602 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.13:5000
+2025-03-22 16:37:53,603 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-22 16:37:53,608 - werkzeug - INFO -  * Restarting with stat
+2025-03-22 16:37:56,605 - __init__ - INFO - Tables created!
+2025-03-22 16:37:57,159 - __init__ - INFO - Created artists: [(7, 'nemnogo'), (1, 'muzyika'), (2, 'na'), (3, 'rep'), (4, 'korotkaya'), (5, 'MORGENSHTERN'), (6, 'morgenshtern.mp3')]
+2025-03-22 16:37:57,206 - __init__ - INFO - Assigned image '1.png' to artist ID 1.
+2025-03-22 16:37:57,212 - __init__ - INFO - Assigned image '2.png' to artist ID 2.
+2025-03-22 16:37:57,219 - __init__ - INFO - Assigned image '3.png' to artist ID 3.
+2025-03-22 16:37:57,225 - __init__ - INFO - Assigned image '4.jpg' to artist ID 4.
+2025-03-22 16:37:57,229 - __init__ - INFO - Assigned image '5.png' to artist ID 5.
+2025-03-22 16:37:57,237 - __init__ - INFO - Assigned image '6.png' to artist ID 6.
+2025-03-22 16:37:57,237 - __init__ - INFO - Skipping image 'default_artist_image.jpg': not assigned to any artist.
+2025-03-22 16:37:57,258 - __init__ - INFO - Assigned image '1.png' to playlist ID 1.
+2025-03-22 16:37:57,264 - __init__ - INFO - Assigned image '2.jpg' to playlist ID 2.
+2025-03-22 16:37:57,273 - __init__ - INFO - Assigned image '3.png' to playlist ID 3.
+2025-03-22 16:37:57,276 - __init__ - INFO - Skipping image '4.png': no playlist with ID 4 found.
+2025-03-22 16:37:57,281 - __init__ - INFO - Skipping image '5.png': no playlist with ID 5 found.
+2025-03-22 16:37:57,288 - __init__ - INFO - Skipping image '6.png': no playlist with ID 6 found.
+2025-03-22 16:37:57,383 - werkzeug - WARNING -  * Debugger is active!
+2025-03-22 16:37:57,400 - werkzeug - INFO -  * Debugger PIN: 106-648-358
+2025-03-22 16:37:57,525 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:37:57] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:38:10,241 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:38:10] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:38:25,277 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:38:25] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:38:39,284 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:38:39] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:38:54,247 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:38:54] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:39:08,209 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:39:08] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:39:23,199 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:39:23] "GET /metrics HTTP/1.1" 200 -
+2025-03-22 16:39:37,156 - werkzeug - INFO - 172.18.0.7 - - [22/Mar/2025 16:39:37] "GET /metrics HTTP/1.1" 200 -
