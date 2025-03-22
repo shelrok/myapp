@@ -3,259 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Музыкальное приложение для прослушивания и управления вашими любимыми песнями">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     <title>Настройки</title>
     <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet">
-    <style>
-        @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap);
-        @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css);
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(135deg, #ffffff, #d4d4d4);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-        }
-
-        #webcrumbs {
-            width: 100%;
-            background-color: #2d2d2d;
-            border-radius: 24px;
-            min-height: 800px;
-            color: #f7f7f7;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            background-color: #444;
-            padding: 20px;
-            border-top-left-radius: 24px;
-            border-top-right-radius: 24px;
-        }
-
-        header h1 {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        nav a {
-            color: #f7f7f7;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        nav a:hover {
-            color: #6e40f7;
-        }
-
-        main {
-            padding: 20px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 36px;
-            color: #f7f7f7;
-        }
-
-        .upload-container {
-            background-color: #444;
-            border-radius: 12px;
-            padding: 20px;
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .drop-zone {
-            border: 2px dashed #6e40f7;
-            border-radius: 8px;
-            padding: 40px;
-            margin-bottom: 20px;
-            background-color: #555;
-            transition: background-color 0.3s ease;
-        }
-
-        .drop-zone.dragover {
-            background-color: #666;
-        }
-
-        .drop-zone p {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .drop-zone i {
-            font-size: 40px;
-            color: #6e40f7;
-        }
-
-        select, button {
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            font-size: 16px;
-            margin: 10px 0;
-        }
-
-        select {
-            background-color: #555;
-            color: #f7f7f7;
-            width: 100%;
-        }
-
-        button {
-            background-color: #28a745;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-
-        .flash-messages {
-            margin-bottom: 20px;
-        }
-
-        .flash-messages .success {
-            color: #28a745;
-        }
-
-        .flash-messages .error {
-            color: #dc3545;
-        }
-
-        footer {
-            background-color: #444;
-            color: #f7f7f7;
-            padding: 20px;
-            border-bottom-left-radius: 24px;
-            border-bottom-right-radius: 24px;
-            width: 100%;
-            text-align: center;
-        }
-
-        footer a {
-            color: #f7f7f7;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #6e40f7;
-        }
-
-        @media (max-width: 768px) {
-            .upload-container {
-                padding: 15px;
-            }
-
-            .drop-zone {
-                padding: 20px;
-            }
-        }
-    </style>
 </head>
-<body>
-    <div id="webcrumbs">
-        <header>
-            <h1>Музыкальное приложение</h1>
-            <nav>
-                <a href="{{ url_for('main.index') }}">Главная</a>
-                <a href="{{ url_for('main.playlists_page') }}">Плейлисты</a>
-                <a href="{{ url_for('main.genres_page') }}">Жанры</a>
-                <a href="{{ url_for('main.artists_page') }}">Художники</a>
-                <a href="{{ url_for('main.albums_page') }}">Альбомы</a>
-                <a href="{{ url_for('main.settings_page') }}">Настройки</a>
+<body class="bg-gray-900 text-white">
+    <div id="webcrumbs" class="rounded-3xl min-h-[800px] flex flex-col">
+        <!-- Header -->
+        <header class="flex justify-between items-center p-6 bg-neutral-800 rounded-t-3xl">
+            <h1 class="text-2xl font-bold fade-in">Музыкальное приложение</h1>
+            <nav class="space-x-4">
+                <a href="{{ url_for('main.index') }}" class="text-gray-300 hover:text-green-500 transition-colors">Главная</a>
+                <a href="{{ url_for('main.playlists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Плейлисты</a>
+                <a href="{{ url_for('main.genres_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Жанры</a>
+                <a href="{{ url_for('main.artists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Художники</a>
+                <a href="{{ url_for('main.albums_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Альбомы</a>
+                <a href="{{ url_for('main.settings_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Настройки</a>
             </nav>
         </header>
 
-        <main>
-            <h1>Настройки</h1>
+        <!-- Main -->
+        <main class="flex-1 p-6 flex flex-col items-center">
+            <h1 class="text-3xl font-bold mb-6 fade-in">Настройки</h1>
 
-            <!-- Отображение сообщений об успехе или ошибке -->
-            <div class="flash-messages">
+            <!-- Flash Messages -->
+            <div class="flash-messages mb-6">
                 {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                         {% for category, message in messages %}
-                            <p class="{{ category }}">{{ message }}</p>
+                            <p class="{{ 'text-green-500' if category == 'success' else 'text-red-500' }} fade-in">{{ message }}</p>
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
             </div>
 
-            <div class="upload-container">
-                <h2>Загрузка музыки</h2>
+            <!-- Upload Form -->
+            <div class="card w-full max-w-md fade-in">
+                <h2 class="text-xl font-semibold mb-4 text-center">Загрузка музыки</h2>
                 <form id="upload-form" method="POST" enctype="multipart/form-data">
-                    <div class="drop-zone" id="drop-zone">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <p>Перетащите MP3-файлы сюда или нажмите для выбора</p>
-                        <input type="file" name="file" id="file-input" multiple accept=".mp3" style="display: none;">
+                    <div class="drop-zone p-6 border-2 border-dashed border-green-500 rounded-lg mb-4 text-center" id="drop-zone">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-green-500 mb-2"></i>
+                        <p class="text-lg">Перетащите MP3-файлы сюда или нажмите для выбора</p>
+                        <input type="file" name="file" id="file-input" multiple accept=".mp3" class="hidden">
                     </div>
-                    <select name="genre" id="genre-select">
+                    <select name="genre" id="genre-select" class="w-full p-2 bg-neutral-800 rounded-lg mb-4">
                         <option value="unknown">Выберите жанр</option>
                         {% for genre in genres %}
                             <option value="{{ genre.name }}">{{ genre.name }}</option>
                         {% endfor %}
                     </select>
-                    <button type="submit">Загрузить</button>
+                    <button type="submit" class="btn-primary w-full">Загрузить</button>
                 </form>
             </div>
         </main>
 
-        <footer>
+        <!-- Footer -->
+        <footer class="p-6 bg-neutral-800 rounded-b-3xl text-center">
             <p>© 2025 Музыкальное приложение. Все права защищены.</p>
-            <div>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <div class="mt-2">
+                <a href="#" class="text-gray-300 hover:text-green-500 mx-2"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="text-gray-300 hover:text-green-500 mx-2"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-gray-300 hover:text-green-500 mx-2"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </footer>
     </div>
 
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="fixed bottom-4 right-4 btn-primary">
+        <i class="fas fa-moon"></i> Тёмный режим
+    </button>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-top" class="fixed bottom-16 right-4 btn-primary hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            themeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i> Светлый режим' : '<i class="fas fa-moon"></i> Тёмный режим';
+        });
+
+        // Scroll to Top
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.remove('hidden');
+            } else {
+                scrollTopBtn.classList.add('hidden');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Drag and Drop
         const dropZone = document.getElementById('drop-zone');
         const fileInput = document.getElementById('file-input');
         const form = document.getElementById('upload-form');
 
-        // Открытие диалога выбора файлов при клике на зону
         dropZone.addEventListener('click', () => {
             fileInput.click();
         });
 
-        // Обработка перетягивания
         dropZone.addEventListener('dragover', (e) => {
             e.preventDefault();
-            dropZone.classList.add('dragover');
+            dropZone.classList.add('bg-neutral-700');
         });
 
         dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('dragover');
+            dropZone.classList.remove('bg-neutral-700');
         });
 
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
-            dropZone.classList.remove('dragover');
+            dropZone.classList.remove('bg-neutral-700');
             const files = e.dataTransfer.files;
-            fileInput.files = files; // Присваиваем файлы в input
-            form.submit(); // Отправляем форму
+            fileInput.files = files;
+            form.submit();
         });
 
-        // Отправка формы при выборе файлов через input
         fileInput.addEventListener('change', () => {
             form.submit();
         });

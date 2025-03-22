@@ -3,148 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Музыкальное приложение для прослушивания и управления вашими любимыми песнями">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     <title>Художники - Музыкальное приложение</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #1a1a1a;
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            display: flex;
-            min-height: 100vh;
-        }
-        .sidebar {
-            width: 200px;
-            background-color: #2a2a2a;
-            padding: 20px;
-        }
-        .sidebar a {
-            display: block;
-            color: #ffffff;
-            text-decoration: none;
-            margin: 10px 0;
-        }
-        .sidebar a:hover {
-            color: #1db954;
-        }
-        .main-content {
-            flex: 1;
-            padding: 20px;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 36px;
-            color: #ffffff;
-        }
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            margin-left: 20px;
-        }
-        .nav-links a:hover {
-            color: #1db954;
-        }
-        .artist-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px;
-        }
-        .artist {
-            background-color: #2a2a2a;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            width: 250px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.2s ease-in-out;
-        }
-        .artist:hover {
-            transform: translateY(-10px);
-        }
-        .artist img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        .artist-name {
-            font-size: 22px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-        .artist-name a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-        .artist-name a:hover {
-            color: #1db954;
-        }
-        .artist-bio {
-            font-size: 16px;
-            color: #aaaaaa;
-            margin-top: 10px;
-        }
-        /* Grid and responsive design */
-        @media (max-width: 768px) {
-            .artist-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .artist {
-                width: 100%;
-                max-width: 300px;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+    <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <div class="sidebar">
-            <a href="{{ url_for('main.index') }}">Плейлисты</a>
-            <a href="{{ url_for('main.genres_page') }}">Жанры</a>
-            <a href="{{ url_for('main.artists_page') }}">Художники</a>
-            <a href="{{ url_for('main.albums_page') }}">Альбомы</a>
-            <a href="{{ url_for('main.songs_page') }}">Песни</a>
-            <a href="{{ url_for('main.settings_page') }}">Настройки</a>
-            <a href="#">Выйти</a>
-        </div>
-        <div class="main-content">
-            <div class="header">
-                <h1>Художники</h1>
-                <div class="nav-links">
-                    <a href="{{ url_for('main.playlists_page') }}">Плейлисты</a>
-                    <a href="{{ url_for('main.songs_page') }}">Песни</a>
-                    <a href="{{ url_for('main.artists_page') }}">Художники</a>
-                    <a href="{{ url_for('main.albums_page') }}">Альбомы</a>
-                    <a href="{{ url_for('main.settings_page') }}">Настройки</a>
-                </div>
-            </div>
-            <div class="artist-container">
+<body class="bg-gray-900 text-white">
+    <div class="container flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 p-6 glassmorphism">
+            <ul>
+                <li class="fade-in" style="animation-delay: 0.1s;">
+                    <a href="{{ url_for('main.index') }}" class="sidebar-link">
+                        <i class="fas fa-list"></i> Плейлисты
+                    </a>
+                </li>
+                <li class="fade-in" style="animation-delay: 0.2s;">
+                    <a href="{{ url_for('main.genres_page') }}" class="sidebar-link">
+                        <i class="fas fa-music"></i> Жанры
+                    </a>
+                </li>
+                <li class="fade-in" style="animation-delay: 0.3s;">
+                    <a href="{{ url_for('main.artists_page') }}" class="sidebar-link">
+                        <i class="fas fa-user"></i> Художники
+                    </a>
+                </li>
+                <li class="fade-in" style="animation-delay: 0.4s;">
+                    <a href="{{ url_for('main.albums_page') }}" class="sidebar-link">
+                        <i class="fas fa-compact-disc"></i> Альбомы
+                    </a>
+                </li>
+                <li class="fade-in" style="animation-delay: 0.5s;">
+                    <a href="{{ url_for('main.songs_page') }}" class="sidebar-link">
+                        <i class="fas fa-sticky-note"></i> Песни
+                    </a>
+                </li>
+                <li class="fade-in" style="animation-delay: 0.6s;">
+                    <a href="{{ url_for('main.settings_page') }}" class="sidebar-link">
+                        <i class="fas fa-cog"></i> Настройки
+                    </a>
+                </li>
+                <li class="fade-in" style="animation-delay: 0.7s;">
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <header class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold fade-in">Художники</h1>
+                <nav class="space-x-4">
+                    <a href="{{ url_for('main.playlists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Плейлисты</a>
+                    <a href="{{ url_for('main.songs_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Песни</a>
+                    <a href="{{ url_for('main.artists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Художники</a>
+                    <a href="{{ url_for('main.albums_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Альбомы</a>
+                    <a href="{{ url_for('main.settings_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Настройки</a>
+                </nav>
+            </header>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {% for artist in artists %}
-                <div class="artist">
-                    <img src="{{ url_for('static', filename='artists/' + (artist.image_filename if artist.image_filename else 'default_artist_image.jpg')) }}" alt="Artist Image">
-                    <h2 class="artist-name">
-                        <a href="{{ url_for('main.artist_page', artist_id=artist.id) }}">{{ artist.name }}</a>
-                    </h2>
-                    <p class="artist-bio">{{ artist.bio if artist.bio else 'Биография отсутствует' }}</p>
-                </div>
+                    <div class="card fade-in" style="animation-delay: {{ loop.index * 0.1 }}s;">
+                        <img src="{{ url_for('static', filename='artists/' + (artist.image_filename if artist.image_filename else 'default_artist_image.jpg')) }}" alt="Artist Image" class="w-full h-48 object-cover rounded-lg mb-2" loading="lazy">
+                        <h2 class="text-lg font-medium">
+                            <a href="{{ url_for('main.artist_page', artist_id=artist.id) }}" class="hover:text-green-500 transition-colors">{{ artist.name }}</a>
+                        </h2>
+                        <p class="text-gray-400">{{ artist.bio if artist.bio else 'Биография отсутствует' }}</p>
+                    </div>
                 {% endfor %}
             </div>
-        </div>
+        </main>
     </div>
+
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="fixed bottom-4 right-4 btn-primary">
+        <i class="fas fa-moon"></i> Тёмный режим
+    </button>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-top" class="fixed bottom-16 right-4 btn-primary hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            themeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i> Светлый режим' : '<i class="fas fa-moon"></i> Тёмный режим';
+        });
+
+        // Scroll to Top
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.remove('hidden');
+            } else {
+                scrollTopBtn.classList.add('hidden');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>

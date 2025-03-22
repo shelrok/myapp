@@ -1,262 +1,156 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Музыкальное приложение для прослушивания и управления вашими любимыми песнями">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     <title>Музыкальное приложение</title>
     <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet">
-    <style>
-      @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
-      @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
-      @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css);
+</head>
+<body class="bg-gray-900 text-white">
+    <div id="webcrumbs" class="rounded-3xl min-h-[800px] flex flex-col">
+        <!-- Header -->
+        <header class="flex justify-between items-center p-6 bg-neutral-800 rounded-t-3xl">
+            <h1 class="text-2xl font-bold fade-in">Музыкальное приложение</h1>
+            <nav class="space-x-4">
+                <a href="{{ url_for('main.playlists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Плейлисты</a>
+                <a href="{{ url_for('main.genres_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Жанры</a>
+                <a href="{{ url_for('main.artists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Художники</a>
+                <a href="{{ url_for('main.albums_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Альбомы</a>
+                <a href="{{ url_for('main.settings_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Настройки</a>
+                <a href="{{ url_for('main.songs_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Песни</a>
+            </nav>
+        </header>
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+        <!-- Main -->
+        <main class="flex flex-1 p-6">
+            <!-- Sidebar -->
+            <aside class="w-64 p-6 glassmorphism rounded-lg mr-6">
+                <ul>
+                    <li class="fade-in" style="animation-delay: 0.1s;">
+                        <a href="{{ url_for('main.playlists_page') }}" class="sidebar-link">
+                            <i class="fas fa-list"></i> Плейлисты
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.2s;">
+                        <a href="{{ url_for('main.genres_page') }}" class="sidebar-link">
+                            <i class="fas fa-music"></i> Жанры
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.3s;">
+                        <a href="{{ url_for('main.artists_page') }}" class="sidebar-link">
+                            <i class="fas fa-user"></i> Художники
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.4s;">
+                        <a href="{{ url_for('main.albums_page') }}" class="sidebar-link">
+                            <i class="fas fa-compact-disc"></i> Альбомы
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.5s;">
+                        <a href="{{ url_for('main.songs_page') }}" class="sidebar-link">
+                            <i class="fas fa-sticky-note"></i> Песни
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.6s;">
+                        <a href="{{ url_for('main.settings_page') }}" class="sidebar-link">
+                            <i class="fas fa-cog"></i> Настройки
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.7s;">
+                        <a href="#" class="sidebar-link">
+                            <i class="fas fa-sign-out-alt"></i> Выйти
+                        </a>
+                    </li>
+                </ul>
+            </aside>
 
-      body {
-        font-family: Open Sans, sans-serif;
-        background: linear-gradient(135deg, #ffffff, #d4d4d4);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-      }
+            <!-- Content -->
+            <div class="content flex-1">
+                <!-- Playlists -->
+                <section class="mb-8">
+                    <h2 class="text-xl font-semibold mb-4 fade-in">Избранное</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {% for playlist in playlists %}
+                            <div class="card fade-in" style="animation-delay: {{ loop.index * 0.1 }}s;">
+                                <img src="{{ url_for('static', filename='playlists/' + (playlist.image_filename if playlist.image_filename else 'default_playlist_image.jpg')) }}" alt="Playlist Cover" class="w-full h-40 object-cover rounded-lg mb-2" loading="lazy">
+                                <h3 class="text-lg font-medium">{{ playlist.name }}</h3>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
 
-      #webcrumbs {
-        width: 100%;
-        background-color: #2d2d2d;
-        border-radius: 24px;
-        min-height: 800px;
-        color: #f7f7f7;
-        display: flex;
-        flex-direction: column;
-      }
+                <!-- Artists -->
+                <section class="mb-8">
+                    <h2 class="text-xl font-semibold mb-4 fade-in">Лучшие Исполнители</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {% for artist in artists %}
+                            <div class="card fade-in" style="animation-delay: {{ loop.index * 0.1 }}s;">
+                                <img src="{{ url_for('static', filename='artists/' + (artist.image_filename if artist.image_filename else 'default_artist_image.jpg')) }}" alt="Artist" class="w-24 h-24 rounded-full mx-auto mb-2 object-cover" loading="lazy">
+                                <p class="text-center">{{ artist.name }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
 
-      header {
-        display: flex;
-        justify-content: space-between;
-        background-color: #444;
-        padding: 20px;
-        border-top-left-radius: 24px;
-        border-top-right-radius: 24px;
-      }
-
-      header h1 {
-        font-size: 24px;
-        font-weight: bold;
-      }
-
-      nav a {
-        color: #f7f7f7;
-        margin: 0 10px;
-        text-decoration: none;
-      }
-
-      nav a:hover {
-        color: #6e40f7;
-      }
-
-      main {
-        display: flex;
-        flex-direction: row;
-        padding: 20px;
-        min-height: 640px;
-        flex: 1;
-      }
-
-      aside {
-        background-color: #3a3a3a;
-        padding: 20px;
-        width: 250px;
-        border-radius: 12px;
-        margin-right: 20px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-      }
-
-      aside ul {
-        list-style-type: none;
-      }
-
-      aside ul li {
-        margin: 15px 0;
-      }
-
-      aside ul li a {
-        color: #f7f7f7;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        font-size: 16px;
-        transition: color 0.3s ease;
-      }
-
-      aside ul li a i {
-        margin-right: 10px;
-        font-size: 18px;
-      }
-
-      aside ul li a:hover {
-        color: #6e40f7;
-      }
-
-      .content {
-        flex: 1;
-      }
-
-      .section-title {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 20px;
-      }
-
-      .album, .artist, .genre {
-        background-color: #444;
-        padding: 10px;
-        border-radius: 12px;
-        text-align: center;
-        transition: transform 0.2s ease;
-      }
-
-      .album:hover, .artist:hover, .genre:hover {
-        transform: translateY(-5px);
-      }
-
-      .album img, .artist img, .genre img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 12px;
-        margin-bottom: 10px;
-      }
-
-      .artist img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-      }
-
-      footer {
-        background-color: #444;
-        color: #f7f7f7;
-        padding: 20px;
-        border-bottom-left-radius: 24px;
-        border-bottom-right-radius: 24px;
-        width: 100%;
-        text-align: center;
-      }
-
-      footer a {
-        color: #f7f7f7;
-        margin: 0 10px;
-        text-decoration: none;
-      }
-
-      footer a:hover {
-        color: #6e40f7;
-      }
-
-      @media (max-width: 768px) {
-        main {
-          flex-direction: column;
-        }
-
-        aside {
-          width: 100%;
-          margin-right: 0;
-          margin-bottom: 20px;
-        }
-
-        .grid {
-          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="webcrumbs">
-      <header>
-        <h1>Музыкальное приложение</h1>
-        <nav>
-          <a href="{{ url_for('main.playlists_page') }}">Плейлисты</a>
-          <a href="{{ url_for('main.genres_page') }}">Жанры</a>
-          <a href="{{ url_for('main.artists_page') }}">Художники</a>
-          <a href="{{ url_for('main.albums_page') }}">Альбомы</a>
-          <a href="{{ url_for('main.settings_page') }}">Настройки</a>
-          <a href="{{ url_for('main.songs_page') }}">Песни</a>
-        </nav>
-      </header>
-
-      <main>
-        <aside>
-          <ul>
-            <li><a href="{{ url_for('main.playlists_page') }}"><i class="fas fa-list"></i> Плейлисты</a></li>
-            <li><a href="{{ url_for('main.genres_page') }}"><i class="fas fa-music"></i> Жанры</a></li>
-            <li><a href="{{ url_for('main.artists_page') }}"><i class="fas fa-user"></i> Художники</a></li>
-            <li><a href="{{ url_for('main.albums_page') }}"><i class="fas fa-compact-disc"></i> Альбомы</a></li>
-            <li><a href="{{ url_for('main.songs_page') }}"><i class="fas fa-sticky-note"></i> Песни</a></li>
-            <li><a href="#"><i class="fas fa-cog"></i> Настройки</a></li>
-            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Выйти</a></li>
-          </ul>
-        </aside>
-
-        <div class="content">
-          <section>
-            <h2 class="section-title">Избранное</h2>
-            <div class="grid">
-              {% for playlist in playlists %}
-                <div class="album">
-                  <img src="{{ url_for('static', filename='playlists/' + playlist.image_filename) }}" alt="Playlist Cover" />
-                  <h3>{{ playlist.name }}</h3>
-                </div>
-              {% endfor %}
+                <!-- Genres -->
+                <section>
+                    <h2 class="text-xl font-semibold mb-4 fade-in">Жанры</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {% for genre_name, audio_files in genres.items() %}
+                            <div class="card fade-in" style="animation-delay: {{ loop.index * 0.1 }}s;">
+                                <h3 class="text-lg font-medium">{{ genre_name }}</h3>
+                                <p class="text-gray-400">{{ audio_files|length }} песен</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
             </div>
-          </section>
+        </main>
 
-          <section>
-            <h2 class="section-title">Лучшие Исполнители</h2>
-            <div class="grid">
-              {% for artist in artists %}
-                <div class="artist">
-                  <img src="{{ url_for('static', filename='artists/' + (artist.image_filename if artist.image_filename else 'default_artist_image.jpg')) }}" alt="Artist" />
-                  <p>{{ artist.name }}</p>
-                </div>
-              {% endfor %}
+        <!-- Footer -->
+        <footer class="p-6 bg-neutral-800 rounded-b-3xl text-center">
+            <p>© 2025 Музыкальное приложение. Все права защищены.</p>
+            <div class="mt-2">
+                <a href="#" class="text-gray-300 hover:text-green-500 mx-2"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="text-gray-300 hover:text-green-500 mx-2"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-gray-300 hover:text-green-500 mx-2"><i class="fa-brands fa-instagram"></i></a>
             </div>
-          </section>
-
-          <section>
-            <h2 class="section-title">Жанры</h2>
-            <div class="grid">
-              {% for genre_name, audio_files in genres.items() %}
-                <div class="genre">
-                  <h3>{{ genre_name }}</h3>
-                  <p>{{ audio_files|length }} песен</p>
-                </div>
-              {% endfor %}
-            </div>
-          </section>
-        </div>
-      </main>
-
-      <footer>
-        <p>© 2025 Музыкальное приложение. Все права защищены.</p>
-        <div>
-          <a href="#"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-      </footer>
+        </footer>
     </div>
-  </body>
+
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="fixed bottom-4 right-4 btn-primary">
+        <i class="fas fa-moon"></i> Тёмный режим
+    </button>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-top" class="fixed bottom-16 right-4 btn-primary hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            themeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i> Светлый режим' : '<i class="fas fa-moon"></i> Тёмный режим';
+        });
+
+        // Scroll to Top
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.remove('hidden');
+            } else {
+                scrollTopBtn.classList.add('hidden');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
 </html>

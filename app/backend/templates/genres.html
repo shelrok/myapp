@@ -3,234 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Музыкальное приложение для прослушивания и управления вашими любимыми песнями">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     <title>Жанры</title>
     <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet">
-    <style>
-        @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap);
-        @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css);
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(135deg, #ffffff, #d4d4d4);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-        }
-
-        #webcrumbs {
-            width: 100%;
-            background-color: #2d2d2d;
-            border-radius: 24px;
-            min-height: 800px;
-            color: #f7f7f7;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            background-color: #444;
-            padding: 20px;
-            border-top-left-radius: 24px;
-            border-top-right-radius: 24px;
-        }
-
-        header h1 {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        nav a {
-            color: #f7f7f7;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        nav a:hover {
-            color: #6e40f7;
-        }
-
-        main {
-            padding: 20px;
-            flex: 1;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 36px;
-            color: #f7f7f7;
-        }
-
-        .genre-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .genre {
-            background-color: #444;
-            border-radius: 12px;
-            padding: 15px;
-            width: 300px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease;
-        }
-
-        .genre:hover {
-            transform: translateY(-5px);
-        }
-
-        .genre h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #f7f7f7;
-        }
-
-        .song-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .song-list li {
-            background-color: #555;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .song-list li:hover {
-            background-color: #666;
-        }
-
-        .song-name {
-            font-size: 16px;
-            color: #f7f7f7;
-            flex: 1;
-        }
-
-        audio {
-            width: 120px;
-            margin-left: 10px;
-        }
-
-        .play-btn {
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-        }
-
-        .play-btn:hover {
-            background-color: #218838;
-        }
-
-        footer {
-            background-color: #444;
-            color: #f7f7f7;
-            padding: 20px;
-            border-bottom-left-radius: 24px;
-            border-bottom-right-radius: 24px;
-            width: 100%;
-            text-align: center;
-        }
-
-        footer a {
-            color: #f7f7f7;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #6e40f7;
-        }
-
-        @media (max-width: 768px) {
-            .genre-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .genre {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            audio {
-                width: 100px;
-            }
-        }
-    </style>
 </head>
-<body>
-    <div id="webcrumbs">
-        <header>
-            <h1>Музыкальное приложение</h1>
-            <nav>
-                <a href="{{ url_for('main.index') }}">Главная</a>
-                <a href="{{ url_for('main.playlists_page') }}">Плейлисты</a>
-                <a href="{{ url_for('main.genres_page') }}">Жанры</a>
-                <a href="{{ url_for('main.artists_page') }}">Художники</a>
-                <a href="{{ url_for('main.albums_page') }}">Альбомы</a>
+<body class="bg-gray-900 text-white">
+    <div id="webcrumbs" class="rounded-3xl min-h-[800px] flex flex-col">
+        <!-- Header -->
+        <header class="flex justify-between items-center p-6 bg-neutral-800 rounded-t-3xl">
+            <h1 class="text-2xl font-bold fade-in">Музыкальное приложение</h1>
+            <nav class="space-x-4">
+                <a href="{{ url_for('main.index') }}" class="text-gray-300 hover:text-green-500 transition-colors">Главная</a>
+                <a href="{{ url_for('main.playlists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Плейлисты</a>
+                <a href="{{ url_for('main.genres_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Жанры</a>
+                <a href="{{ url_for('main.artists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Художники</a>
+                <a href="{{ url_for('main.albums_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Альбомы</a>
             </nav>
         </header>
 
-        <main>
-            <h1>Жанры</h1>
-            <div class="genre-container">
+        <!-- Main -->
+        <main class="flex-1 p-6">
+            <h1 class="text-3xl font-bold mb-6 fade-in">Жанры</h1>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {% for genre in genres %}
-                <div class="genre">
-                    <h2>{{ genre.name }}</h2>
-                    <ul class="song-list">
-                        {% for song in genre.songs %}
-                        <li>
-                            <span class="song-name">{{ song.name }}</span>
-                            <audio id="audio-{{ song.id }}" controls>
-                                <source src="{{ url_for('static', filename='audio/' + genre.name + '/' + song.file_name) }}" type="audio/mp3">
-                                Ваш браузер не поддерживает аудио.
-                            </audio>
-                            <button class="play-btn" onclick="playAudio('audio-{{ song.id }}')">Play</button>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                    <div class="card fade-in" style="animation-delay: {{ loop.index * 0.1 }}s;">
+                        <h2 class="text-lg font-medium mb-2">{{ genre.name }}</h2>
+                        <ul class="space-y-2">
+                            {% for song in genre.songs %}
+                                <li class="flex items-center justify-between p-2 bg-neutral-800 rounded-md">
+                                    <span class="flex-1">{{ song.name }}</span>
+                                    <div class="custom-audio-player">
+                                        <button class="play-pause-btn" data-audio-id="audio-{{ genre.id }}-{{ loop.index }}">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <div class="progress-bar">
+                                            <div class="progress"></div>
+                                        </div>
+                                        <button class="rewind-btn">
+                                            <i class="fas fa-backward"></i>
+                                        </button>
+                                        <button class="forward-btn">
+                                            <i class="fas fa-forward"></i>
+                                        </button>
+                                        <audio id="audio-{{ genre.id }}-{{ loop.index }}" class="hidden">
+                                            <source src="{{ url_for('static', filename='audio/' + genre.name + '/' + song.file_name) }}" type="audio/mp3">
+                                        </audio>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 {% endfor %}
             </div>
         </main>
 
-        <footer>
+        <!-- Footer -->
+        <footer class="p-6 bg-neutral-800 rounded-b-3xl text-center">
             <p>© 2025 Музыкальное приложение. Все права защищены.</p>
-            <div>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <div class="mt-2">
+                <a href="#" class="text-gray-300 hover:text-green-500 mx-2"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="text-gray-300 hover:text-green-500 mx-2"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-gray-300 hover:text-green-500 mx-2"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </footer>
     </div>
 
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="fixed bottom-4 right-4 btn-primary">
+        <i class="fas fa-moon"></i> Тёмный режим
+    </button>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-top" class="fixed bottom-16 right-4 btn-primary hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script>
-        function playAudio(audioId) {
-            const audio = document.getElementById(audioId);
-            if (audio.paused) {
-                audio.play();
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            themeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i> Светлый режим' : '<i class="fas fa-moon"></i> Тёмный режим';
+        });
+
+        // Scroll to Top
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.remove('hidden');
             } else {
-                audio.pause();
-                audio.currentTime = 0; // Сбрасываем на начало при паузе
+                scrollTopBtn.classList.add('hidden');
             }
-        }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Custom Audio Player
+        document.querySelectorAll('.custom-audio-player').forEach(player => {
+            const audio = player.querySelector('audio');
+            const playPauseBtn = player.querySelector('.play-pause-btn');
+            const progressBar = player.querySelector('.progress-bar');
+            const progress = player.querySelector('.progress');
+            const rewindBtn = player.querySelector('.rewind-btn');
+            const forwardBtn = player.querySelector('.forward-btn');
+
+            playPauseBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            });
+
+            audio.addEventListener('timeupdate', () => {
+                const progressPercent = (audio.currentTime / audio.duration) * 100;
+                progress.style.width = `${progressPercent}%`;
+            });
+
+            progressBar.addEventListener('click', (e) => {
+                const rect = progressBar.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const width = rect.width;
+                const newTime = (clickX / width) * audio.duration;
+                audio.currentTime = newTime;
+            });
+
+            rewindBtn.addEventListener('click', () => {
+                audio.currentTime = Math.max(0, audio.currentTime - 10);
+            });
+
+            forwardBtn.addEventListener('click', () => {
+                audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+            });
+        });
     </script>
 </body>
 </html>
