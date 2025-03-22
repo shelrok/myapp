@@ -1,6 +1,12 @@
-venv
 .env
 db_data/*
 pgadmin/*
-pg_exporter/*
-grafana/*
+kibana/*
+es-data/*
+app/__pycache__
+node_modules/*
+grafana/grafana_data/*
+app/app/__pycache__/*
+app/logs/*
+app/views/__pycache__/*
+app/logs/app.log

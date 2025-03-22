@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Музыкальное приложение для прослушивания и управления вашими любимыми песнями">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>Настройки</title>
+    <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+    <div id="webcrumbs" class="rounded-3xl min-h-[800px] flex flex-col">
+        <!-- Header -->
+        <header class="flex justify-between items-center p-6 bg-neutral-800 rounded-t-3xl">
+            <h1 class="text-2xl font-bold fade-in">Музыкальное приложение</h1>
+            <nav class="space-x-4">
+                <a href="{{ url_for('main.index') }}" class="text-gray-300 hover:text-green-500 transition-colors">Главная</a>
+                <a href="{{ url_for('main.playlists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Плейлисты</a>
+                <a href="{{ url_for('main.genres_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Жанры</a>
+                <a href="{{ url_for('main.artists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Художники</a>
+                <a href="{{ url_for('main.albums_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Альбомы</a>
+                <a href="{{ url_for('main.settings_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Настройки</a>
+            </nav>
+        </header>
+
+        <!-- Main -->
+        <main class="flex-1 p-6 flex flex-col items-center">
+            <h1 class="text-3xl font-bold mb-6 fade-in">Настройки</h1>
+
+            <!-- Flash Messages -->
+            <div class="flash-messages mb-6">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <p class="{{ 'text-green-500' if category == 'success' else 'text-red-500' }} fade-in">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+
+            <!-- Upload Form -->
+            <div class="card w-full max-w-md fade-in">
+                <h2 class="text-xl font-semibold mb-4 text-center">Загрузка музыки</h2>
+                <form id="upload-form" method="POST" enctype="multipart/form-data">
+                    <div class="drop-zone p-6 border-2 border-dashed border-green-500 rounded-lg mb-4 text-center" id="drop-zone">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-green-500 mb-2"></i>
+                        <p class="text-lg">Перетащите MP3-файлы сюда или нажмите для выбора</p>
+                        <input type="file" name="file" id="file-input" multiple accept=".mp3" class="hidden">
+                    </div>
+                    <select name="genre" id="genre-select" class="w-full p-2 bg-neutral-800 rounded-lg mb-4">
+                        <option value="unknown">Выберите жанр</option>
+                        {% for genre in genres %}
+                            <option value="{{ genre.name }}">{{ genre.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn-primary w-full">Загрузить</button>
+                </form>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="p-6 bg-neutral-800 rounded-b-3xl text-center">
+            <p>© 2025 Музыкальное приложение. Все права защищены.</p>
+            <div class="mt-2">
+                <a href="#" class="text-gray-300 hover:text-green-500 mx-2"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="text-gray-300 hover:text-green-500 mx-2"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-gray-300 hover:text-green-500 mx-2"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="fixed bottom-4 right-4 btn-primary">
+        <i class="fas fa-moon"></i> Тёмный режим
+    </button>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-top" class="fixed bottom-16 right-4 btn-primary hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            themeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i> Светлый режим' : '<i class="fas fa-moon"></i> Тёмный режим';
+        });
+
+        // Scroll to Top
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.remove('hidden');
+            } else {
+                scrollTopBtn.classList.add('hidden');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Drag and Drop
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const form = document.getElementById('upload-form');
+
+        dropZone.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('bg-neutral-700');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('bg-neutral-700');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('bg-neutral-700');
+            const files = e.dataTransfer.files;
+            fileInput.files = files;
+            form.submit();
+        });
+
+        fileInput.addEventListener('change', () => {
+            form.submit();
+        });
+    </script>
+</body>
+</html>

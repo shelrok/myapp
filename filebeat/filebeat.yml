@@ -1,0 +1,11 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/app_logs/*.log   # Путь к вашим логам
+    fields:
+      service: flask_app  # Добавьте метки для идентификации логов
+    fields_under_root: true
+
+output.logstash:
+  hosts: ["logstash:5044"]  # Указываем хост Logstash
