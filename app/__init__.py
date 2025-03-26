@@ -7,6 +7,7 @@ import logging
 import os
 from mutagen.mp3 import MP3
 from mutagen.id3 import ID3
+from redis import Redis
 
 def configure_logging(app):
     # Формат логов
@@ -159,7 +160,7 @@ def create_app():
     app.config.from_object(Config)
 
     db.init_app(app)
-
+    app.redis = Redis.from_url(app.config.get('REDIS_URL', 'redis://localhost:6379/0'), decode_responses=True)
     from prometheus_flask_exporter import PrometheusMetrics
     metrics = PrometheusMetrics(app, path='/metrics')
 

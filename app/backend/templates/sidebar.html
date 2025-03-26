@@ -1,0 +1,49 @@
+<aside class="w-64 p-6 glassmorphism rounded-lg mr-6">
+    <ul>
+        <li class="fade-in" style="animation-delay: 0.1s;">
+            <a href="{{ url_for('main.index') }}" class="sidebar-link">
+                <i class="fas fa-home"></i> Главная
+            </a>
+        </li>
+        <li class="fade-in" style="animation-delay: 0.2s;">
+            <a href="{{ url_for('main.playlists_page') }}" class="sidebar-link">
+                <i class="fas fa-list"></i> Плейлисты
+            </a>
+        </li>
+        <li class="fade-in" style="animation-delay: 0.3s;">
+            <a href="{{ url_for('main.genres_page') }}" class="sidebar-link">
+                <i class="fas fa-music"></i> Жанры
+            </a>
+        </li>
+        <li class="fade-in" style="animation-delay: 0.4s;">
+            <a href="{{ url_for('main.artists_page') }}" class="sidebar-link">
+                <i class="fas fa-user"></i> Художники
+            </a>
+        </li>
+        <li class="fade-in" style="animation-delay: 0.5s;">
+            <a href="{{ url_for('main.albums_page') }}" class="sidebar-link">
+                <i class="fas fa-compact-disc"></i> Альбомы
+            </a>
+        </li>
+        <li class="fade-in" style="animation-delay: 0.6s;">
+            <a href="{{ url_for('main.songs_page') }}" class="sidebar-link">
+                <i class="fas fa-sticky-note"></i> Песни
+            </a>
+        </li>
+        <li class="fade-in" style="animation-delay: 0.7s;">
+            <a href="{{ url_for('main.news_page') }}" class="sidebar-link">
+                <i class="fas fa-newspaper"></i> Новости
+            </a>
+        </li>
+        <li class="fade-in" style="animation-delay: 0.8s;">
+            <a href="{{ url_for('main.settings_page') }}" class="sidebar-link">
+                <i class="fas fa-cog"></i> Настройки
+            </a>
+        </li>
+        <li class="fade-in" style="animation-delay: 0.9s;">
+            <a href="#" class="sidebar-link">
+                <i class="fas fa-sign-out-alt"></i> Выйти
+            </a>
+        </li>
+    </ul>
+</aside>

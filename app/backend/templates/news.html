@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости - Музыкальное приложение</title>
+    <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+    <div id="webcrumbs" class="rounded-3xl min-h-[800px] flex flex-col">
+        <!-- Header -->
+        <header class="flex justify-between items-center p-6 bg-neutral-800 rounded-t-3xl">
+            <h1 class="text-2xl font-bold fade-in">Музыкальные новости</h1>
+            <nav class="space-x-4">
+                <a href="{{ url_for('main.index') }}" class="text-gray-300 hover:text-green-500">Главная</a>
+                <a href="{{ url_for('main.playlists_page') }}" class="text-gray-300 hover:text-green-500">Плейлисты</a>
+                <a href="{{ url_for('main.genres_page') }}" class="text-gray-300 hover:text-green-500">Жанры</a>
+                <a href="{{ url_for('main.artists_page') }}" class="text-gray-300 hover:text-green-500">Художники</a>
+                <a href="{{ url_for('main.albums_page') }}" class="text-gray-300 hover:text-green-500">Альбомы</a>
+                <a href="{{ url_for('main.settings_page') }}" class="text-gray-300 hover:text-green-500">Настройки</a>
+                <a href="{{ url_for('main.songs_page') }}" class="text-gray-300 hover:text-green-500">Песни</a>
+                <a href="{{ url_for('main.news_page') }}" class="text-gray-300 hover:text-green-500">Новости</a>
+            </nav>
+        </header>
+
+        <!-- Main -->
+        <main class="flex flex-1 p-6">
+            <!-- Sidebar -->
+            <aside class="w-64 p-6 glassmorphism rounded-lg mr-6">
+                <ul>
+                    <li class="fade-in" style="animation-delay: 0.1s;">
+                        <a href="{{ url_for('main.index') }}" class="sidebar-link">
+                            <i class="fas fa-home"></i> Главная
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.2s;">
+                        <a href="{{ url_for('main.playlists_page') }}" class="sidebar-link">
+                            <i class="fas fa-list"></i> Плейлисты
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.3s;">
+                        <a href="{{ url_for('main.genres_page') }}" class="sidebar-link">
+                            <i class="fas fa-music"></i> Жанры
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.4s;">
+                        <a href="{{ url_for('main.artists_page') }}" class="sidebar-link">
+                            <i class="fas fa-user"></i> Художники
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.5s;">
+                        <a href="{{ url_for('main.albums_page') }}" class="sidebar-link">
+                            <i class="fas fa-compact-disc"></i> Альбомы
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.6s;">
+                        <a href="{{ url_for('main.songs_page') }}" class="sidebar-link">
+                            <i class="fas fa-sticky-note"></i> Песни
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.7s;">
+                        <a href="{{ url_for('main.news_page') }}" class="sidebar-link">
+                            <i class="fas fa-newspaper"></i> Новости
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.8s;">
+                        <a href="{{ url_for('main.settings_page') }}" class="sidebar-link">
+                            <i class="fas fa-cog"></i> Настройки
+                        </a>
+                    </li>
+                    <li class="fade-in" style="animation-delay: 0.9s;">
+                        <a href="#" class="sidebar-link">
+                            <i class="fas fa-sign-out-alt"></i> Выйти
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- Content -->
+            <div class="content flex-1">
+                <h2 class="text-xl font-semibold mb-4 fade-in">Последние музыкальные новости</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {% for item in news_items %}
+                        <div class="card fade-in bg-neutral-800 p-4 rounded-lg" style="animation-delay: {{ loop.index * 0.1 }}s;">
+                            <h3 class="text-lg font-medium">{{ item.title }}</h3>
+                            <p class="text-gray-400 text-sm">{{ item.published }}</p>
+                            <p class="text-gray-300 mt-2">{{ item.summary }}</p>
+                            <a href="{{ item.link }}" target="_blank" class="text-green-500 hover:underline mt-2 block">Читать далее</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="p-6 bg-neutral-800 rounded-b-3xl text-center">
+            <p>© 2025 Музыкальное приложение. Все права защищены.</p>
+            <p class="text-gray-400 text-sm mt-2">Новости загружены за {{ fetch_time }} сек</p>
+        </footer>
+    </div>
+</body>
+</html>

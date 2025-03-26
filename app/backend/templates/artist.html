@@ -94,7 +94,7 @@
                                 <i class="fas fa-forward"></i>
                             </button>
                             <audio id="audio-{{ loop.index }}" class="hidden">
-                                <source src="{{ url_for('static', filename='audio/' + song.genre.name + '/' + song.file_name) }}" type="audio/mpeg">
+                                <source src="{{ url_for('static', filename='audio/' + song.genre_name + '/' + song.file_name) }}" type="audio/mpeg">
                             </audio>
                         </div>
                     </li>

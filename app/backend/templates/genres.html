@@ -7,6 +7,8 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     <title>Жанры</title>
     <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet">
+    <!-- Подключение Font Awesome для иконок в sidebar и плеере -->
+    <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-gray-900 text-white">
     <div id="webcrumbs" class="rounded-3xl min-h-[800px] flex flex-col">
@@ -19,42 +21,49 @@
                 <a href="{{ url_for('main.genres_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Жанры</a>
                 <a href="{{ url_for('main.artists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Художники</a>
                 <a href="{{ url_for('main.albums_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Альбомы</a>
+                <a href="{{ url_for('main.news_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Новости</a>
             </nav>
         </header>
 
         <!-- Main -->
-        <main class="flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-6 fade-in">Жанры</h1>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {% for genre in genres %}
-                    <div class="card fade-in" style="animation-delay: {{ loop.index * 0.1 }}s;">
-                        <h2 class="text-lg font-medium mb-2">{{ genre.name }}</h2>
-                        <ul class="space-y-2">
-                            {% for song in genre.songs %}
-                                <li class="flex items-center justify-between p-2 bg-neutral-800 rounded-md">
-                                    <span class="flex-1">{{ song.name }}</span>
-                                    <div class="custom-audio-player">
-                                        <button class="play-pause-btn" data-audio-id="audio-{{ genre.id }}-{{ loop.index }}">
-                                            <i class="fas fa-play"></i>
-                                        </button>
-                                        <div class="progress-bar">
-                                            <div class="progress"></div>
+        <main class="flex-1 p-6 flex">
+            <!-- Sidebar -->
+            {% include 'sidebar.html' %}
+
+            <!-- Content -->
+            <div class="flex-1">
+                <h1 class="text-3xl font-bold mb-6 fade-in">Жанры</h1>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {% for genre in genres %}
+                        <div class="card fade-in" style="animation-delay: {{ loop.index * 0.1 }}s;">
+                            <h2 class="text-lg font-medium mb-2">{{ genre.name }}</h2>
+                            <ul class="space-y-2">
+                                {% for song in genre.songs %}
+                                    <li class="flex items-center justify-between p-2 bg-neutral-800 rounded-md">
+                                        <span class="flex-1">{{ song.name }}</span>
+                                        <div class="custom-audio-player">
+                                            <button class="play-pause-btn" data-audio-id="audio-{{ genre.id }}-{{ loop.index }}">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <div class="progress-bar">
+                                                <div class="progress"></div>
+                                            </div>
+                                            <button class="rewind-btn">
+                                                <i class="fas fa-backward"></i>
+                                            </button>
+                                            <button class="forward-btn">
+                                                <i class="fas fa-forward"></i>
+                                            </button>
+                                            <audio id="audio-{{ genre.id }}-{{ loop.index }}" class="hidden">
+                                                <source src="{{ url_for('static', filename='audio/' + genre.name + '/' + song.file_name) }}" type="audio/mp3">
+                                            </audio>
                                         </div>
-                                        <button class="rewind-btn">
-                                            <i class="fas fa-backward"></i>
-                                        </button>
-                                        <button class="forward-btn">
-                                            <i class="fas fa-forward"></i>
-                                        </button>
-                                        <audio id="audio-{{ genre.id }}-{{ loop.index }}" class="hidden">
-                                            <source src="{{ url_for('static', filename='audio/' + genre.name + '/' + song.file_name) }}" type="audio/mp3">
-                                        </audio>
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endfor %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </main>
 

@@ -14,7 +14,7 @@ class Config:
     # Определяем базовые пути
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
     BACKEND_DIR = os.path.join(BASE_DIR, 'backend')
-
+    REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')  # Добавляем REDIS_URL
     # Пути к шаблонам и статическим файлам
     TEMPLATES_FOLDER = os.path.join(BACKEND_DIR, 'templates')
     STATIC_FOLDER = os.path.join(BACKEND_DIR, 'static')

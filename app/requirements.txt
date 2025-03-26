@@ -9,3 +9,5 @@ prometheus_flask_exporter
 logstash_formatter==0.5.2
 prometheus_client
 mutagen==1.47.0
+redis==5.0.1
+feedparser==6.0.10  # Добавляем для RSS

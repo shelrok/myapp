@@ -33,6 +33,7 @@ services:
       - FLASK_DEBUG=1
       - DATABASE_URL=${DATABASE_URL}
       - DEBUG_METRICS=1
+      - REDIS_URL=redis://:${REDIS_PASSWORD:-redis_pass}@redis:6379/0  # Добавляем URL для Redis
     ports:
       - "5000:5000"
     depends_on:
@@ -229,6 +230,16 @@ services:
     environment:
       - LOGSTASH_HOST=logstash
       - LOGSTASH_PORT=5044
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"  # Порт Redis по умолчанию
+    volumes:
+      - ./redis-data:/data  # Для сохранения данных Redis
+    networks:
+      - monitoring
+    command: redis-server --requirepass ${REDIS_PASSWORD:-redis_pass}
   nginx:
       image: nginx:latest
       container_name: nginx
@@ -255,3 +266,4 @@ volumes:
   kibana:
   logstash:
   filebeat:
+  redis-data:

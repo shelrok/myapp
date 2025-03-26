@@ -56,6 +56,7 @@
             <header class="flex justify-between items-center mb-6">
                 <h1 class="text-3xl font-bold fade-in">Все песни</h1>
                 <nav class="space-x-4">
+                    <a href="{{ url_for('main.index') }}" class="text-gray-300 hover:text-green-500 transition-colors">Главная</a>
                     <a href="{{ url_for('main.playlists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Плейлисты</a>
                     <a href="{{ url_for('main.songs_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Песни</a>
                     <a href="{{ url_for('main.artists_page') }}" class="text-gray-300 hover:text-green-500 transition-colors">Художники</a>
@@ -83,7 +84,7 @@
                                 <i class="fas fa-forward"></i>
                             </button>
                             <audio id="audio-{{ loop.index }}" class="hidden">
-                                <source src="{{ url_for('static', filename='audio/' + song.genre.name + '/' + song.file_name) }}" type="audio/mpeg">
+                                <source src="{{ url_for('static', filename='audio/' + song.genre_name + '/' + song.file_name) }}" type="audio/mpeg">
                             </audio>
                         </div>
                     </li>
